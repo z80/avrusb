@@ -19,12 +19,12 @@ elseif ( WIN32 )
 endif ( UNIX )
 set( src ${src} ${s} )
 
-add_library( ctrlboardio STATIC ${src} )
+add_library( io STATIC ${src} )
 if ( UNIX )
-    target_link_libraries( ctrlboardio ${LIBUSB_1_LIBRARIES} )
+    target_link_libraries( io ${LIBUSB_1_LIBRARIES} )
 elseif ( WIN32 )
     find_library( libusb NAMES libusb-1.0.lib PATHS "${LIBUSB_LIB_PATH}" )
-    target_link_libraries( ctrlboardio ${libusb} )
+    target_link_libraries( io ${libusb} )
 endif ( UNIX )
 
 
