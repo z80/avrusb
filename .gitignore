@@ -10,3 +10,7 @@
 *.lai
 *.la
 *.a
+
+# Directories
+software/build
+software/app
