@@ -1,0 +1,161 @@
+<ui version="4.0" >
+ <class>Form</class>
+ <widget class="QWidget" name="Form" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>188</width>
+    <height>94</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <layout class="QGridLayout" >
+     <item row="0" column="0" >
+      <widget class="QLed" name="qLed" >
+       <property name="toolTip" >
+        <string>Binary Led</string>
+       </property>
+       <property name="whatsThis" >
+        <string>Led widget</string>
+       </property>
+       <property name="value" >
+        <bool>false</bool>
+       </property>
+       <property name="color" >
+        <color>
+         <red>255</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" >
+      <widget class="QLed" name="qLed_2" >
+       <property name="toolTip" >
+        <string>Binary Led</string>
+       </property>
+       <property name="whatsThis" >
+        <string>Led widget</string>
+       </property>
+       <property name="value" >
+        <bool>false</bool>
+       </property>
+       <property name="color" >
+        <color>
+         <red>255</red>
+         <green>255</green>
+         <blue>0</blue>
+        </color>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" >
+      <widget class="QLed" name="qLed_3" >
+       <property name="toolTip" >
+        <string>Binary Led</string>
+       </property>
+       <property name="whatsThis" >
+        <string>Led widget</string>
+       </property>
+       <property name="value" >
+        <bool>false</bool>
+       </property>
+       <property name="color" >
+        <color>
+         <red>0</red>
+         <green>170</green>
+         <blue>0</blue>
+        </color>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" >
+      <widget class="QCheckBox" name="checkBox" >
+       <property name="text" >
+        <string>Red</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" >
+      <widget class="QCheckBox" name="checkBox_2" >
+       <property name="text" >
+        <string>Yellow</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" >
+      <widget class="QCheckBox" name="checkBox_3" >
+       <property name="text" >
+        <string>Green</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QLed</class>
+   <extends>QWidget</extends>
+   <header>qled.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>checkBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>qLed</receiver>
+   <slot>setValue(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>62</x>
+     <y>134</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>56</x>
+     <y>87</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_2</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>qLed_2</receiver>
+   <slot>setValue(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>116</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>115</x>
+     <y>77</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_3</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>qLed_3</receiver>
+   <slot>setValue(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>205</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>172</x>
+     <y>74</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

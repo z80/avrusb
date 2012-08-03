@@ -9,18 +9,17 @@ class UsbIo
 public:
     UsbIo();
     virtual ~UsbIo();
-    bool open( const std::string & arg = std::string() );
+    bool open();
     void close();
     bool isOpen() const;
 
+    int maxPacketSize() const;
     // Low level read/write functionality.
-    int write( unsigned char * data, int size );
-    int read( unsigned char * data, int maxSize );
+    int io( const std::basic_string<unsigned char> & to, std::basic_string<unsigned char> & from );
     int setTimeout( int ms );
 
-    int readQueue( unsigned char * data, int maxSize );
-    
-    std::basic_string<unsigned char> & data();
+    std::basic_string<unsigned char> & dataTo();
+    std::basic_string<unsigned char> & dataFrom();
 protected:
     class PD;
     PD * pd;

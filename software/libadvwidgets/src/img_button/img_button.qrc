@@ -1,0 +1,16 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+        <file>img_button/goldButtonC.png</file>
+        <file>img_button/goldButtonU.png</file>
+        <file>img_button/greenButtonC.png</file>
+        <file>img_button/greenButtonU.png</file>
+        <file>img_button/redButtonC.png</file>
+        <file>img_button/redButtonU.png</file>
+        <file>img_button/rBlueButtonC.png</file>
+        <file>img_button/rBlueButtonU.png</file>
+        <file>img_button/rRedButtonC.png</file>
+        <file>img_button/rRedButtonU.png</file>
+        <file>img_button/rGreenButtonC.png</file>
+        <file>img_button/rGreenButtonU.png</file>
+    </qresource>
+ </RCC>

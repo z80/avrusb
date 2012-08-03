@@ -22,5 +22,6 @@ endif ( WIN32 )
 add_subdirectory( "${ROOT}/3dparty/qwt-6.0.1" )
 add_subdirectory( "${ROOT}/libio" )
 add_subdirectory( "${ROOT}/libwidgets" )
+add_subdirectory( "${ROOT}/libadvwidgets" )
 add_subdirectory( "${ROOT}/application" )
 

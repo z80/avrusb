@@ -22,17 +22,20 @@ LowlevelIo::~LowlevelIo()
 
 int LowlevelIo::putArgs( int size, unsigned char * args )
 {
-    std::basic_string<unsigned char> & data = this->data();
-    int sz = size + 2;
-    data.resize( sz );
-    data[0] = CMD_DATA;
-    data[1] = static_cast<unsigned char>( size );
-    unsigned char * d = args;
-    int k = 2;
-    for ( int i=0; i<size; i++ )
-        data[k++] = d[i];
-    int res = write( const_cast<unsigned char *>( data.data() ), sz );
-    return res;
+    std::basic_string<unsigned char> & data = this->dataTo();
+    for ( int i=0; i<size; i+=(maxPacketSize()-1) )
+    {
+        int sz = ( (size - i) < (maxPacketSize()-1) ) ? (size - i) : (maxPacketSize()-1);
+        data.resize( sz+1 );
+        data[0] = sz;
+        for ( int j=0; j<data[0]; j++ )
+            data[j+1] = args[i+j];
+        unsigned char * d = args;
+        int res = io( data, dataFrom() );
+        if ( res < 0 )
+            return res;
+    }
+    return size;
 }
 
 int LowlevelIo::putString( char * stri )
@@ -89,13 +92,13 @@ int LowlevelIo::putUInt32( unsigned long val )
 
 int LowlevelIo::execFunc( int index )
 {
-    std::basic_string<unsigned char> & data = this->data();
+    std::basic_string<unsigned char> & data = this->dataTo();
     data.clear();
     int sz = 2;
     data.resize( sz );
-    data[0] = CMD_FUNC;
+    data[0] = 0;
     data[1] = static_cast<unsigned char>( index );
-    int res = write( const_cast<unsigned char *>( data.data() ), data.size() );
+    int res = io( data, dataFrom() );
     return res;
 }
 

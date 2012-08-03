@@ -11,6 +11,8 @@ include( ${QT_USE_FILE} )
 include_directories( "./src" 
                      "${ROOT}/libio/src" 
                      "${ROOT}/libwidgets/src" 
+                     "${ROOT}/libadvwidgets/src/led" 
+                     "${ROOT}/libadvwidgets/src/switch" 
                      "${ROOT}/3dparty/qwt-6.0.1/src" 
                      ${CMAKE_CURRENT_BINARY_DIR} )
 

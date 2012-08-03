@@ -28,20 +28,15 @@ public:
     std::string res;
     std::string output;
     int timeout;
-    std::basic_string<unsigned char> data;
+    std::basic_string<unsigned char> dataTo;
     static const int VENDOR_ID;
     static const int PRODUCT_ID;
     static const int TIMEOUT;
-    static const int EP_OUT;
-    static const int EP_IN;
 };
 
-const int UsbIo::PD::VENDOR_ID  = 0x0483;
-const int UsbIo::PD::PRODUCT_ID = 0x5740;
+const int UsbIo::PD::VENDOR_ID  = 0x16C0;
+const int UsbIo::PD::PRODUCT_ID = 0x05DC;
 const int UsbIo::PD::TIMEOUT    = 1000;
-
-const int UsbIo::PD::EP_OUT = 0x03;
-const int UsbIo::PD::EP_IN  = 0x81;
 
 UsbIo::UsbIo()
 {
@@ -89,25 +84,34 @@ bool UsbIo::isOpen() const
     return (pd->handle != 0);
 }
 
-int UsbIo::write( unsigned char * data, int size )
+int UsbIo::maxPacketSize() const
 {
-    int actual_length;
-    int res = libusb_bulk_transfer( pd->handle,
-                      PD::EP_OUT, data, size,
-                      &actual_length, pd->timeout );
-    if ( res != LIBUSB_SUCCESS )
-        return 0;
-    return actual_length;
+    return 5;
 }
 
-int UsbIo::read( unsigned char * data, int maxSize )
+int UsbIo::io( const std::basic_string<unsigned char> & to, std::basic_string<unsigned char> & from )
 {
+    if ( !isOpen() )
+        return -1;
     int actual_length;
-    int res = libusb_bulk_transfer( pd->handle,
-                      PD::EP_IN, data, maxSize,
-                      &actual_length, pd->timeout );
-    if ( res != LIBUSB_SUCCESS )
-        return 0;
+    std::basic_string<unsigned char> & dataTo = pd->dataTo;
+    dataTo.resize( maxPacketSize() );
+    for ( int i=0; i<to.size(); i++ )
+        dataTo[i] = to[i];
+    for ( int i=to.size(); i<dataTo.size(); i++ )
+        dataTo[i] = 0;
+    from.resize( 8 );
+    int res = libusb_control_transfer( 
+                  pd->handle, 
+                  USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, 
+                  dataTo[0], dataTo[1] + 256 * dataTo[2], 
+                  dataTo[3] + 256 * dataTo[4], 
+                  const_cast<unsigned char *>( from.data() ), from.size(), pd->timeout );
+    if ( res < LIBUSB_SUCCESS )
+    {
+        close();
+        return -1;
+    }
     return actual_length;
 }
 
@@ -117,27 +121,16 @@ int UsbIo::setTimeout( int ms )
     return 0;
 }
 
-int UsbIo::readQueue( unsigned char * data, int maxSize )
+std::basic_string<unsigned char> & UsbIo::dataTo()
 {
-    int t = pd->timeout;
-    int sz = maxSize;
-    do {
-        int len = read( data, sz );
-        data += len;
-        sz -= len;
-        if ( len < 1 )
-        {
-            Sleep( 1 );
-            t -= 1;
-        }
-    } while ( ( sz > 0 ) && ( t > 0 ) );
-    return maxSize - sz;
+    return pd->dataTo;
 }
 
-std::basic_string<unsigned char> & UsbIo::data()
+std::basic_string<unsigned char> & dataFrom()
 {
-    return pd->data;
+    return pd->dataFrom;
 }
+
 
 
 
