@@ -11,6 +11,7 @@
 #include "usbdrv.h"
 
 void cpuIoInit( void );
+void cpuIoPoll( void );
 void cpuIoReset( void );
 void cpuIoPush( uchar * in, uchar cnt );
 void cpuIoPop( uchar * out, uchar cnt );

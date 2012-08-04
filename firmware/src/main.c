@@ -24,6 +24,8 @@ void __attribute__((noreturn)) main( void )
         _delay_ms( 1 );
         wdt_reset();
     }
+    cpuIoInit();
+
     usbDeviceConnect();
     sei();
 
@@ -32,6 +34,7 @@ void __attribute__((noreturn)) main( void )
         // main event loop
         usbPoll();
         wdt_reset();
+        cpuIoPoll();
         //_delay_ms( 10 );
     }
 }

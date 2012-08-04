@@ -12,12 +12,31 @@ uchar g_ioRdPtr = 0;
 // Buffer itself
 uchar g_ioBuffer[ BUFFER_SZ ];
 
+#define IO_WATCHDOG_TOP    600 // 3 seconds if timer0 counts up to 100 with 1024 prescaler at 20MHz.
+uint16_t g_ioWatchdog = 0;
+
 void cpuIoInit( void )
 {
+    TCCR0 = 0; // disable timer0;
+    TCNT0 = 0; // reset it's counter;
+    TCCR0 = (1 << CS02) | (1 << CS00); // run timer0 with x1024 prescaler.
+}
+
+void cpuIoPoll( void )
+{
+    if ( TCNT0 >= 100 )
+    {
+        g_ioWatchdog++;
+        if ( g_ioWatchdog > IO_WATCHDOG_TOP )
+            cpuIoReset();
+        cpuIoInit();
+    }
 }
 
 void cpuIoReset( void )
 {
+    g_ioWatchdog = 0;
+
     g_ioExpected = 0;
     g_ioWrPtr = 0;
     g_ioRdPtr = 0;
@@ -25,6 +44,8 @@ void cpuIoReset( void )
 
 void cpuIoPush( uchar * in, uchar cnt )
 {
+    g_ioWatchdog = 0;
+
     uchar i = 0;
     if ( g_ioExpected == 0 )
     {
