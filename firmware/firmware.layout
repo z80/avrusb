@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="../common/config.h" open="1" top="0" tabpos="5">
-		<Cursor position="0" topLine="13" />
+	<File name="../common/config.h" open="1" top="0" tabpos="2">
+		<Cursor position="1240" topLine="21" />
 	</File>
-	<File name="src/cpu_io.c" open="1" top="1" tabpos="7">
-		<Cursor position="175" topLine="0" />
+	<File name="src/cpu_io.c" open="1" top="0" tabpos="4">
+		<Cursor position="372" topLine="45" />
 	</File>
-	<File name="src/cpu_io.h" open="1" top="0" tabpos="6">
-		<Cursor position="107" topLine="0" />
+	<File name="src/cpu_io.h" open="1" top="0" tabpos="3">
+		<Cursor position="294" topLine="0" />
 	</File>
-	<File name="src/main.c" open="1" top="0" tabpos="4">
-		<Cursor position="1908" topLine="3" />
+	<File name="src/funcs.c" open="1" top="0" tabpos="7">
+		<Cursor position="104" topLine="3" />
 	</File>
-	<File name="src/usbconfig.h" open="1" top="0" tabpos="3">
-		<Cursor position="1406" topLine="17" />
+	<File name="src/funcs.h" open="1" top="0" tabpos="6">
+		<Cursor position="230" topLine="0" />
+	</File>
+	<File name="src/main.c" open="1" top="0" tabpos="1">
+		<Cursor position="1083" topLine="38" />
+	</File>
+	<File name="src/usbconfig.h" open="0" top="0" tabpos="3">
+		<Cursor position="4123" topLine="190" />
 	</File>
 	<File name="usbdrv/oddebug.h" open="0" top="0" tabpos="0">
 		<Cursor position="1020" topLine="19" />
 	</File>
-	<File name="usbdrv/usbdrv.c" open="1" top="0" tabpos="2">
+	<File name="usbdrv/usbdrv.c" open="0" top="0" tabpos="2">
 		<Cursor position="399" topLine="0" />
 	</File>
-	<File name="usbdrv/usbdrv.h" open="1" top="0" tabpos="1">
-		<Cursor position="411" topLine="0" />
+	<File name="usbdrv/usbdrv.h" open="1" top="1" tabpos="5">
+		<Cursor position="30555" topLine="717" />
 	</File>
 </CodeBlocks_layout_file>

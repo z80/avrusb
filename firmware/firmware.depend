@@ -2,8 +2,12 @@
 1326067972 source:c:\projects\avrusb.git\firmware\usbdrv\oddebug.c
 	"oddebug.h"
 
+1343973986 "
+
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\oddebug.h
 	"usbportability.h"
+
+1326067972 ility.h"
 
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbportability.h
 	<ioavr.h>
@@ -12,6 +16,8 @@
 	<delay.h>
 	<avr/io.h>
 	<avr/pgmspace.h>
+
+1326067972 ace.h>
 
 1343973986 source:c:\projects\avrusb.git\firmware\usbdrv\usbdrv.c
 	"usbportability.h"
@@ -35,14 +41,20 @@
 	"usbdrvasm165.inc"
 	"usbdrvasm20.inc"
 
+1326067972 20.inc"
+
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm18-crc.inc
 	"asmcommon.inc"
 	<stdio.h>
+
+1327304333 
 
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\asmcommon.inc
 
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm12.inc
 	"asmcommon.inc"
+
+1326067972 .inc"
 
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm128.inc
 	"asmcommon.inc"
@@ -62,6 +74,8 @@
 1326067972 source:c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm.asm
 	"usbdrvasm.S"
 
+1326067972 .S"
+
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm.s
 	"usbportability.h"
 	"usbdrv.h"
@@ -74,6 +88,114 @@
 	"usbdrvasm20.inc"
 
 1327304333 source:c:\projects\avrusb.git\firmware\src\main.c
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/wdt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"usbdrv.h"
+
+1344082514 source:/home/z80/projects/avrusb.git/firmware/src/cpu_io.c
+	"cpu_io.h"
+	"funcs.h"
+
+1344081935 /home/z80/projects/avrusb.git/firmware/src/cpu_io.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/wdt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"usbdrv.h"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrv.h
+	"usbconfig.h"
+	"usbportability.h"
+
+1344080442 /home/z80/projects/avrusb.git/firmware/src/usbconfig.h
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbportability.h
+	<ioavr.h>
+	<inavr.h>
+	<io.h>
+	<delay.h>
+	<avr/io.h>
+	<avr/pgmspace.h>
+
+1344082631 /home/z80/projects/avrusb.git/firmware/src/funcs.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/wdt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"usbdrv.h"
+
+1344085366 source:/home/z80/projects/avrusb.git/firmware/src/funcs.c
+	"funcs.h"
+	"config.h"
+
+1344085322 /home/z80/projects/avrusb.git/common/config.h
+
+1344055810 source:/home/z80/projects/avrusb.git/firmware/usbdrv/oddebug.c
+	"oddebug.h"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/oddebug.h
+	"usbportability.h"
+
+1344055810 source:/home/z80/projects/avrusb.git/firmware/usbdrv/usbdrv.c
+	"usbportability.h"
+	"usbdrv.h"
+	"oddebug.h"
+
+1344055810 source:/home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm.S
+	"usbportability.h"
+	"usbdrv.h"
+	"usbdrvasm18-crc.inc"
+	"usbdrvasm12.inc"
+	"usbdrvasm128.inc"
+	"usbdrvasm15.inc"
+	"usbdrvasm16.inc"
+	"usbdrvasm165.inc"
+	"usbdrvasm20.inc"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm18-crc.inc
+	"asmcommon.inc"
+	<stdio.h>
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/asmcommon.inc
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm12.inc
+	"asmcommon.inc"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm128.inc
+	"asmcommon.inc"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm15.inc
+	"asmcommon.inc"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm16.inc
+	"asmcommon.inc"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm165.inc
+	"asmcommon.inc"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm20.inc
+	"asmcommon.inc"
+
+1344055810 source:/home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm.asm
+	"usbdrvasm.S"
+
+1344055810 /home/z80/projects/avrusb.git/firmware/usbdrv/usbdrvasm.S
+	"usbportability.h"
+	"usbdrv.h"
+	"usbdrvasm18-crc.inc"
+	"usbdrvasm12.inc"
+	"usbdrvasm128.inc"
+	"usbdrvasm15.inc"
+	"usbdrvasm16.inc"
+	"usbdrvasm165.inc"
+	"usbdrvasm20.inc"
+
+1344084275 source:/home/z80/projects/avrusb.git/firmware/src/main.c
 	<avr/io.h>
 	<avr/interrupt.h>
 	<avr/wdt.h>

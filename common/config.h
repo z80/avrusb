@@ -2,23 +2,26 @@
 #ifndef __CONFIG_H_
 #define __CONFIG_H_
 
-// Param IDs.
-#define MOTOR_CONTROL       1
-#define THROTTLE_RUMP_UP    2
-#define THROTTLE_RUMP_DOWN  3
-#define THROTTLE_RANGE_LOW  4
-#define THROTTLE_RANGE_HIGH 5
-#define THROTTLE_LOCKOUT    6
-#define STALL_THRESHOLD     7
-#define THROTTLE_SPEED_CTRL 8
-#define CURRENT_LIMIT       9
-#define UNDERVOLTAGE_CTRL   10
-#define PASSWORD            11
+#define VERSION "0.0.1"
+#define FIRMWARE "moto"
 
-#define ON_OFF              12
-#define THROTTLE            13
-#define SPEED               14
-#define DIRECTION           15
+// Param IDs.
+#define MOTOR_CONTROL       0
+#define THROTTLE_RUMP_UP    1
+#define THROTTLE_RUMP_DOWN  3
+#define THROTTLE_RANGE_LOW  5
+#define THROTTLE_RANGE_HIGH 6
+#define THROTTLE_LOCKOUT    7
+#define STALL_THRESHOLD     8
+#define THROTTLE_SPEED_CTRL 9
+#define CURRENT_LIMIT       10
+#define UNDERVOLTAGE_CTRL   12
+#define PASSWORD            14
+
+#define ON_OFF              0
+#define THROTTLE            1
+#define SPEED               2
+#define DIRECTION           4
 
 #define VOLTAGE             16
 #define ENABLE_KEY_SEAT_1   17
@@ -33,11 +36,12 @@
 #define CYCLES              25
 #define MODEL_REV           26
 
-#define FUNC_VERSION        0 // Just firmware version.
-#define FUNC_SET_PARAM      1 // Invokes param set routine.
-#define FUNC_PARAM          2 // Fills queue with data to be transferred and transferres that data.
-#define FUNC_QUEUE          3 // To set queue ptr and read values bigger then 8 bytes.
-
+#define FUNC_VERSION          0 // Firmware version.
+#define FUNC_FIRMWARE         1 // Firmware description.
+#define FUNC_SET_PARAM        2 // Invokes param set routine.
+#define FUNC_PARAM            3 // Fills queue with data to be transferred and transferres that data.
+#define FUNC_SET_EEPROM_PARAM 4
+#define FUNC_EEPROM_PARAM     5
 
 #endif
 
