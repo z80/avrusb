@@ -17,7 +17,7 @@
 		<Cursor position="230" topLine="0" />
 	</File>
 	<File name="src/main.c" open="1" top="0" tabpos="1">
-		<Cursor position="1083" topLine="38" />
+		<Cursor position="1005" topLine="37" />
 	</File>
 	<File name="src/usbconfig.h" open="0" top="0" tabpos="3">
 		<Cursor position="4123" topLine="190" />
@@ -29,6 +29,6 @@
 		<Cursor position="399" topLine="0" />
 	</File>
 	<File name="usbdrv/usbdrv.h" open="1" top="1" tabpos="5">
-		<Cursor position="30555" topLine="717" />
+		<Cursor position="29382" topLine="680" />
 	</File>
 </CodeBlocks_layout_file>

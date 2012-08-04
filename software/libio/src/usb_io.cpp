@@ -1,6 +1,7 @@
 
 
 #include "usb_io.h"
+#include "usbdrv.h"
 #include <string.h>
 extern "C"
 {

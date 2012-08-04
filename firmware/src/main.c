@@ -41,7 +41,7 @@ usbMsgLen_t usbFunctionSetup( uchar data[8] )
     usbRequest_t    * rq = (void *)data;
     static uchar    dataBuffer[8];  // buffer must stay valid when usbFunctionSetup returns
     usbMsgPtr = dataBuffer;
-    if((rq->bmRequestType & USBRQ_TYPE_MASK) == USBRQ_TYPE_CLASS){    /* HID class request */
+    if((rq->bmRequestType & USBRQ_TYPE_MASK) == USBRQ_TYPE_CLASS){    // HID class request
         if(rq->bRequest == USBRQ_HID_GET_REPORT)
         {
             // wValue: ReportType (highbyte), ReportID (lowbyte)
@@ -53,6 +53,7 @@ usbMsgLen_t usbFunctionSetup( uchar data[8] )
         }
     }
     return 0;
+    //return USB_NO_MSG;
 }
 
 uchar usbFunctionRead(uchar *data, uchar len)
