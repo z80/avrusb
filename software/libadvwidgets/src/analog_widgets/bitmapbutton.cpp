@@ -21,35 +21,40 @@
  ***************************************************************************/
 
 #include <QPainter>
-#include "bitmapbutton.h" 
+#include "bitmapbutton.h"
 
 #define TIMERCYCLES 5
 BitmapButton::BitmapButton(QWidget * parent):QAbstractButton(parent)
 {
 }
 
-QIcon BitmapButton::downIcon() const 
+QIcon BitmapButton::downIcon() const
 {
-  return m_downIcon; 
+  return m_downIcon;
 }
 
 void BitmapButton::setDownIcon(const QIcon & icon)
 {
-  m_downIcon = icon; 
+  m_downIcon = icon;
 }
 
 void BitmapButton::paintEvent ( QPaintEvent * event )
 {
-  QPainter painter(this);
-   QIcon * p_icon = NULL;  
-   if( isDown() || isChecked())
-     	p_icon = &m_downIcon;
-   	//m_downIcon.paint(&painter,0,0,width(),height());
-     else 
-        p_icon = &icon();
+    QPainter painter(this);
+    QIcon * p_icon = NULL;
+    if( isDown() || isChecked())
+    {
+        p_icon = &m_downIcon;
+        //m_downIcon.paint(&painter,0,0,width(),height());
+    }
+    else
+    {
+        static QIcon ic = icon();
+        p_icon = &ic;
         // icon().paint(&painter,0,0,width(),height());
-   
-	QSize aSize = p_icon->actualSize(size()); 
+    }
+
+	QSize aSize = p_icon->actualSize(size());
 	painter.drawPixmap(QRect(0,0,width(),height()),
 			   p_icon->pixmap(aSize)
 			   ,QRect(0,0,aSize.width(),aSize.height())
