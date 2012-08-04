@@ -7,19 +7,20 @@
 		<Option compiler="avrgcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin\Debug\firmware.elf" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj\Debug\" />
+				<Option output="bin/Debug/firmware.elf" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="avrgcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="src" />
 					<Add directory="usbdrv" />
+					<Add directory="../common" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin\Release\firmware.elf" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj\Release\" />
+				<Option output="bin/Release/firmware.elf" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="avrgcc" />
 				<Compiler>
@@ -44,32 +45,42 @@
 			<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.bin" />
 			<Add after='cmd /c &quot;avr-objdump -h -S $(TARGET_OUTPUT_FILE) &gt; $(TARGET_OUTPUT_FILE).lss&quot;' />
 		</ExtraCommands>
-		<Unit filename="src\main.c">
+		<Unit filename="../common/config.h" />
+		<Unit filename="src/cpu_io.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src\usbconfig.h" />
-		<Unit filename="usbdrv\asmcommon.inc" />
-		<Unit filename="usbdrv\oddebug.c">
+		<Unit filename="src/cpu_io.h" />
+		<Unit filename="src/funcs.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="usbdrv\oddebug.h" />
-		<Unit filename="usbdrv\usbdrv.c">
+		<Unit filename="src/funcs.h" />
+		<Unit filename="src/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="usbdrv\usbdrv.h" />
-		<Unit filename="usbdrv\usbdrvasm.S" />
-		<Unit filename="usbdrv\usbdrvasm.asm" />
-		<Unit filename="usbdrv\usbdrvasm12.inc" />
-		<Unit filename="usbdrv\usbdrvasm128.inc" />
-		<Unit filename="usbdrv\usbdrvasm15.inc" />
-		<Unit filename="usbdrv\usbdrvasm16.inc" />
-		<Unit filename="usbdrv\usbdrvasm165.inc" />
-		<Unit filename="usbdrv\usbdrvasm18-crc.inc" />
-		<Unit filename="usbdrv\usbdrvasm20.inc" />
-		<Unit filename="usbdrv\usbportability.h" />
+		<Unit filename="src/usbconfig.h" />
+		<Unit filename="usbdrv/asmcommon.inc" />
+		<Unit filename="usbdrv/oddebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="usbdrv/oddebug.h" />
+		<Unit filename="usbdrv/usbdrv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="usbdrv/usbdrv.h" />
+		<Unit filename="usbdrv/usbdrvasm.S" />
+		<Unit filename="usbdrv/usbdrvasm.asm" />
+		<Unit filename="usbdrv/usbdrvasm12.inc" />
+		<Unit filename="usbdrv/usbdrvasm128.inc" />
+		<Unit filename="usbdrv/usbdrvasm15.inc" />
+		<Unit filename="usbdrv/usbdrvasm16.inc" />
+		<Unit filename="usbdrv/usbdrvasm165.inc" />
+		<Unit filename="usbdrv/usbdrvasm18-crc.inc" />
+		<Unit filename="usbdrv/usbdrvasm20.inc" />
+		<Unit filename="usbdrv/usbportability.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
