@@ -32,7 +32,7 @@ int  CtrlboardIo::version()
 {
     execFunc( FUNC_VERSION );
     unsigned char d[2];
-    int sz = readQueue( d, 2 );
+    int sz = 3; //readQueue( d, 2 );
     if ( sz < 2 )
         return -1;
     int res = d[0] + d[1] * 256;

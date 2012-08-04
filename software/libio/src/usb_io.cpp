@@ -7,7 +7,7 @@ extern "C"
     #include "libusb.h"
     //#include "opendevice.h"
 }
-#include <windows.h>
+//#include <windows.h>
 
 inline static bool LSB()
 {
@@ -28,7 +28,8 @@ public:
     std::string res;
     std::string output;
     int timeout;
-    std::basic_string<unsigned char> dataTo;
+    std::basic_string<unsigned char> dataTo,
+                                      dataFrom;
     static const int VENDOR_ID;
     static const int PRODUCT_ID;
     static const int TIMEOUT;
@@ -56,7 +57,7 @@ UsbIo::~UsbIo()
     delete pd;
 }
 
-bool UsbIo::open( const std::string & arg )
+bool UsbIo::open()
 {
     pd->handle = 0;
     libusb_device * * l = 0;
@@ -101,12 +102,13 @@ int UsbIo::io( const std::basic_string<unsigned char> & to, std::basic_string<un
     for ( int i=to.size(); i<dataTo.size(); i++ )
         dataTo[i] = 0;
     from.resize( 8 );
-    int res = libusb_control_transfer( 
-                  pd->handle, 
-                  USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, 
-                  dataTo[0], dataTo[1] + 256 * dataTo[2], 
-                  dataTo[3] + 256 * dataTo[4], 
-                  const_cast<unsigned char *>( from.data() ), from.size(), pd->timeout );
+    int res = libusb_control_transfer(
+                  pd->handle,
+                  LIBUSB_REQUEST_TYPE_VENDOR |
+                  LIBUSB_RECIPIENT_DEVICE |
+                  LIBUSB_ENDPOINT_IN,
+                  0, 0, 0,
+                  const_cast<unsigned char *>( to.data() ), to.size(), pd->timeout );
     if ( res < LIBUSB_SUCCESS )
     {
         close();
@@ -126,7 +128,7 @@ std::basic_string<unsigned char> & UsbIo::dataTo()
     return pd->dataTo;
 }
 
-std::basic_string<unsigned char> & dataFrom()
+std::basic_string<unsigned char> & UsbIo::dataFrom()
 {
     return pd->dataFrom;
 }
