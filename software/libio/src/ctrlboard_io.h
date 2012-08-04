@@ -3,7 +3,7 @@
 #define __CTRLBOARD_IO_H_
 
 #include "lowlevel_io.h"
-#include "ctrlboard_functions.h"
+#include "config.h"
 #include <string>
 
 class CtrlboardIo: public LowlevelIo
@@ -14,7 +14,8 @@ public:
     CtrlboardIo();
     ~CtrlboardIo();
 
-    int version();
+    int version( std::string & ver );
+    int firmware( std::string & fir );
 
 };
 

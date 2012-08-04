@@ -1,6 +1,5 @@
 
 #include "lowlevel_io.h"
-#include "ctrlboard_functions.h"
 #include "string.h"
 
 inline static bool LSB()
@@ -31,7 +30,7 @@ int LowlevelIo::putArgs( int size, unsigned char * args )
         for ( int j=0; j<data[0]; j++ )
             data[j+1] = args[i+j];
         unsigned char * d = args;
-        int res = io( data, dataFrom() );
+        int res = write( data );
         if ( res < 0 )
             return res;
     }
@@ -98,7 +97,7 @@ int LowlevelIo::execFunc( int index )
     data.resize( sz );
     data[0] = 0;
     data[1] = static_cast<unsigned char>( index );
-    int res = io( data, dataFrom() );
+    int res = write( data );
     return res;
 }
 

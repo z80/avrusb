@@ -6,8 +6,7 @@ include( "../cmake/findlibusb-1.0.cmake" )
 message( STATUS ${LIBUSB_1_DEFINITIONS} )
 
 include_directories( "./src" 
-                     "${ROOT}/3dparty/vusb-20120109/usbdrv" 
-                     "${ROOT}/../formware/src" 
+                     "${ROOT}/../common" 
                      ${GLOB_BIN_DIR} )
 if ( UNIX )
     include_directories( "${LIBUSB_1_INCLUDE_DIRS}" )

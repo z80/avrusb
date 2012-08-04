@@ -15,7 +15,8 @@ public:
 
     int maxPacketSize() const;
     // Low level read/write functionality.
-    int io( const std::basic_string<unsigned char> & to, std::basic_string<unsigned char> & from );
+    int write( const std::basic_string<unsigned char> & to );
+    int read( std::basic_string<unsigned char> & from ,int size );
     int setTimeout( int ms );
 
     std::basic_string<unsigned char> & dataTo();
