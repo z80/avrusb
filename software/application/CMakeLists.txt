@@ -33,5 +33,5 @@ QT4_ADD_RESOURCES( qrcSrc ${qrc} )
 set( src ${src} ${qrcSrc} )
 
 add_executable( application ${src} )
-target_link_libraries( application qwt-6.0.1 widgets io ${QT_LIBRARIES} )
+target_link_libraries( application qwt-6.0.1 widgets advwidgets io ${QT_LIBRARIES} )
 install( TARGETS application DESTINATION "." )
