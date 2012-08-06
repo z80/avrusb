@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1344229574 source:c:\projects\avrusb.git\firmware\src\funcs.c
+1344252718 source:c:\projects\avrusb.git\firmware\src\funcs.c
 	"funcs.h"
 	"config.h"
+	"dbg.h"
 
 1344229574 c:\projects\avrusb.git\firmware\src\funcs.h
 	<avr/io.h>
@@ -25,9 +26,9 @@
 	<avr/io.h>
 	<avr/pgmspace.h>
 
-1344229573 c:\projects\avrusb.git\common\config.h
+1344252327 c:\projects\avrusb.git\common\config.h
 
-1344237713 source:c:\projects\avrusb.git\firmware\src\main.c
+1344254186 source:c:\projects\avrusb.git\firmware\src\main.c
 	<avr/io.h>
 	<avr/interrupt.h>
 	<avr/wdt.h>
@@ -91,7 +92,7 @@
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm20.inc
 	"asmcommon.inc"
 
-1344236630 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
+1344252863 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
 	"cpu_io.h"
 	"funcs.h"
 	"dbg.h"

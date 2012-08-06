@@ -38,8 +38,8 @@ const int UsbIo::PD::VENDOR_ID  = 0x16C0;
 const int UsbIo::PD::PRODUCT_ID = 0x05DD;
 const int UsbIo::PD::TIMEOUT    = 1000;
 
-static const int CONTROL_REQUEST_TYPE_IN = LIBUSB_ENDPOINT_IN | LIBUSB_REQUEST_TYPE_CLASS | LIBUSB_RECIPIENT_ENDPOINT;
-static const int CONTROL_REQUEST_TYPE_OUT = LIBUSB_ENDPOINT_OUT | LIBUSB_REQUEST_TYPE_CLASS | LIBUSB_RECIPIENT_ENDPOINT;
+static const int CONTROL_REQUEST_TYPE_IN = LIBUSB_REQUEST_TYPE_VENDOR | LIBUSB_RECIPIENT_DEVICE | LIBUSB_ENDPOINT_IN;
+static const int CONTROL_REQUEST_TYPE_OUT = LIBUSB_REQUEST_TYPE_VENDOR | LIBUSB_RECIPIENT_ENDPOINT | LIBUSB_ENDPOINT_OUT;
 
 static const int HID_GET_REPORT = 0x01;
 static const int HID_SET_REPORT = 0x09;
@@ -108,7 +108,7 @@ int UsbIo::write( const std::basic_string<unsigned char> & to )
                   HID_SET_REPORT,
                   0, 0,
                   const_cast<unsigned char *>( to.data() ), to.size(), pd->timeout );
-    return to.size();
+    //return to.size();
     if ( res < LIBUSB_SUCCESS )
     {
         close();
