@@ -36,7 +36,7 @@ bool CtrlboardIo::version( std::string & ver )
     if ( !res )
         return false;
     std::basic_string<unsigned char> & from = dataFrom();
-    int sz = read( from, 32 );
+    int sz = read( from, 8 );
     if ( sz < 2 )
         return false;
     ver.resize( sz );

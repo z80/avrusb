@@ -55,7 +55,6 @@ usbMsgLen_t usbFunctionSetup( uchar data[8] )
         }
         else if(rq->bRequest == USBRQ_HID_SET_REPORT)
         {
-            //blinkLed1();
             return USB_NO_MSG;  // use usbFunctionWrite() to receive data from host
         }
     }
@@ -71,10 +70,10 @@ uchar usbFunctionRead(uchar *data, uchar len)
     currentAddress += len;
     bytesRemaining -= len;
     return len;*/
-    //blinkLed1();
     uchar i;
     for ( i=0; i<len; i++ )
         data[i] = 'a' + i;
+    blinkLed1();
     //cpuIoPop( data, len );
     return len;
 }
@@ -92,8 +91,8 @@ uchar usbFunctionWrite( uchar *data, uchar len )
     return bytesRemaining == 0; // return 1 if this was the last chunk
     */
     // Return 1 if don't know if data should come or not.
-    blinkLed1();
-    //cpuIoPush( data, len );
+    blinkLed0();
+    cpuIoPush( data, len );
     return 1;
 }
 

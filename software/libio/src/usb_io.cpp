@@ -108,6 +108,7 @@ int UsbIo::write( const std::basic_string<unsigned char> & to )
                   HID_SET_REPORT,
                   0, 0,
                   const_cast<unsigned char *>( to.data() ), to.size(), pd->timeout );
+    return to.size();
     if ( res < LIBUSB_SUCCESS )
     {
         close();

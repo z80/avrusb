@@ -36,12 +36,12 @@
 #define CYCLES              25
 #define MODEL_REV           26
 
-#define FUNC_VERSION          0 // Firmware version.
-#define FUNC_FIRMWARE         1 // Firmware description.
-#define FUNC_SET_PARAM        2 // Invokes param set routine.
-#define FUNC_PARAM            3 // Fills queue with data to be transferred and transferres that data.
-#define FUNC_SET_EEPROM_PARAM 4
-#define FUNC_EEPROM_PARAM     5
+#define FUNC_VERSION          1 // Firmware version.
+#define FUNC_FIRMWARE         2 // Firmware description.
+#define FUNC_SET_PARAM        3 // Invokes param set routine.
+#define FUNC_PARAM            4 // Fills queue with data to be transferred and transferres that data.
+#define FUNC_SET_EEPROM_PARAM 5
+#define FUNC_EEPROM_PARAM     6
 
 #endif
 

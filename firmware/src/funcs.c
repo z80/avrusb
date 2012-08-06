@@ -1,6 +1,7 @@
 
 #include "funcs.h"
 #include "config.h"
+#include "dbg.h"
 
 // For debug purpose only
 #define MEM_SZ 128
@@ -44,6 +45,7 @@ void invoke( uchar id, uchar * io )
 
 static void version( uchar * io )
 {
+    //blinkLed1();
     const uchar maxLen = 16;
     uchar ver[] = VERSION;
     uchar i = 0;

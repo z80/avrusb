@@ -31,7 +31,7 @@ void cpuIoPoll( void )
         if ( g_ioWatchdog > IO_WATCHDOG_TOP )
         {
             cpuIoReset();
-            blinkLed0();
+            //blinkLed0();
         }
         cpuIoInit();
     }
