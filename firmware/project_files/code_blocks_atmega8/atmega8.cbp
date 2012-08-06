@@ -47,6 +47,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="..\..\src\cpu_io.h" />
+		<Unit filename="..\..\src\dbg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\..\src\dbg.h" />
 		<Unit filename="..\..\src\funcs.c">
 			<Option compilerVar="CC" />
 		</Unit>
