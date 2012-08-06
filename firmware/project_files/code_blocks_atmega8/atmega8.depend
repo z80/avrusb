@@ -91,9 +91,10 @@
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm20.inc
 	"asmcommon.inc"
 
-1344229574 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
+1344233050 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
 	"cpu_io.h"
 	"funcs.h"
+	"dbg.h"
 
 1344232599 source:c:\projects\avrusb.git\firmware\src\dbg.c
 	"dbg.h"

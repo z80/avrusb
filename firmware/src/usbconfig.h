@@ -132,7 +132,7 @@ the newest features and options.
  * own Vendor ID, define it here. Otherwise you use obdev's free shared
  * VID/PID pair. Be sure to read USBID-License.txt for rules!
  */
-#define USB_CFG_DEVICE_ID   0xdc, 0x05  /* 1500 in dec, obdev's free PID */
+#define USB_CFG_DEVICE_ID   0xdd, 0x05  /* 1500 in dec, obdev's free PID */
 /* This is the ID of the product, low byte first. It is interpreted in the
  * scope of the vendor ID. If you have registered your own VID with usb.org
  * or if you have licensed a PID from somebody else, define it here. Otherwise
@@ -142,8 +142,8 @@ the newest features and options.
 #define USB_CFG_DEVICE_VERSION  0x00, 0x01
 /* Version number of the device: Minor number first, then major number.
  */
-#define USB_CFG_VENDOR_NAME     'w', 'w', 'w', '.', 'o', 'b', 'd', 'e', 'v', '.', 'a', 't'
-#define USB_CFG_VENDOR_NAME_LEN 12
+#define USB_CFG_VENDOR_NAME     't', 'r', 'a', 'n', 's', 'm', 'a', 'g', 'n', 'e', 't', 'i', 'c', 's'
+#define USB_CFG_VENDOR_NAME_LEN 14
 /* These two values define the vendor name returned by the USB device. The name
  * must be given as a list of characters under single quotes. The characters
  * are interpreted as Unicode (UTF-16) entities.
@@ -152,8 +152,8 @@ the newest features and options.
  * obdev's free shared VID/PID pair. See the file USBID-License.txt for
  * details.
  */
-#define USB_CFG_DEVICE_NAME     'P', 'o', 'w', 'e', 'r', 'S', 'w', 'i', 't', 'c', 'h'
-#define USB_CFG_DEVICE_NAME_LEN 11
+#define USB_CFG_DEVICE_NAME     'b', 'r', 'u', 's', 'h', 'l', 'e', 's', 's', '_', 'm', 'o', 't', 'o', 'r'
+#define USB_CFG_DEVICE_NAME_LEN 15
 /* Same as above for the device name. If you don't want a device name, undefine
  * the macros. See the file USBID-License.txt before you assign a name.
  */

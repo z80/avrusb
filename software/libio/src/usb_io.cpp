@@ -35,7 +35,7 @@ public:
 };
 
 const int UsbIo::PD::VENDOR_ID  = 0x16C0;
-const int UsbIo::PD::PRODUCT_ID = 0x05DC;
+const int UsbIo::PD::PRODUCT_ID = 0x05DD;
 const int UsbIo::PD::TIMEOUT    = 1000;
 
 static const int CONTROL_REQUEST_TYPE_IN = LIBUSB_ENDPOINT_IN | LIBUSB_REQUEST_TYPE_CLASS | LIBUSB_RECIPIENT_INTERFACE;
