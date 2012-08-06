@@ -27,7 +27,7 @@
 
 1344229573 c:\projects\avrusb.git\common\config.h
 
-1344229574 source:c:\projects\avrusb.git\firmware\src\main.c
+1344232635 source:c:\projects\avrusb.git\firmware\src\main.c
 	<avr/io.h>
 	<avr/interrupt.h>
 	<avr/wdt.h>
@@ -35,6 +35,7 @@
 	<avr/pgmspace.h>
 	"usbdrv.h"
 	"cpu_io.h"
+	"dbg.h"
 
 1344229574 c:\projects\avrusb.git\firmware\src\cpu_io.h
 	<avr/io.h>
@@ -93,4 +94,10 @@
 1344229574 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
 	"cpu_io.h"
 	"funcs.h"
+
+1344232599 source:c:\projects\avrusb.git\firmware\src\dbg.c
+	"dbg.h"
+	<avr/io.h>
+
+1344232584 c:\projects\avrusb.git\firmware\src\dbg.h
 

@@ -39,6 +39,7 @@ void cpuIoPoll( void )
 
 void cpuIoReset( void )
 {
+    // IO watchdog reset.
     g_ioWatchdog = 0;
 
     g_ioExpected = 0;
@@ -48,6 +49,7 @@ void cpuIoReset( void )
 
 void cpuIoPush( uchar * in, uchar cnt )
 {
+    // IO watchdog reset.
     g_ioWatchdog = 0;
 
     uchar i = 0;
