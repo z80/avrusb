@@ -15,7 +15,7 @@
 	"usbconfig.h"
 	"usbportability.h"
 
-1344229574 c:\projects\avrusb.git\firmware\src\usbconfig.h
+1344233431 c:\projects\avrusb.git\firmware\src\usbconfig.h
 
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbportability.h
 	<ioavr.h>
@@ -27,7 +27,7 @@
 
 1344229573 c:\projects\avrusb.git\common\config.h
 
-1344232635 source:c:\projects\avrusb.git\firmware\src\main.c
+1344237713 source:c:\projects\avrusb.git\firmware\src\main.c
 	<avr/io.h>
 	<avr/interrupt.h>
 	<avr/wdt.h>
@@ -91,7 +91,7 @@
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm20.inc
 	"asmcommon.inc"
 
-1344233050 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
+1344236630 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
 	"cpu_io.h"
 	"funcs.h"
 	"dbg.h"
