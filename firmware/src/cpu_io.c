@@ -1,6 +1,7 @@
 
 #include "cpu_io.h"
 #include "funcs.h"
+#include "dbg.h"
 
 #define BUFFER_SZ 32
 
@@ -12,7 +13,7 @@ uchar g_ioRdPtr = 0;
 // Buffer itself
 uchar g_ioBuffer[ BUFFER_SZ ];
 
-#define IO_WATCHDOG_TOP    600 // 3 seconds if timer0 counts up to 100 with 1024 prescaler at 20MHz.
+#define IO_WATCHDOG_TOP    200 // 2 seconds if timer0 counts up to 100 with 1024 prescaler at 20MHz.
 uint16_t g_ioWatchdog = 0;
 
 void cpuIoInit( void )
@@ -28,7 +29,10 @@ void cpuIoPoll( void )
     {
         g_ioWatchdog++;
         if ( g_ioWatchdog > IO_WATCHDOG_TOP )
+        {
             cpuIoReset();
+            blinkLed0();
+        }
         cpuIoInit();
     }
 }

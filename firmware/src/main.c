@@ -7,18 +7,21 @@
 #include <avr/pgmspace.h>   // required by usbdrv.h
 #include "usbdrv.h"
 #include "cpu_io.h"
+#include "dbg.h"
 
 usbMsgLen_t usbFunctionSetup( uchar data[8] );
 
 void __attribute__((noreturn)) main( void )
 {
     cli();
+    initLeds();
+
     wdt_enable( WDTO_1S );
 
     // USB initialization.
     usbInit();
     usbDeviceDisconnect();  // enforce re-enumeration, do this while interrupts are disabled!
-    unsigned char b = 250;
+    unsigned char b = 150;
     while ( b-- )
     {
         _delay_ms( 1 );
