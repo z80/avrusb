@@ -183,103 +183,179 @@ bool CtrlboardIo::throttleRumpUp( int & val )
 
 bool CtrlboardIo::setThrottleRumpDown( int val )
 {
-    return true;
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setParam( THROTTLE_RUMP_DOWN, arg, 2 );
+    return res;
 }
 
 bool CtrlboardIo::setThrottleRumpDown( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( THROTTLE_RUMP_DOWN, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
 bool CtrlboardIo::setThrottleRangeLow( int val )
 {
-    return true;
+    unsigned char arg = static_cast<unsigned char>( val );
+    bool res = setParam( THROTTLE_RANGE_LOW, &arg, 1 );
+    return res;
 }
 
 bool CtrlboardIo::throttleRangeLow( int & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( THROTTLE_RANGE_LOW, &arg, 1 );
+    if ( res )
+        val = static_cast<int>( arg );
+    return res;
 }
 
 bool CtrlboardIo::setThrottleRangeHigh( int val )
 {
-    return true;
+    unsigned char arg = static_cast<unsigned char>( val );
+    bool res = setParam( THROTTLE_RANGE_HIGH, &arg, 1 );
+    return res;
 }
 
 bool CtrlboardIo::throttleRangeHigh( int & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( THROTTLE_RANGE_HIGH, &arg, 1 );
+    if ( res )
+        val = static_cast<int>( arg );
+    return res;
 }
 
 bool CtrlboardIo::setThrottleLockout( bool val )
 {
-    return true;
+    unsigned char arg = val ? 1 : 0;
+    bool res = setParam( THROTTLE_LOCKOUT, &arg, 1 );
+    return res;
 }
 
 bool CtrlboardIo::throttleLockout( bool & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( THROTTLE_RANGE_HIGH, &arg, 1 );
+    if ( res )
+        val = ( arg > 0 );
+    return res;
 }
 
 bool CtrlboardIo::setStallThreshold( int val )
 {
-    return true;
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setParam( STALL_THRESHOLD, arg, 2 );
+    return res;
 }
 
 bool CtrlboardIo::stallThreshold( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( STALL_THRESHOLD, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
 bool CtrlboardIo::setThrottleSpeedCtrl( TSpeedCtrl val )
 {
-    return true;
+    unsigned char arg = static_cast<unsigned char>( val );
+    bool res = setParam( MOTOR_CONTROL, &arg, 1 );
+    return res;
 }
 
 bool CtrlboardIo::throttleSpeedCtrl( TSpeedCtrl & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( MOTOR_CONTROL, &arg, 1 );
+    if ( res )
+        val = static_cast<TSpeedCtrl>( arg );
+    return res;
 }
 
-bool CtrlboardIo::setCurrentLimit( int en )
+bool CtrlboardIo::setCurrentLimit( int val )
 {
-    return true;
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setParam( CURRENT_LIMIT, arg, 2 );
+    return res;
 }
 
-bool CtrlboardIo::throttleSpeedCtrl( int & en )
+bool CtrlboardIo::throttleSpeedCtrl( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( CURRENT_LIMIT, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
-bool CtrlboardIo::setUndervoltageCtrl( int en )
+bool CtrlboardIo::setUndervoltageCtrl( int val )
 {
-    return true;
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setParam( UNDERVOLTAGE_CTRL, arg, 2 );
+    return res;
 }
 
-bool CtrlboardIo::undervoltageCtrl( int & en )
+bool CtrlboardIo::undervoltageCtrl( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( UNDERVOLTAGE_CTRL, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
 bool CtrlboardIo::setPassword( const std::string & val )
 {
+    const int SZ = 16;
+    unsigned char arg[SZ];
+    for ( int i=0; i<SZ; i++ )
+        arg[i] = ( i<(int)val.size() ) ? val[i] : '\0';
+    bool res = setParam( PASSWORD, arg, SZ );
     return true;
 }
 
 bool CtrlboardIo::password( std::string & val )
 {
+    const int SZ = 16;
+    unsigned char arg[SZ];
+    bool res = param( PASSWORD, arg, SZ );
+    if ( !res )
+        return false;
+    int sz = 0;
+    for ( int i=0; i<SZ; i++ )
+    {
+        if ( arg[i] == '\0' )
+            break;
+        sz++;
+    }
+    val.resize( sz );
+    for ( int i=0; i<sz; i++ )
+        val[i] = arg[i];
     return true;
 }
 
-bool CtrlboardIo::setEnabled( bool en )
-{
-    return true;
-}
-
-bool CtrlboardIo::enabled( bool & en )
-{
-    return true;
-}
+//bool CtrlboardIo::setEnabled( bool en )
+//{
+//    return true;
+//}
+//
+//bool CtrlboardIo::enabled( bool & en )
+//{
+//    return true;
+//}
 
 bool CtrlboardIo::setThrottle( int val )
 {

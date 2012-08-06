@@ -58,8 +58,8 @@ public:
     bool password( std::string & val );
 
     // Group 2.
-    bool setEnabled( bool en );
-    bool enabled( bool & en );
+    //bool setEnabled( bool en );
+    //bool enabled( bool & en );
 
     bool setThrottle( int val );
     bool throttle( int & val );

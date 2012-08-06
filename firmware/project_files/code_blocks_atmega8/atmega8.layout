@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="..\..\..\common\config.h" open="1" top="0" tabpos="7">
+		<Cursor position="89" topLine="0" />
+	</File>
+	<File name="..\..\src\cpu_io.c" open="1" top="0" tabpos="5">
+		<Cursor position="1606" topLine="49" />
+	</File>
+	<File name="..\..\src\dbg.c" open="1" top="0" tabpos="3">
+		<Cursor position="750" topLine="2" />
+	</File>
+	<File name="..\..\src\dbg.h" open="1" top="0" tabpos="2">
+		<Cursor position="6" topLine="0" />
+	</File>
+	<File name="..\..\src\funcs.c" open="1" top="1" tabpos="6">
+		<Cursor position="468" topLine="36" />
+	</File>
+	<File name="..\..\src\funcs.h" open="1" top="0" tabpos="1">
+		<Cursor position="208" topLine="0" />
+	</File>
+	<File name="..\..\src\main.c" open="1" top="0" tabpos="4">
+		<Cursor position="2442" topLine="61" />
+	</File>
+	<File name="..\..\src\usbconfig.h" open="0" top="0" tabpos="0">
+		<Cursor position="6178" topLine="81" />
+	</File>
+	<File name="..\..\usbdrv\usbdrv.h" open="1" top="0" tabpos="8">
+		<Cursor position="29329" topLine="668" />
+	</File>
+</CodeBlocks_layout_file>
