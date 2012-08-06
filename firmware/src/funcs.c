@@ -37,7 +37,6 @@ void invoke( uchar id, uchar * io )
         firmware( io );
         break;
     case FUNC_VERSION:
-    default:
         version( io );
         break;
     }
@@ -51,6 +50,7 @@ static void version( uchar * io )
     uchar i = 0;
     do {
         io[i] = ver[i];
+        i++;
     } while ( ( ver[i] != '\0' ) && ( i < maxLen ) );
 }
 

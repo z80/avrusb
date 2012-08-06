@@ -42,7 +42,11 @@ bool CtrlboardIo::version( std::string & ver )
     ver.resize( sz );
     char * d = reinterpret_cast<char *>( const_cast<unsigned char *>( from.data() ) );
     for ( int i=0; i<sz; i++ )
+    {
         ver[i] = d[i];
+        if ( d[i] == '\0' )
+            break;
+    }
     return true;
 }
 
@@ -56,7 +60,11 @@ bool CtrlboardIo::firmware( std::string & fir )
     fir.resize( sz );
     char * d = reinterpret_cast<char *>( const_cast<unsigned char *>( from.data() ) );
     for ( int i=0; i<sz; i++ )
+    {
         fir[i] = d[i];
+        if ( d[i] == '\0' )
+            break;
+    }
     return true;
 }
 

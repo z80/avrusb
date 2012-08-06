@@ -52,17 +52,20 @@ void cpuIoPush( uchar * in, uchar cnt )
     // IO watchdog reset.
     g_ioWatchdog = 0;
 
-    uchar i = 0;
+    uchar ind;
     if ( g_ioExpected == 0 )
     {
         g_ioExpected = in[0];
-        i++;
+        ind = 1;
     }
+    else
+        ind = 0;
 
     if ( g_ioExpected > 0 )
     {
         // Filling buffer with arguments.
-        for ( ;i<cnt; i++ )
+        uchar i;
+        for ( i=ind; i<cnt; i++ )
         {
             g_ioBuffer[ g_ioWrPtr ] = in[i];
             g_ioWrPtr = (g_ioWrPtr + 1) % BUFFER_SZ;
@@ -80,6 +83,9 @@ void cpuIoPush( uchar * in, uchar cnt )
 
 void cpuIoPop( uchar * out, uchar cnt )
 {
+    // IO watchdog reset.
+    g_ioWatchdog = 0;
+
     uchar i;
     for ( i=0; i<cnt; i++ )
     {

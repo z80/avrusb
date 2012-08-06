@@ -71,11 +71,11 @@ uchar usbFunctionRead(uchar *data, uchar len)
     currentAddress += len;
     bytesRemaining -= len;
     return len;*/
-    uchar i;
-    for ( i=0; i<len; i++ )
-        data[i] = 'a' + i;
+    //uchar i;
+    //for ( i=0; i<len; i++ )
+    //    data[i] = 'a' + i;
     blinkLed1();
-    //cpuIoPop( data, len );
+    cpuIoPop( data, len );
     return len;
 }
 
@@ -92,8 +92,9 @@ uchar usbFunctionWrite( uchar *data, uchar len )
     return bytesRemaining == 0; // return 1 if this was the last chunk
     */
     // Return 1 if don't know if data should come or not.
-    blinkLed0();
-    //cpuIoPush( data, len );
+    if ( ( data[0] == 0 ) && ( data[1] == 1 ) )
+        blinkLed0();
+    cpuIoPush( data, len );
     return 1;
 }
 

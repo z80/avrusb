@@ -28,7 +28,7 @@
 
 1344252327 c:\projects\avrusb.git\common\config.h
 
-1344254186 source:c:\projects\avrusb.git\firmware\src\main.c
+1344254431 source:c:\projects\avrusb.git\firmware\src\main.c
 	<avr/io.h>
 	<avr/interrupt.h>
 	<avr/wdt.h>
