@@ -89,7 +89,7 @@ int LowlevelIo::putUInt32( unsigned long val )
     }
 }
 
-int LowlevelIo::execFunc( int index )
+bool LowlevelIo::execFunc( int index )
 {
     std::basic_string<unsigned char> & data = this->dataTo();
     data.clear();
@@ -98,7 +98,7 @@ int LowlevelIo::execFunc( int index )
     data[0] = 0;
     data[1] = static_cast<unsigned char>( index );
     int res = write( data );
-    return res;
+    return ( res == sz );
 }
 
 

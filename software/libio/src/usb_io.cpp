@@ -104,7 +104,7 @@ int UsbIo::write( const std::basic_string<unsigned char> & to )
     }
     int res = libusb_control_transfer(
                   pd->handle,
-                  CONTROL_REQUEST_TYPE_OUT,
+                  CONTROL_REQUEST_TYPE_IN,
                   HID_SET_REPORT,
                   0, 0,
                   const_cast<unsigned char *>( to.data() ), to.size(), pd->timeout );
@@ -126,7 +126,7 @@ int UsbIo::read( std::basic_string<unsigned char> & from ,int size )
     from.resize( size );
     int res = libusb_control_transfer(
                   pd->handle,
-                  CONTROL_REQUEST_TYPE_IN,
+                  CONTROL_REQUEST_TYPE_OUT,
                   HID_GET_REPORT,
                   0, 0,
                   const_cast<unsigned char *>( from.data() ), from.size(), pd->timeout );

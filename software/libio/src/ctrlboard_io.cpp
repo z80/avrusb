@@ -32,7 +32,9 @@ CtrlboardIo::~CtrlboardIo()
 
 bool CtrlboardIo::version( std::string & ver )
 {
-    execFunc( FUNC_VERSION );
+    bool res = execFunc( FUNC_VERSION );
+    if ( !res )
+        return false;
     std::basic_string<unsigned char> & from = dataFrom();
     int sz = read( from, 8 );
     if ( sz < 2 )

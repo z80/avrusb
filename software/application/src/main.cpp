@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
     bool res = io->open();
     if ( res )
     {
-
+        std::string v;
+        res = io->version( v );
         io->close();
     }
     delete io;

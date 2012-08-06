@@ -15,7 +15,7 @@ public:
     int putUInt8( unsigned char val );
     int putUInt16( unsigned short val );
     int putUInt32( unsigned long val );
-    int execFunc( int index );
+    bool execFunc( int index );
 
 };
 
