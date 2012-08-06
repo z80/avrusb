@@ -3,7 +3,6 @@
 #define __CTRLBOARD_IO_H_
 
 #include "lowlevel_io.h"
-#include "config.h"
 #include <string>
 
 class CtrlboardIo: public LowlevelIo

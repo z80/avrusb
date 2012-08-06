@@ -1,5 +1,7 @@
 
 #include "ctrlboard_io.h"
+#include "config.h"
+
 
 inline static bool LSB()
 {
