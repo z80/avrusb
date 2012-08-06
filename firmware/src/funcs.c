@@ -66,6 +66,7 @@ static void firmware( uchar * io )
 
 static void setParam( uchar * io )
 {
+    blinkLed0();
     uchar at = io[0];
     uchar sz = io[1];
     uchar i;
@@ -75,11 +76,12 @@ static void setParam( uchar * io )
 
 static void param( uchar * io )
 {
+    blinkLed1();
     uchar at = io[0];
     uchar sz = io[1];
     uchar i;
     for ( i=0; i<sz; i++ )
-        io[i+2] = g_ramParams[ at+i ];
+        io[i] = g_ramParams[ at+i ];
 }
 
 static void setEepromParam( uchar * io )
@@ -97,7 +99,7 @@ static void eepromParam( uchar * io )
     uchar sz = io[1];
     uchar i;
     for ( i=0; i<sz; i++ )
-        io[i+2] = g_eepromParams[ at+i ];
+        io[i] = g_eepromParams[ at+i ];
 }
 
 

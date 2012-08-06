@@ -30,6 +30,85 @@ CtrlboardIo::~CtrlboardIo()
 {
 }
 
+bool CtrlboardIo::setParam( int paramId, unsigned char * args, int sz )
+{
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( sz+3 );
+    to[0] = sz+2;
+    to[1] = paramId;
+    to[2] = sz;
+    for ( int i=0; i<sz; i++ )
+        to[i+3] = args[i];
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_SET_PARAM );
+    return res;
+}
+
+bool CtrlboardIo::param( int paramId, unsigned char * args, int sz )
+{
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( 3 );
+    to[0] = 2;
+    to[1] = paramId;
+    to[2] = sz;
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_PARAM );
+    if ( !res )
+        return false;
+    std::basic_string<unsigned char> & from = dataFrom();
+    from.resize( sz );
+    cnt = read( from, from.size() );
+    if ( (unsigned int)cnt < from.size() )
+        return false;
+    for ( int i=0; i<sz; i++ )
+        args[i] = from[i];
+    return true;
+}
+
+bool CtrlboardIo::setEepromParam( int paramId, unsigned char * args, int sz )
+{
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( sz+3 );
+    to[0] = sz+2;
+    to[1] = paramId;
+    to[2] = sz;
+    for ( int i=0; i<sz; i++ )
+        to[i+3] = args[i];
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_SET_EEPROM_PARAM );
+    return res;
+}
+
+bool CtrlboardIo::eepromParam( int paramId, unsigned char * args, int sz )
+{
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( 3 );
+    to[0] = 2;
+    to[1] = paramId;
+    to[2] = sz;
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_EEPROM_PARAM );
+    if ( !res )
+        return false;
+    std::basic_string<unsigned char> & from = dataFrom();
+    from.resize( sz );
+    cnt = read( from, from.size() );
+    if ( (unsigned int)cnt < from.size() )
+        return false;
+    for ( int i=0; i<sz; i++ )
+        args[i] = from[i];
+    return true;
+}
+
+
 bool CtrlboardIo::version( std::string & ver )
 {
     bool res = execFunc( FUNC_VERSION );
@@ -70,22 +149,36 @@ bool CtrlboardIo::firmware( std::string & fir )
 
 bool CtrlboardIo::setMotorControl( TMotorControl val )
 {
-    return true;
+    unsigned char arg = static_cast<unsigned char>( val );
+    bool res = setParam( MOTOR_CONTROL, &arg, 1 );
+    return res;
 }
 
 bool CtrlboardIo::motorControl( TMotorControl & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( MOTOR_CONTROL, &arg, 1 );
+    if ( res )
+        val = static_cast<TMotorControl>( arg );
+    return res;
 }
 
 bool CtrlboardIo::setThrottleRumpUp( int val )
 {
-    return true;
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setParam( THROTTLE_RUMP_UP, arg, 2 );
+    return res;
 }
 
 bool CtrlboardIo::throttleRumpUp( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( THROTTLE_RUMP_UP, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
 bool CtrlboardIo::setThrottleRumpDown( int val )

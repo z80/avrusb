@@ -141,7 +141,7 @@ LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x906
+.text           0x00000000      0x8b4
  *(.vectors)
  .vectors       0x00000000       0x26 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
                 0x00000000                __vectors
@@ -228,40 +228,40 @@ LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
                 0x000000da                setLed0
                 0x000000ee                blinkLed0
                 0x000000d0                setLeds
- .text          0x00000112      0x174 obj\Release\src\funcs.o
+ .text          0x00000112      0x150 obj\Release\src\funcs.o
                 0x00000112                invoke
- .text          0x00000286       0xa6 obj\Release\src\main.o
-                0x00000286                usbFunctionSetup
-                0x000002f0                main
-                0x000002d4                usbFunctionRead
-                0x000002ac                usbFunctionWrite
- .text          0x0000032c        0x0 obj\Release\usbdrv\oddebug.o
- .text          0x0000032c      0x238 obj\Release\usbdrv\usbdrv.o
-                0x0000033a                usbPoll
-                0x0000032c                usbInit
- .text          0x00000564      0x28c obj\Release\usbdrv\usbdrvasm.o
-                0x00000596                __vector_1
-                0x00000564                usbCrc16
-                0x0000058e                usbCrc16Append
- .text          0x000007f0      0x112 obj\Release\src\cpu_io.o
-                0x000007f0                cpuIoInit
-                0x00000836                cpuIoReset
-                0x00000880                cpuIoPush
-                0x000007fa                cpuIoPoll
-                0x0000084c                cpuIoPop
- .text          0x00000902        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
- .text          0x00000902        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
- .text          0x00000902        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
-                0x00000902                . = ALIGN (0x2)
+ .text          0x00000262       0x74 obj\Release\src\main.o
+                0x00000262                usbFunctionSetup
+                0x0000029a                main
+                0x0000028e                usbFunctionRead
+                0x00000288                usbFunctionWrite
+ .text          0x000002d6        0x0 obj\Release\usbdrv\oddebug.o
+ .text          0x000002d6      0x238 obj\Release\usbdrv\usbdrv.o
+                0x000002e4                usbPoll
+                0x000002d6                usbInit
+ .text          0x0000050e      0x28c obj\Release\usbdrv\usbdrvasm.o
+                0x00000540                __vector_1
+                0x0000050e                usbCrc16
+                0x00000538                usbCrc16Append
+ .text          0x0000079a      0x116 obj\Release\src\cpu_io.o
+                0x0000079a                cpuIoInit
+                0x000007e0                cpuIoReset
+                0x0000082a                cpuIoPush
+                0x000007a4                cpuIoPoll
+                0x000007f6                cpuIoPop
+ .text          0x000008b0        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text          0x000008b0        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text          0x000008b0        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x000008b0                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000902        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
- .text.libgcc   0x00000902        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000902        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
-                0x00000902                . = ALIGN (0x2)
+ .text.libgcc   0x000008b0        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x000008b0        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000008b0        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x000008b0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000902        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
-                0x00000902                exit
-                0x00000902                _exit
+ .fini9         0x000008b0        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                0x000008b0                exit
+                0x000008b0                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -280,11 +280,11 @@ LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000902        0x4 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .fini0         0x000008b0        0x4 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000906                _etext = .
+                0x000008b4                _etext = .
 
-.data           0x00800060        0xe load address 0x00000906
+.data           0x00800060        0xe load address 0x000008b4
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
@@ -345,8 +345,8 @@ LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
  COMMON         0x008001a6       0x20 obj\Release\src\cpu_io.o
                 0x008001a6                g_ioBuffer
                 0x008001c6                PROVIDE (__bss_end, .)
-                0x00000906                __data_load_start = LOADADDR (.data)
-                0x00000914                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000008b4                __data_load_start = LOADADDR (.data)
+                0x000008c2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008001c6        0x0
                 0x008001c6                PROVIDE (__noinit_start, .)
@@ -477,9 +477,9 @@ __vector_default                                  c:/programs/winavr-20100110/bi
 __vectors                                         c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
 _exit                                             c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
 blinkLed0                                         obj\Release\firmware\src\dbg.o
-                                                  obj\Release\src\main.o
+                                                  obj\Release\src\funcs.o
 blinkLed1                                         obj\Release\firmware\src\dbg.o
-                                                  obj\Release\src\main.o
+                                                  obj\Release\src\funcs.o
 cpuIoInit                                         obj\Release\src\cpu_io.o
                                                   obj\Release\src\main.o
 cpuIoPoll                                         obj\Release\src\cpu_io.o

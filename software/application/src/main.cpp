@@ -18,6 +18,12 @@ int main(int argc, char *argv[])
     {
         std::string v;
         res = io->version( v );
+        io->setMotorControl( CtrlboardIo::TSoftware );
+        CtrlboardIo::TMotorControl ctrl;
+        io->motorControl( ctrl );
+        io->setThrottleRumpUp( 1234 );
+        int val;
+        io->throttleRumpUp( val );
         io->close();
     }
     delete io;

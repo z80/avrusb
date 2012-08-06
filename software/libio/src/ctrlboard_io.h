@@ -15,6 +15,11 @@ public:
     CtrlboardIo();
     ~CtrlboardIo();
 
+    bool setParam( int paramId, unsigned char * args, int sz );
+    bool param( int paramId, unsigned char * args, int sz );
+    bool setEepromParam( int paramId, unsigned char * args, int sz );
+    bool eepromParam( int paramId, unsigned char * args, int sz );
+
     bool version( std::string & ver );
     bool firmware( std::string & fir );
 

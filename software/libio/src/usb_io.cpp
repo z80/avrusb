@@ -92,7 +92,7 @@ bool UsbIo::isOpen() const
 
 int UsbIo::maxPacketSize() const
 {
-    return 8;
+    return 254;
 }
 
 int UsbIo::write( const std::basic_string<unsigned char> & to )

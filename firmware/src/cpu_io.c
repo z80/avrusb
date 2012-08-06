@@ -67,15 +67,18 @@ void cpuIoPush( uchar * in, uchar cnt )
         uchar i;
         for ( i=ind; i<cnt; i++ )
         {
-            g_ioBuffer[ g_ioWrPtr ] = in[i];
-            g_ioWrPtr = (g_ioWrPtr + 1) % BUFFER_SZ;
-            g_ioExpected--;
+            if ( g_ioExpected-- > 0 )
+            {
+                g_ioBuffer[ g_ioWrPtr ] = in[i];
+                g_ioWrPtr = (g_ioWrPtr + 1) % BUFFER_SZ;
+            }
+            else
+                break;
         }
     }
     else
     {
         // Function invocation.
-        //blinkLed1();
         cpuIoReset();
         invoke( in[1], g_ioBuffer );
     }
