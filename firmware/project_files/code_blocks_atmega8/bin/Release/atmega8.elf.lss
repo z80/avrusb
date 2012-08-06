@@ -3,11 +3,11 @@ bin\Release\atmega8.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000088c  00000000  00000000  00000094  2**1
+  0 .text         0000088e  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000e  00800060  0000088c  00000920  2**0
+  1 .data         0000000e  00800060  0000088e  00000922  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000158  0080006e  0080006e  0000092e  2**0
+  2 .bss          00000158  0080006e  0080006e  00000930  2**0
                   ALLOC
 
 Disassembly of section .text:
@@ -64,7 +64,7 @@ Disassembly of section .text:
   8c:	10 e0       	ldi	r17, 0x00	; 0
   8e:	a0 e6       	ldi	r26, 0x60	; 96
   90:	b0 e0       	ldi	r27, 0x00	; 0
-  92:	ec e8       	ldi	r30, 0x8C	; 140
+  92:	ee e8       	ldi	r30, 0x8E	; 142
   94:	f8 e0       	ldi	r31, 0x08	; 8
   96:	02 c0       	rjmp	.+4      	; 0x9c <.do_copy_data_start>
 
@@ -91,7 +91,7 @@ Disassembly of section .text:
   ae:	b1 07       	cpc	r27, r17
   b0:	e1 f7       	brne	.-8      	; 0xaa <.do_clear_bss_loop>
   b2:	e5 d0       	rcall	.+458    	; 0x27e <main>
-  b4:	e9 c3       	rjmp	.+2002   	; 0x888 <_exit>
+  b4:	ea c3       	rjmp	.+2004   	; 0x88a <_exit>
 
 000000b6 <__bad_interrupt>:
   b6:	a4 cf       	rjmp	.-184    	; 0x0 <__vectors>
@@ -370,7 +370,7 @@ Disassembly of section .text:
  2b0:	78 94       	sei
  2b2:	0a d0       	rcall	.+20     	; 0x2c8 <usbPoll>
  2b4:	a8 95       	wdr
- 2b6:	c9 d2       	rcall	.+1426   	; 0x84a <cpuIoPoll>
+ 2b6:	ca d2       	rcall	.+1428   	; 0x84c <cpuIoPoll>
  2b8:	fc cf       	rjmp	.-8      	; 0x2b2 <main+0x34>
 
 000002ba <usbInit>:
@@ -1113,46 +1113,47 @@ Disassembly of section .text:
  820:	3f 5f       	subi	r19, 0xFF	; 255
  822:	36 17       	cp	r19, r22
  824:	40 f3       	brcs	.-48     	; 0x7f6 <cpuIoPush+0x2c>
- 826:	0e c0       	rjmp	.+28     	; 0x844 <cpuIoPush+0x7a>
- 828:	10 92 7b 00 	sts	0x007B, r1
- 82c:	10 92 7a 00 	sts	0x007A, r1
- 830:	10 92 77 00 	sts	0x0077, r1
- 834:	10 92 78 00 	sts	0x0078, r1
- 838:	10 92 79 00 	sts	0x0079, r1
- 83c:	89 81       	ldd	r24, Y+1	; 0x01
- 83e:	66 ea       	ldi	r22, 0xA6	; 166
- 840:	71 e0       	ldi	r23, 0x01	; 1
- 842:	61 dc       	rcall	.-1854   	; 0x106 <invoke>
- 844:	df 91       	pop	r29
- 846:	cf 91       	pop	r28
- 848:	08 95       	ret
+ 826:	0f c0       	rjmp	.+30     	; 0x846 <cpuIoPush+0x7c>
+ 828:	64 dc       	rcall	.-1848   	; 0xf2 <blinkLed1>
+ 82a:	10 92 7b 00 	sts	0x007B, r1
+ 82e:	10 92 7a 00 	sts	0x007A, r1
+ 832:	10 92 77 00 	sts	0x0077, r1
+ 836:	10 92 78 00 	sts	0x0078, r1
+ 83a:	10 92 79 00 	sts	0x0079, r1
+ 83e:	89 81       	ldd	r24, Y+1	; 0x01
+ 840:	66 ea       	ldi	r22, 0xA6	; 166
+ 842:	71 e0       	ldi	r23, 0x01	; 1
+ 844:	60 dc       	rcall	.-1856   	; 0x106 <invoke>
+ 846:	df 91       	pop	r29
+ 848:	cf 91       	pop	r28
+ 84a:	08 95       	ret
 
-0000084a <cpuIoPoll>:
- 84a:	82 b7       	in	r24, 0x32	; 50
- 84c:	84 36       	cpi	r24, 0x64	; 100
- 84e:	d8 f0       	brcs	.+54     	; 0x886 <cpuIoPoll+0x3c>
- 850:	80 91 7a 00 	lds	r24, 0x007A
- 854:	90 91 7b 00 	lds	r25, 0x007B
- 858:	01 96       	adiw	r24, 0x01	; 1
- 85a:	90 93 7b 00 	sts	0x007B, r25
- 85e:	80 93 7a 00 	sts	0x007A, r24
- 862:	89 3c       	cpi	r24, 0xC9	; 201
- 864:	91 05       	cpc	r25, r1
- 866:	58 f0       	brcs	.+22     	; 0x87e <cpuIoPoll+0x34>
- 868:	10 92 7b 00 	sts	0x007B, r1
- 86c:	10 92 7a 00 	sts	0x007A, r1
- 870:	10 92 77 00 	sts	0x0077, r1
- 874:	10 92 78 00 	sts	0x0078, r1
- 878:	10 92 79 00 	sts	0x0079, r1
- 87c:	32 dc       	rcall	.-1948   	; 0xe2 <blinkLed0>
- 87e:	13 be       	out	0x33, r1	; 51
- 880:	12 be       	out	0x32, r1	; 50
- 882:	85 e0       	ldi	r24, 0x05	; 5
- 884:	83 bf       	out	0x33, r24	; 51
- 886:	08 95       	ret
+0000084c <cpuIoPoll>:
+ 84c:	82 b7       	in	r24, 0x32	; 50
+ 84e:	84 36       	cpi	r24, 0x64	; 100
+ 850:	d8 f0       	brcs	.+54     	; 0x888 <cpuIoPoll+0x3c>
+ 852:	80 91 7a 00 	lds	r24, 0x007A
+ 856:	90 91 7b 00 	lds	r25, 0x007B
+ 85a:	01 96       	adiw	r24, 0x01	; 1
+ 85c:	90 93 7b 00 	sts	0x007B, r25
+ 860:	80 93 7a 00 	sts	0x007A, r24
+ 864:	89 3c       	cpi	r24, 0xC9	; 201
+ 866:	91 05       	cpc	r25, r1
+ 868:	58 f0       	brcs	.+22     	; 0x880 <cpuIoPoll+0x34>
+ 86a:	10 92 7b 00 	sts	0x007B, r1
+ 86e:	10 92 7a 00 	sts	0x007A, r1
+ 872:	10 92 77 00 	sts	0x0077, r1
+ 876:	10 92 78 00 	sts	0x0078, r1
+ 87a:	10 92 79 00 	sts	0x0079, r1
+ 87e:	31 dc       	rcall	.-1950   	; 0xe2 <blinkLed0>
+ 880:	13 be       	out	0x33, r1	; 51
+ 882:	12 be       	out	0x32, r1	; 50
+ 884:	85 e0       	ldi	r24, 0x05	; 5
+ 886:	83 bf       	out	0x33, r24	; 51
+ 888:	08 95       	ret
 
-00000888 <_exit>:
- 888:	f8 94       	cli
+0000088a <_exit>:
+ 88a:	f8 94       	cli
 
-0000088a <__stop_program>:
- 88a:	ff cf       	rjmp	.-2      	; 0x88a <__stop_program>
+0000088c <__stop_program>:
+ 88c:	ff cf       	rjmp	.-2      	; 0x88c <__stop_program>

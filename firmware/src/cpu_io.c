@@ -72,6 +72,7 @@ void cpuIoPush( uchar * in, uchar cnt )
     else
     {
         // Function invocation.
+        blinkLed1();
         cpuIoReset();
         invoke( in[1], g_ioBuffer );
     }
