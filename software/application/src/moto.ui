@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>870</width>
-    <height>588</height>
+    <height>623</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <property name="locale">
    <locale language="C" country="AnyCountry"/>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_31">
+  <layout class="QHBoxLayout" name="horizontalLayout_32">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_8">
      <item>
@@ -24,7 +24,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Control</string>
+          <string>Motor control</string>
          </property>
         </widget>
        </item>
@@ -65,9 +65,47 @@
      <item>
       <widget class="QGroupBox" name="groupBox">
        <property name="title">
-        <string>Motor control</string>
+        <string>Software</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_31">
+          <item>
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Control mode</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_26">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QComboBox" name="controlMode">
+            <item>
+             <property name="text">
+              <string>Speed</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Throttle</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_19">
           <item>
@@ -545,6 +583,37 @@
       <string>Motor status</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_7">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Model/Rev &lt;span style=&quot; font-weight:600;&quot;&gt;Transmagnetics&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_27">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="modelRev">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;XXX/XXXX&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_28">
         <item>
@@ -1042,20 +1111,6 @@
                <string>x10</string>
               </property>
              </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_13">
-            <item>
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>Model/Rev</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="modelRev"/>
             </item>
            </layout>
           </item>
