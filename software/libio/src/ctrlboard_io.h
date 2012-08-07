@@ -49,7 +49,7 @@ public:
     bool throttleSpeedCtrl( TSpeedCtrl & val );
 
     bool setCurrentLimit( int en );
-    bool throttleSpeedCtrl( int & en );
+    bool currentLimit( int & en );
 
     bool setUndervoltageCtrl( int en );
     bool undervoltageCtrl( int & en );

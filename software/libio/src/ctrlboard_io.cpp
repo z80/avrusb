@@ -150,14 +150,14 @@ bool CtrlboardIo::firmware( std::string & fir )
 bool CtrlboardIo::setMotorControl( TMotorControl val )
 {
     unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setParam( MOTOR_CONTROL, &arg, 1 );
+    bool res = setEepromParam( MOTOR_CONTROL, &arg, 1 );
     return res;
 }
 
 bool CtrlboardIo::motorControl( TMotorControl & val )
 {
     unsigned char arg;
-    bool res = param( MOTOR_CONTROL, &arg, 1 );
+    bool res = eepromParam( MOTOR_CONTROL, &arg, 1 );
     if ( res )
         val = static_cast<TMotorControl>( arg );
     return res;
@@ -168,14 +168,14 @@ bool CtrlboardIo::setThrottleRumpUp( int val )
     unsigned char arg[2];
     arg[0] = val & 255;
     arg[1] = (val >> 8) & 255;
-    bool res = setParam( THROTTLE_RUMP_UP, arg, 2 );
+    bool res = setEepromParam( THROTTLE_RUMP_UP, arg, 2 );
     return res;
 }
 
 bool CtrlboardIo::throttleRumpUp( int & val )
 {
     unsigned char arg[2];
-    bool res = param( THROTTLE_RUMP_UP, arg, 2 );
+    bool res = eepromParam( THROTTLE_RUMP_UP, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
@@ -186,14 +186,14 @@ bool CtrlboardIo::setThrottleRumpDown( int val )
     unsigned char arg[2];
     arg[0] = val & 255;
     arg[1] = (val >> 8) & 255;
-    bool res = setParam( THROTTLE_RUMP_DOWN, arg, 2 );
+    bool res = setEepromParam( THROTTLE_RUMP_DOWN, arg, 2 );
     return res;
 }
 
 bool CtrlboardIo::setThrottleRumpDown( int & val )
 {
     unsigned char arg[2];
-    bool res = param( THROTTLE_RUMP_DOWN, arg, 2 );
+    bool res = eepromParam( THROTTLE_RUMP_DOWN, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
@@ -202,14 +202,14 @@ bool CtrlboardIo::setThrottleRumpDown( int & val )
 bool CtrlboardIo::setThrottleRangeLow( int val )
 {
     unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setParam( THROTTLE_RANGE_LOW, &arg, 1 );
+    bool res = setEepromParam( THROTTLE_RANGE_LOW, &arg, 1 );
     return res;
 }
 
 bool CtrlboardIo::throttleRangeLow( int & val )
 {
     unsigned char arg;
-    bool res = param( THROTTLE_RANGE_LOW, &arg, 1 );
+    bool res = eepromParam( THROTTLE_RANGE_LOW, &arg, 1 );
     if ( res )
         val = static_cast<int>( arg );
     return res;
@@ -218,14 +218,14 @@ bool CtrlboardIo::throttleRangeLow( int & val )
 bool CtrlboardIo::setThrottleRangeHigh( int val )
 {
     unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setParam( THROTTLE_RANGE_HIGH, &arg, 1 );
+    bool res = setEepromParam( THROTTLE_RANGE_HIGH, &arg, 1 );
     return res;
 }
 
 bool CtrlboardIo::throttleRangeHigh( int & val )
 {
     unsigned char arg;
-    bool res = param( THROTTLE_RANGE_HIGH, &arg, 1 );
+    bool res = eepromParam( THROTTLE_RANGE_HIGH, &arg, 1 );
     if ( res )
         val = static_cast<int>( arg );
     return res;
@@ -234,14 +234,14 @@ bool CtrlboardIo::throttleRangeHigh( int & val )
 bool CtrlboardIo::setThrottleLockout( bool val )
 {
     unsigned char arg = val ? 1 : 0;
-    bool res = setParam( THROTTLE_LOCKOUT, &arg, 1 );
+    bool res = setEepromParam( THROTTLE_LOCKOUT, &arg, 1 );
     return res;
 }
 
 bool CtrlboardIo::throttleLockout( bool & val )
 {
     unsigned char arg;
-    bool res = param( THROTTLE_RANGE_HIGH, &arg, 1 );
+    bool res = eepromParam( THROTTLE_RANGE_HIGH, &arg, 1 );
     if ( res )
         val = ( arg > 0 );
     return res;
@@ -252,14 +252,14 @@ bool CtrlboardIo::setStallThreshold( int val )
     unsigned char arg[2];
     arg[0] = val & 255;
     arg[1] = (val >> 8) & 255;
-    bool res = setParam( STALL_THRESHOLD, arg, 2 );
+    bool res = setEepromParam( STALL_THRESHOLD, arg, 2 );
     return res;
 }
 
 bool CtrlboardIo::stallThreshold( int & val )
 {
     unsigned char arg[2];
-    bool res = param( STALL_THRESHOLD, arg, 2 );
+    bool res = eepromParam( STALL_THRESHOLD, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
@@ -268,14 +268,14 @@ bool CtrlboardIo::stallThreshold( int & val )
 bool CtrlboardIo::setThrottleSpeedCtrl( TSpeedCtrl val )
 {
     unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setParam( THROTTLE_SPEED_CTRL, &arg, 1 );
+    bool res = setEepromParam( THROTTLE_SPEED_CTRL, &arg, 1 );
     return res;
 }
 
 bool CtrlboardIo::throttleSpeedCtrl( TSpeedCtrl & val )
 {
     unsigned char arg;
-    bool res = param( THROTTLE_SPEED_CTRL, &arg, 1 );
+    bool res = eepromParam( THROTTLE_SPEED_CTRL, &arg, 1 );
     if ( res )
         val = static_cast<TSpeedCtrl>( arg );
     return res;
@@ -286,14 +286,14 @@ bool CtrlboardIo::setCurrentLimit( int val )
     unsigned char arg[2];
     arg[0] = val & 255;
     arg[1] = (val >> 8) & 255;
-    bool res = setParam( CURRENT_LIMIT, arg, 2 );
+    bool res = setEepromParam( CURRENT_LIMIT, arg, 2 );
     return res;
 }
 
-bool CtrlboardIo::throttleSpeedCtrl( int & val )
+bool CtrlboardIo::currentLimit( int & val )
 {
     unsigned char arg[2];
-    bool res = param( CURRENT_LIMIT, arg, 2 );
+    bool res = eepromParam( CURRENT_LIMIT, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
@@ -304,14 +304,14 @@ bool CtrlboardIo::setUndervoltageCtrl( int val )
     unsigned char arg[2];
     arg[0] = val & 255;
     arg[1] = (val >> 8) & 255;
-    bool res = setParam( UNDERVOLTAGE_CTRL, arg, 2 );
+    bool res = setEepromParam( UNDERVOLTAGE_CTRL, arg, 2 );
     return res;
 }
 
 bool CtrlboardIo::undervoltageCtrl( int & val )
 {
     unsigned char arg[2];
-    bool res = param( UNDERVOLTAGE_CTRL, arg, 2 );
+    bool res = eepromParam( UNDERVOLTAGE_CTRL, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
@@ -323,7 +323,7 @@ bool CtrlboardIo::setPassword( const std::string & val )
     unsigned char arg[SZ];
     for ( int i=0; i<SZ; i++ )
         arg[i] = ( i<(int)val.size() ) ? val[i] : '\0';
-    bool res = setParam( PASSWORD, arg, SZ );
+    bool res = setEepromParam( PASSWORD, arg, SZ );
     return true;
 }
 
@@ -331,7 +331,7 @@ bool CtrlboardIo::password( std::string & val )
 {
     const int SZ = 16;
     unsigned char arg[SZ];
-    bool res = param( PASSWORD, arg, SZ );
+    bool res = eepromParam( PASSWORD, arg, SZ );
     if ( !res )
         return false;
     int sz = 0;
@@ -498,7 +498,7 @@ bool CtrlboardIo::errorCode( int & val )
 bool CtrlboardIo::hours( int & val )
 {
     unsigned char arg[2];
-    bool res = param( HOURS, arg, 2 );
+    bool res = eepromParam( HOURS, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
@@ -507,7 +507,7 @@ bool CtrlboardIo::hours( int & val )
 bool CtrlboardIo::cycles( int & val )
 {
     unsigned char arg[2];
-    bool res = param( CYCLES, arg, 2 );
+    bool res = eepromParam( CYCLES, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
@@ -517,7 +517,7 @@ bool CtrlboardIo::modelRev( std::string & val )
 {
     const int SZ = 16;
     unsigned char arg[SZ];
-    bool res = param( MODEL_REV, arg, SZ );
+    bool res = eepromParam( MODEL_REV, arg, SZ );
     if ( !res )
         return false;
     int sz = 0;
