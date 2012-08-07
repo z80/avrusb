@@ -72,8 +72,8 @@ public:
 
     // Group 3.
     bool voltage( int & val );
-    bool enKeySeat_1( int & val );
-    bool enKeySeat_2( int & val );
+    bool enKeySeat_1( bool & val );
+    bool enKeySeat_2( bool & val );
     bool controllerT( int & val );
     bool motorT( int & val );
     bool extT_1( int & val );
@@ -83,7 +83,7 @@ public:
     // Group 3-eeprom.
     bool hours( int & val );
     bool cycles( int & val );
-    bool modelRev( int & val );
+    bool modelRev( std::string & val );
 };
 
 

@@ -23,18 +23,18 @@
 #define SPEED               2
 #define DIRECTION           4
 
-#define VOLTAGE             16
-#define ENABLE_KEY_SEAT_1   17
-#define ENABLE_KEY_SEAT_2   18
-#define CONTROLLER_T        19
-#define MOTOR_T             20
-#define EXT_T_1             21
-#define EXT_T_2             22
-#define ERROR               23
+#define VOLTAGE             5
+#define ENABLE_KEY_SEAT_1   6
+#define ENABLE_KEY_SEAT_2   7
+#define CONTROLLER_T        8
+#define MOTOR_T             10
+#define EXT_T_1             12
+#define EXT_T_2             14
+#define ERROR               16
 
-#define HOURS               24
-#define CYCLES              25
-#define MODEL_REV           26
+#define HOURS               30
+#define CYCLES              32
+#define MODEL_REV           34
 
 #define FUNC_VERSION          1 // Firmware version.
 #define FUNC_FIRMWARE         2 // Firmware description.

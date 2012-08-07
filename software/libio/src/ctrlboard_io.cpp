@@ -268,14 +268,14 @@ bool CtrlboardIo::stallThreshold( int & val )
 bool CtrlboardIo::setThrottleSpeedCtrl( TSpeedCtrl val )
 {
     unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setParam( MOTOR_CONTROL, &arg, 1 );
+    bool res = setParam( THROTTLE_SPEED_CTRL, &arg, 1 );
     return res;
 }
 
 bool CtrlboardIo::throttleSpeedCtrl( TSpeedCtrl & val )
 {
     unsigned char arg;
-    bool res = param( MOTOR_CONTROL, &arg, 1 );
+    bool res = param( THROTTLE_SPEED_CTRL, &arg, 1 );
     if ( res )
         val = static_cast<TSpeedCtrl>( arg );
     return res;
@@ -359,86 +359,177 @@ bool CtrlboardIo::password( std::string & val )
 
 bool CtrlboardIo::setThrottle( int val )
 {
-    return true;
+    unsigned char arg = static_cast<unsigned char>( val );
+    bool res = setParam( THROTTLE, &arg, 1 );
+    return res;
 }
 
 bool CtrlboardIo::throttle( int & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( THROTTLE, &arg, 1 );
+    if ( res )
+        val = static_cast<int>( arg );
+    return res;
 }
 
 bool CtrlboardIo::setSpeed( int val )
 {
-    return true;
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setParam( SPEED, arg, 2 );
+    return res;
 }
 
 bool CtrlboardIo::speed( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( SPEED, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
 bool CtrlboardIo::setDirection( bool cw )
 {
-    return true;
+    unsigned char arg = cw ? 1 : 0;
+    bool res = setParam( DIRECTION, &arg, 1 );
+    return res;
 }
 
 bool CtrlboardIo::direction( bool & cw )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( DIRECTION, &arg, 1 );
+    if ( res )
+        cw = ( arg > 0 );
+    return res;
 }
 
 bool CtrlboardIo::voltage( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( VOLTAGE, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
-bool CtrlboardIo::enKeySeat_1( int & val )
+bool CtrlboardIo::enKeySeat_1( bool & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( ENABLE_KEY_SEAT_1, &arg, 1 );
+    if ( res )
+        val = ( arg > 0 );
+    return res;
 }
 
-bool CtrlboardIo::enKeySeat_2( int & val )
+bool CtrlboardIo::enKeySeat_2( bool & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( ENABLE_KEY_SEAT_2, &arg, 1 );
+    if ( res )
+        val = ( arg > 0 );
+    return res;
 }
 
 bool CtrlboardIo::controllerT( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( CONTROLLER_T, arg, 2 );
+    if ( res )
+    {
+        val = arg[0] + 256 * arg[1];
+        if ( val & 32768 )
+        	val -= 65535;
+    }
+    return res;
 }
 
 bool CtrlboardIo::motorT( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( MOTOR_T, arg, 2 );
+    if ( res )
+    {
+        val = arg[0] + 256 * arg[1];
+        if ( val & 32768 )
+        	val -= 65535;
+    }
+    return res;
 }
 
 bool CtrlboardIo::extT_1( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( EXT_T_1, arg, 2 );
+    if ( res )
+    {
+        val = arg[0] + 256 * arg[1];
+        if ( val & 32768 )
+        	val -= 65535;
+    }
+    return res;
 }
 
 bool CtrlboardIo::extT_2( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( EXT_T_2, arg, 2 );
+    if ( res )
+    {
+        val = arg[0] + 256 * arg[1];
+        if ( val & 32768 )
+        	val -= 65535;
+    }
+    return res;
 }
 
 bool CtrlboardIo::errorCode( int & val )
 {
-    return true;
+    unsigned char arg;
+    bool res = param( ERROR, &arg, 1 );
+    if ( res )
+        val = static_cast<int>( arg );
+    return res;
 }
 
 bool CtrlboardIo::hours( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( HOURS, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
 bool CtrlboardIo::cycles( int & val )
 {
-    return true;
+    unsigned char arg[2];
+    bool res = param( CYCLES, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
 }
 
-bool CtrlboardIo::modelRev( int & val )
+bool CtrlboardIo::modelRev( std::string & val )
 {
+    const int SZ = 16;
+    unsigned char arg[SZ];
+    bool res = param( MODEL_REV, arg, SZ );
+    if ( !res )
+        return false;
+    int sz = 0;
+    for ( int i=0; i<SZ; i++ )
+    {
+        if ( arg[i] == '\0' )
+            break;
+        sz++;
+    }
+    val.resize( sz );
+    for ( int i=0; i<sz; i++ )
+        val[i] = arg[i];
     return true;
 }
 
