@@ -190,7 +190,7 @@ bool CtrlboardIo::setThrottleRumpDown( int val )
     return res;
 }
 
-bool CtrlboardIo::setThrottleRumpDown( int & val )
+bool CtrlboardIo::throttleRumpDown( int & val )
 {
     unsigned char arg[2];
     bool res = eepromParam( THROTTLE_RUMP_DOWN, arg, 2 );

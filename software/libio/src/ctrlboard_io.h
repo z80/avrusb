@@ -31,7 +31,7 @@ public:
     bool throttleRumpUp( int & val );
 
     bool setThrottleRumpDown( int val );
-    bool setThrottleRumpDown( int & val );
+    bool throttleRumpDown( int & val );
 
     bool setThrottleRangeLow( int val );
     bool throttleRangeLow( int & val );
