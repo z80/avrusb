@@ -8,7 +8,10 @@ void Moto::asynchReadStatus()
     {
         bool res = m_board->open();
         if ( res )
+        {
+            asynchReadConfig();
             emit sigOpened();
+        }
     }
     else
     {
