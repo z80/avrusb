@@ -183,6 +183,9 @@ void Moto::asynchWriteConfig()
         res = m_board->setPassword( m_state.password );
         if ( !res )
             goto LBL_WRITE_CONFIG_CLOSED;
+
+        // To update GUI call as config was just loaded.
+        emit sigConfig();
     }
     return;
 
