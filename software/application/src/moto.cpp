@@ -21,6 +21,8 @@ Moto::Moto( QWidget * parent )
 
 Moto::~Moto()
 {
+    m_timer->stop();
+    m_timer->deleteLater();
     m_future.waitForFinished();
     delete m_board;
 }
