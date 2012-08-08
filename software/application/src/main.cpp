@@ -1,5 +1,6 @@
 
 #include <QtGui>
+#include "intro.h"
 #include "moto.h"
 #include "ctrlboard_io.h"
 
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
     QApplication::setStyle( new QPlastiqueStyle() );
 
     Moto * m = new Moto();
-    m->show();
+    Intro * i = new Intro( m, 3000 );
 
     //CtrlboardIo * io = new CtrlboardIo();
     //bool res = io->open();

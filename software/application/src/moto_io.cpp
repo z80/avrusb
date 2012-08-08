@@ -192,14 +192,17 @@ LBL_WRITE_CONFIG_CLOSED:
 
 void Moto::asynchWriteThrottle()
 {
+    m_board->setThrottle( m_state.throttle );
 }
 
 void Moto::asynchWriteSpeed()
 {
+	m_board->setSpeed( m_state.speed );
 }
 
 void Moto::asynchWriteDirection()
 {
+	m_board->setDirection( m_state.direction );
 }
 
 
