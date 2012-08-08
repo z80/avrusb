@@ -46,13 +46,9 @@ void Moto::saveSettings()
 void Moto::initGui()
 {
     slotClosed();
+    lockConfig();
 
     loadSettings();
-
-    m_timer = new QTimer();
-    connect( m_timer, SIGNAL(timeout()), this, SLOT(slotTimeout()) );
-    m_timer->setInterval( 1000 );
-    m_timer->start();
 
     connect( this, SIGNAL(sigConfig()), this, SLOT(slotConfig()) );
     connect( this, SIGNAL(sigStatus()), this, SLOT(slotStatus()) );
@@ -63,6 +59,13 @@ void Moto::initGui()
     connect( ui.throttle,  SIGNAL(valueChanged(int)),        this, SLOT(slotThrottleChanged(int)) );
     connect( ui.speed,     SIGNAL(valueChanged(int)),        this, SLOT(slotSpeedChanged(int)) );
     connect( ui.direction, SIGNAL(currentIndexChanged(int)), this, SLOT(slotDirectionChanged(int)) );
+    connect( ui.unlock,    SIGNAL(clicked()),                this, SLOT(slotUnlock()) );
+    connect( ui.apply,     SIGNAL(clicked()),                this, SLOT(slotApply()) );
+
+    m_timer = new QTimer();
+    connect( m_timer, SIGNAL(timeout()), this, SLOT(slotTimeout()) );
+    m_timer->setInterval( 1000 );
+    m_timer->start();
 }
 
 void Moto::writeConfig()
@@ -70,6 +73,45 @@ void Moto::writeConfig()
     if ( m_future.isRunning() )
         qApp->processEvents();
     m_future = QtConcurrent::run( boost::bind( &Moto::asynchWriteConfig, this ) );
+}
+
+void Moto::lockConfig()
+{
+    ui.controlMode->setEnabled( false );
+    ui.throttleRumpUp->setEnabled( false );
+    ui.throttleRumpDown->setEnabled( false );
+    ui.throttleRangeFrom->setEnabled( false );
+    ui.throttleRangeTo->setEnabled( false );
+    ui.throttleLockout->setEnabled( false );
+    ui.stallThreshold->setEnabled( false );
+    ui.speedCtrl->setEnabled( false );
+    ui.currentLimit->setEnabled( false );
+    ui.undervoltageCtrl->setEnabled( false );
+    ui.password->setEnabled( false );
+    ui.apply->setEnabled( false );
+}
+
+void Moto::unlockConfig()
+{
+    ui.controlMode->setEnabled( true );
+    ui.throttleRumpUp->setEnabled( true );
+    ui.throttleRumpDown->setEnabled( true );
+    ui.throttleRangeFrom->setEnabled( true );
+    ui.throttleRangeTo->setEnabled( true );
+    ui.throttleLockout->setEnabled( true );
+    ui.stallThreshold->setEnabled( true );
+    ui.speedCtrl->setEnabled( true );
+    ui.currentLimit->setEnabled( true );
+    ui.undervoltageCtrl->setEnabled( true );
+    ui.password->setEnabled( true );
+    ui.apply->setEnabled( true );
+}
+
+void Moto::adjustControls()
+{
+    bool speed = ( m_state.speedCtrl == CtrlboardIo::TSpeed );
+    ui.speed->setEnabled( speed );
+    ui.throttle->setEnabled( !speed );
 }
 
 void Moto::slotTimeout()
@@ -82,6 +124,19 @@ void Moto::slotTimeout()
 void Moto::slotConfig()
 {
     // Filling GUI with data.
+    ui.controlMode->setCurrentIndex( static_cast<int>( m_state.control ) );
+    ui.throttleRumpUp->setValue( m_state.throttleRumpUp );
+    ui.throttleRumpDown->setValue( m_state.throttleRumpDown );
+    ui.throttleRangeFrom->setValue( m_state.throttleRangeLow );
+    ui.throttleRangeTo->setValue( m_state.throttleRangeHigh );
+    ui.throttleLockout->setCurrentIndex( m_state.throttleLockout ? 1 : 0 );
+    ui.stallThreshold->setValue( m_state.stallThreshold );
+    ui.speedCtrl->setCurrentIndex( static_cast<int>( m_state.speedCtrl ) );
+    ui.currentLimit->setValue( m_state.currentLimit );
+    ui.undervoltageCtrl->setValue( m_state.undervoltageCtrl );
+    ui.password->setText( QString::fromStdString( m_state.password ) );
+
+    adjustControls();
 }
 
 void Moto::slotStatus()
@@ -145,6 +200,32 @@ void Moto::slotDirectionChanged( int value )
     m_state.direction = ( ui.direction->currentIndex() > 0 );
     m_future = QtConcurrent::run( boost::bind( &Moto::asynchWriteDirection, this ) );
 }
+
+void Moto::slotUnlock()
+{
+    unlockConfig();
+}
+
+void Moto::slotApply()
+{
+    while ( m_future.isRunning() )
+        qApp->processEvents();
+
+    m_state.control           = static_cast<CtrlboardIo::TMotorControl>( ui.controlMode->currentIndex() );
+    m_state.throttleRumpUp    = ui.throttleRumpUp->value();
+    m_state.throttleRumpDown  = ui.throttleRumpDown->value();
+    m_state.throttleRangeLow  = ui.throttleRangeFrom->value();
+    m_state.throttleRangeHigh = ui.throttleRangeTo->value();
+    m_state.throttleLockout   = ( ui.throttleLockout->currentIndex() > 0 );
+    m_state.stallThreshold    = ui.stallThreshold->value();
+    m_state.speedCtrl         = static_cast<CtrlboardIo::TSpeedCtrl>( ui.speedCtrl->currentIndex() );
+    m_state.currentLimit      = ui.currentLimit->value();
+    m_state.undervoltageCtrl  = ui.undervoltageCtrl->value();
+    m_state.password          = QString( ui.password->text() ).toStdString();
+
+    m_future = QtConcurrent::run( boost::bind( &Moto::asynchWriteConfig, this ) );
+}
+
 
 
 

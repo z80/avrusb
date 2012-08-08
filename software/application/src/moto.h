@@ -22,6 +22,10 @@ private:
     void initGui();
     // Write EEPROM parameters.
     void writeConfig();
+    // Locking and unlocking GUI.
+    void lockConfig();
+    void unlockConfig();
+    void adjustControls(); // Enable either "speed" or "throttle".
 
     // Asynch hardware access routines.
     void asynchReadStatus(); // It is invoked one per some time. And open() is dispatched here as well.
@@ -55,6 +59,8 @@ private slots:
     void slotSpeedChanged( int value );
     void slotThrottleChanged( int value );
     void slotDirectionChanged( int value );
+    void slotUnlock();
+    void slotApply();
 
 };
 
