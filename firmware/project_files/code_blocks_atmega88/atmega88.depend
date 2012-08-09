@@ -1,4 +1,10 @@
 # depslib dependency file v1.0
+1344232599 source:c:\projects\avrusb.git\firmware\src\dbg.c
+	"dbg.h"
+	<avr/io.h>
+
+1344232584 c:\projects\avrusb.git\firmware\src\dbg.h
+
 1344256550 source:c:\projects\avrusb.git\firmware\src\funcs.c
 	"funcs.h"
 	"config.h"
@@ -16,7 +22,7 @@
 	"usbconfig.h"
 	"usbportability.h"
 
-1344233431 c:\projects\avrusb.git\firmware\src\usbconfig.h
+1344233431 c:\projects\avrusb.git\firmware\project_files\code_blocks_atmega88\usbconfig.h
 
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbportability.h
 	<ioavr.h>
@@ -91,17 +97,4 @@
 
 1326067972 c:\projects\avrusb.git\firmware\usbdrv\usbdrvasm20.inc
 	"asmcommon.inc"
-
-1344256483 source:c:\projects\avrusb.git\firmware\src\cpu_io.c
-	"cpu_io.h"
-	"funcs.h"
-	"dbg.h"
-
-1344232599 source:c:\projects\avrusb.git\firmware\src\dbg.c
-	"dbg.h"
-	<avr/io.h>
-
-1344232584 c:\projects\avrusb.git\firmware\src\dbg.h
-
-1344233431 c:\projects\avrusb.git\firmware\project_files\code_blocks_atmega8\usbconfig.h
 
