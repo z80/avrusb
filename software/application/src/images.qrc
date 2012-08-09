@@ -12,6 +12,7 @@
     <file>images/open.png</file>
     <file>images/save.png</file>
     <file>images/step-into.png</file>
+    <file>images/intro.png</file>
 </qresource>
 
 </RCC>

@@ -183,6 +183,9 @@ void Moto::asynchWriteConfig()
         res = m_board->setPassword( m_state.password );
         if ( !res )
             goto LBL_WRITE_CONFIG_CLOSED;
+
+        // To update GUI call as config was just loaded.
+        emit sigConfig();
     }
     return;
 
@@ -192,14 +195,17 @@ LBL_WRITE_CONFIG_CLOSED:
 
 void Moto::asynchWriteThrottle()
 {
+    m_board->setThrottle( m_state.throttle );
 }
 
 void Moto::asynchWriteSpeed()
 {
+	m_board->setSpeed( m_state.speed );
 }
 
 void Moto::asynchWriteDirection()
 {
+	m_board->setDirection( m_state.direction );
 }
 
 

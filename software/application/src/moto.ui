@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>870</width>
+    <width>953</width>
     <height>623</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <property name="locale">
    <locale language="C" country="AnyCountry"/>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_32">
+  <layout class="QHBoxLayout" name="horizontalLayout_31">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_8">
      <item>
@@ -42,7 +42,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="control">
          <item>
           <property name="text">
            <string>Current loop</string>
@@ -63,7 +63,7 @@
       </layout>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QGroupBox" name="software">
        <property name="title">
         <string>Software</string>
        </property>
@@ -89,6 +89,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_37">
+            <property name="text">
+             <string>%</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QSpinBox" name="throttle">
@@ -126,6 +133,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_38">
+            <property name="text">
+             <string>RPM</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QSpinBox" name="speed">
@@ -200,22 +214,22 @@
       </widget>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox_3">
+      <widget class="QGroupBox" name="config">
        <property name="title">
         <string>Motor setup</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_31">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QLabel" name="label_31">
+           <widget class="QLabel" name="label_7">
             <property name="text">
-             <string>Control mode</string>
+             <string>Throttle/speed ctrl</string>
             </property>
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_26">
+           <spacer name="horizontalSpacer_5">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -228,15 +242,15 @@
            </spacer>
           </item>
           <item>
-           <widget class="QComboBox" name="controlMode">
+           <widget class="QComboBox" name="speedCtrl">
             <item>
              <property name="text">
-              <string>Speed</string>
+              <string>Throttle</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Throttle</string>
+              <string>Speed</string>
              </property>
             </item>
            </widget>
@@ -266,12 +280,25 @@
            </spacer>
           </item>
           <item>
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>mS</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QSpinBox" name="throttleRumpUp">
             <property name="minimumSize">
              <size>
               <width>96</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="minimum">
+             <number>10</number>
+            </property>
+            <property name="maximum">
+             <number>15000</number>
             </property>
            </widget>
           </item>
@@ -300,12 +327,25 @@
            </spacer>
           </item>
           <item>
+           <widget class="QLabel" name="label_32">
+            <property name="text">
+             <string>mS</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QSpinBox" name="throttleRumpDown">
             <property name="minimumSize">
              <size>
               <width>96</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="minimum">
+             <number>10</number>
+            </property>
+            <property name="maximum">
+             <number>15000</number>
             </property>
            </widget>
           </item>
@@ -321,7 +361,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="throttleRangeFrom"/>
+           <widget class="QSpinBox" name="throttleRangeFrom">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_5">
@@ -331,7 +375,18 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="throttleRangeTo"/>
+           <widget class="QSpinBox" name="throttleRangeTo">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_33">
+            <property name="text">
+             <string>%</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -396,6 +451,13 @@
            </spacer>
           </item>
           <item>
+           <widget class="QLabel" name="label_34">
+            <property name="text">
+             <string>RPM</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QSpinBox" name="stallThreshold">
             <property name="minimumSize">
              <size>
@@ -403,44 +465,12 @@
               <height>0</height>
              </size>
             </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Throttle/speed ctrl</string>
+            <property name="minimum">
+             <number>50</number>
             </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+            <property name="maximum">
+             <number>15000</number>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QComboBox" name="speedCtrl">
-            <item>
-             <property name="text">
-              <string>Throttle</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Speed</string>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>
@@ -468,12 +498,25 @@
            </spacer>
           </item>
           <item>
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>Amps</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QSpinBox" name="currentLimit">
             <property name="minimumSize">
              <size>
               <width>96</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>1000</number>
             </property>
            </widget>
           </item>
@@ -502,12 +545,25 @@
            </spacer>
           </item>
           <item>
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Volts</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QSpinBox" name="undervoltageCtrl">
             <property name="minimumSize">
              <size>
               <width>96</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>1000</number>
             </property>
            </widget>
           </item>
@@ -581,7 +637,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="status">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -637,8 +693,8 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>256</width>
-              <height>256</height>
+              <width>320</width>
+              <height>320</height>
              </size>
             </property>
            </widget>
@@ -648,7 +704,7 @@
             <item>
              <widget class="QLabel" name="label_29">
               <property name="text">
-               <string>Speed</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Speed, x100&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -667,11 +723,25 @@
             </item>
             <item>
              <widget class="QSpinBox" name="speed_msr_dig">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="minimumSize">
                <size>
-                <width>64</width>
+                <width>96</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>18</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
               </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
@@ -685,7 +755,7 @@
             <item>
              <widget class="QLabel" name="label_21">
               <property name="text">
-               <string>Throttle</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Throttle, %&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -707,11 +777,25 @@
             </item>
             <item>
              <widget class="QSpinBox" name="throttleMsr">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="minimumSize">
                <size>
-                <width>64</width>
+                <width>96</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>18</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
               </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
@@ -748,6 +832,9 @@
             </item>
             <item>
              <widget class="QComboBox" name="directionMsr">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <item>
                <property name="text">
                 <string>CW</string>
@@ -786,8 +873,24 @@
             </item>
             <item>
              <widget class="QSpinBox" name="voltage">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_39">
+              <property name="text">
+               <string>Volts</string>
               </property>
              </widget>
             </item>
@@ -817,6 +920,12 @@
             </item>
             <item>
              <widget class="QComboBox" name="enKeySeat_1">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="editable">
+               <bool>false</bool>
+              </property>
               <item>
                <property name="text">
                 <string>High</string>
@@ -855,6 +964,9 @@
             </item>
             <item>
              <widget class="QComboBox" name="enKeySeat_2">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <item>
                <property name="text">
                 <string>High</string>
@@ -893,11 +1005,33 @@
             </item>
             <item>
              <widget class="QSpinBox" name="controllerT">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="frame">
+               <bool>false</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
               </property>
               <property name="keyboardTracking">
                <bool>true</bool>
+              </property>
+              <property name="minimum">
+               <number>-50</number>
+              </property>
+              <property name="maximum">
+               <number>150</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_40">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -930,8 +1064,30 @@
             </item>
             <item>
              <widget class="QSpinBox" name="motorT">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="frame">
+               <bool>false</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="minimum">
+               <number>-50</number>
+              </property>
+              <property name="maximum">
+               <number>150</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_42">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -961,8 +1117,27 @@
             </item>
             <item>
              <widget class="QSpinBox" name="externalT_1">
+              <property name="frame">
+               <bool>false</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="minimum">
+               <number>-50</number>
+              </property>
+              <property name="maximum">
+               <number>150</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_43">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -992,8 +1167,24 @@
             </item>
             <item>
              <widget class="QSpinBox" name="externalT_2">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="minimum">
+               <number>-50</number>
+              </property>
+              <property name="maximum">
+               <number>150</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_41">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -1009,7 +1200,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="errorMsg"/>
+             <widget class="QLineEdit" name="errorMsg">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -1071,8 +1266,23 @@
             </item>
             <item>
              <widget class="QSpinBox" name="hours">
+              <property name="minimumSize">
+               <size>
+                <width>64</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="maximum">
+               <number>32000</number>
+              </property>
+              <property name="singleStep">
+               <number>32000</number>
               </property>
              </widget>
             </item>
@@ -1109,6 +1319,15 @@
             </item>
             <item>
              <widget class="QSpinBox" name="cycles">
+              <property name="minimumSize">
+               <size>
+                <width>64</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="buttonSymbols">
                <enum>QAbstractSpinBox::NoButtons</enum>
               </property>

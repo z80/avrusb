@@ -14,8 +14,10 @@ include_directories( "./src"
                      "${ROOT}/libadvwidgets/src/led" 
                      "${ROOT}/libadvwidgets/src/switch" 
                      "${ROOT}/3dparty/qwt-6.0.1/src" 
-                     "${BOOST_INC_PATH}"
                      "${CMAKE_CURRENT_BINARY_DIR}" )
+if ( WIN32 )
+    include_directories( "${BOOST_INC_PATH}" )
+endif ( WIN32 )
 
 file( GLOB src     "./src/*.cpp" )
 file( GLOB headers "./src/*.h" )
