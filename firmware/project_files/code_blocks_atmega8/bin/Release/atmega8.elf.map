@@ -38,7 +38,7 @@ signature        0x00840000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
-LOAD obj\Release\firmware\src\dbg.o
+LOAD obj\Release\src\dbg.o
 LOAD obj\Release\src\funcs.o
 LOAD obj\Release\src\main.o
 LOAD obj\Release\usbdrv\oddebug.o
@@ -221,7 +221,7 @@ LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
                 0x000000c2                __vector_10
                 0x000000c2                __vector_16
                 0x000000c2                __vector_18
- .text          0x000000c4       0x4e obj\Release\firmware\src\dbg.o
+ .text          0x000000c4       0x4e obj\Release\src\dbg.o
                 0x000000c4                initLeds
                 0x000000fe                blinkLed1
                 0x000000e4                setLed1
@@ -288,7 +288,7 @@ LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
- .data          0x00800060        0x0 obj\Release\firmware\src\dbg.o
+ .data          0x00800060        0x0 obj\Release\src\dbg.o
  .data          0x00800060        0xb obj\Release\src\funcs.o
  .data          0x0080006b        0x0 obj\Release\src\main.o
  .data          0x0080006b        0x0 obj\Release\usbdrv\oddebug.o
@@ -312,7 +312,7 @@ LOAD c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
                 0x0080006e                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x0080006e        0x0 c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
- .bss           0x0080006e        0x0 obj\Release\firmware\src\dbg.o
+ .bss           0x0080006e        0x0 obj\Release\src\dbg.o
  .bss           0x0080006e        0x0 obj\Release\src\funcs.o
  .bss           0x0080006e        0x8 obj\Release\src\main.o
  .bss           0x00800076        0x0 obj\Release\usbdrv\oddebug.o
@@ -476,9 +476,9 @@ __vector_9                                        c:/programs/winavr-20100110/bi
 __vector_default                                  c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
 __vectors                                         c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
 _exit                                             c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
-blinkLed0                                         obj\Release\firmware\src\dbg.o
+blinkLed0                                         obj\Release\src\dbg.o
                                                   obj\Release\src\funcs.o
-blinkLed1                                         obj\Release\firmware\src\dbg.o
+blinkLed1                                         obj\Release\src\dbg.o
                                                   obj\Release\src\funcs.o
 cpuIoInit                                         obj\Release\src\cpu_io.o
                                                   obj\Release\src\main.o
@@ -498,15 +498,15 @@ g_ioRdPtr                                         obj\Release\src\cpu_io.o
 g_ioWatchdog                                      obj\Release\src\cpu_io.o
 g_ioWrPtr                                         obj\Release\src\cpu_io.o
 g_ramParams                                       obj\Release\src\funcs.o
-initLeds                                          obj\Release\firmware\src\dbg.o
+initLeds                                          obj\Release\src\dbg.o
                                                   obj\Release\src\main.o
 invoke                                            obj\Release\src\funcs.o
                                                   obj\Release\src\cpu_io.o
 main                                              obj\Release\src\main.o
                                                   c:/programs/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
-setLed0                                           obj\Release\firmware\src\dbg.o
-setLed1                                           obj\Release\firmware\src\dbg.o
-setLeds                                           obj\Release\firmware\src\dbg.o
+setLed0                                           obj\Release\src\dbg.o
+setLed1                                           obj\Release\src\dbg.o
+setLeds                                           obj\Release\src\dbg.o
 usbConfiguration                                  obj\Release\usbdrv\usbdrv.o
 usbCrc16                                          obj\Release\usbdrv\usbdrvasm.o
 usbCrc16Append                                    obj\Release\usbdrv\usbdrvasm.o
