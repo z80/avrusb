@@ -37,7 +37,7 @@ the newest features and options.
  * to interrupt pin INT0!
  */
 #ifndef F_CPU
-    #define F_CPU 12000000UL
+    #define F_CPU 20000000UL
 #endif
 #define USB_CFG_CLOCK_KHZ       (F_CPU/1000)
 /* Clock rate of the AVR in MHz. Legal values are 12000, 16000 or 16500.

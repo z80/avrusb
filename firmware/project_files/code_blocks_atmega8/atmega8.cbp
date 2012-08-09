@@ -29,6 +29,7 @@
 			<Add option="-mmcu=atmega8" />
 			<Add option="-Wall" />
 			<Add option="-DF_CPU=12000000UL" />
+			<Add option="-DDEBUG_LEDS_ATMEGA8" />
 			<Add directory="..\..\src" />
 			<Add directory="..\..\usbdrv" />
 			<Add directory="..\..\..\common" />

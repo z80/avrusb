@@ -29,6 +29,7 @@
 			<Add option="-mmcu=atmega88" />
 			<Add option="-Wall" />
 			<Add option="-DF_CPU=20000000UL" />
+			<Add option="-DATMEGA88" />
 			<Add directory="..\code_blocks_atmega88" />
 			<Add directory="..\..\src" />
 			<Add directory="..\..\usbdrv" />

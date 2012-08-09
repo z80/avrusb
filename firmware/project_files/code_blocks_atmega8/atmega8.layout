@@ -7,13 +7,13 @@
 	<File name="..\..\src\cpu_io.c" open="1" top="0" tabpos="5">
 		<Cursor position="1606" topLine="49" />
 	</File>
-	<File name="..\..\src\dbg.c" open="1" top="0" tabpos="3">
-		<Cursor position="750" topLine="2" />
+	<File name="..\..\src\dbg.c" open="1" top="1" tabpos="3">
+		<Cursor position="930" topLine="0" />
 	</File>
 	<File name="..\..\src\dbg.h" open="1" top="0" tabpos="2">
 		<Cursor position="6" topLine="0" />
 	</File>
-	<File name="..\..\src\funcs.c" open="1" top="1" tabpos="6">
+	<File name="..\..\src\funcs.c" open="1" top="0" tabpos="6">
 		<Cursor position="468" topLine="36" />
 	</File>
 	<File name="..\..\src\funcs.h" open="1" top="0" tabpos="1">

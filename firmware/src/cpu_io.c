@@ -18,9 +18,16 @@ uint16_t g_ioWatchdog = 0;
 
 void cpuIoInit( void )
 {
-    TCCR0 = 0; // disable timer0;
-    TCNT0 = 0; // reset it's counter;
-    TCCR0 = (1 << CS02) | (1 << CS00); // run timer0 with x1024 prescaler.
+    #ifndef ATMEGA88
+        TCCR0 = 0; // disable timer0;
+        TCNT0 = 0; // reset it's counter;
+        TCCR0 = (1 << CS02) | (1 << CS00); // run timer0 with x1024 prescaler.
+    #else
+        TCCR0A = 0;
+        TCCR0B = 0;
+        TCNT0  = 0;
+        TCCR0B = (1 << CS02) | (1 << CS00);
+    #endif
 }
 
 void cpuIoPoll( void )
