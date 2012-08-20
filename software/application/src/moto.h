@@ -45,6 +45,7 @@ private:
     QFuture<void> m_speedFuture,
                   m_statusFuture,
                   m_applyFuture;
+    QStringList   m_errorCodes;
     State m_state;
 
     static const QString INI_FILE_NAME;

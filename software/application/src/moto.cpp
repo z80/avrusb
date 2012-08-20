@@ -66,6 +66,16 @@ void Moto::loadSettings()
     m_state.controllerOvertempEn  = set.value( "controllerOvertempEn",  true ).toBool();
     m_state.passwordEn            = set.value( "passwordEn",            true ).toBool();
 
+    // Error codes.
+    m_errorCodes.clear();
+    m_errorCodes.reserve( 16 );
+    for ( int i=0; i<16; i++ )
+    {
+    	QString stri = QString( "errorCode_%1" ).arg( i );
+    	QString defStri = QString( "ErrorBit#%1" ).arg( i );
+    	stri = set.value( stri, defStri ).toString();
+    	m_errorCodes << stri;
+    }
 
     // To create INI file if it doesn't exist.
     saveSettings();
@@ -101,6 +111,13 @@ void Moto::saveSettings()
     set.setValue( "controllerOvertempEn",  m_state.controllerOvertempEn );
     set.setValue( "passwordEn",            m_state.passwordEn );
 
+    // Error codes.
+    for ( int i=0; i<m_errorCodes.size(); i++ )
+    {
+    	QString arg = QString( "errorCode_%1" ).arg( i );
+    	QString val = m_errorCodes.at( i );
+    	set.setValue( arg, val );
+    }
 }
 
 void Moto::initGui()
@@ -241,7 +258,24 @@ void Moto::slotStatus()
     ui.externalT_1->setValue( m_state.extT_1 );
     ui.externalT_2->setValue( m_state.extT_2 );
 
-    ui.errorMsg->setPlainText( QString( "%1" ).arg( m_state.errorCode, 8, 2, QLatin1Char( '0' ) ) );
+    ui.errorMsg->clear();
+    if ( m_state.errorCode == 0 )
+    	ui.errorMsg->setPlainText( "No error" );
+    else
+    {
+    	QString stri = "";
+    	for ( int i=0; i<m_errorCodes.size(); i++ )
+    	{
+    		if ( m_state.errorCode & ( 1 << i ) )
+    		{
+    			QString arg = QString( "%1%2" )
+    					  .arg( ( stri.size() > 0 ) ? ", " : "" )
+    					  .arg( m_errorCodes.at( i ) );
+    			stri.append( arg );
+    		}
+    	}
+    	ui.errorMsg->setPlainText( stri );
+    }
 
     ui.hours->setValue( m_state.hours );
     ui.cycles->setValue( m_state.cycles );
