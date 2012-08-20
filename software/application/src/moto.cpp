@@ -11,7 +11,7 @@
 const QString Moto::INI_FILE_NAME = "settings.ini";
 
 Moto::Moto( QWidget * parent )
-: QWidget( parent )
+: QMainWindow( parent )
 {
     ui.setupUi( this );
     initGui();
@@ -77,6 +77,9 @@ void Moto::loadSettings()
     	m_errorCodes << stri;
     }
 
+    // Help command.
+    m_helpCmd = set.value( "helpCmd", "file://./help.txt" ).toString();
+
     // To create INI file if it doesn't exist.
     saveSettings();
 }
@@ -118,10 +121,15 @@ void Moto::saveSettings()
     	QString val = m_errorCodes.at( i );
     	set.setValue( arg, val );
     }
+
+    // Help command.
+    set.setValue( "helpCmd", m_helpCmd );
 }
 
 void Moto::initGui()
 {
+	ui.statusbar->showMessage( "Press F1 for help" );
+
     ui.speed_msr->setLabel( "x100" );
     ui.software->setEnabled( false );
     slotClosed();
@@ -141,6 +149,7 @@ void Moto::initGui()
     connect( ui.direction, SIGNAL(currentIndexChanged(int)), this, SLOT(slotDirectionChanged(int)) );
     connect( ui.unlock,    SIGNAL(clicked()),                this, SLOT(slotUnlock()) );
     connect( ui.apply,     SIGNAL(clicked()),                this, SLOT(slotApply()) );
+    connect( ui.help,      SIGNAL(triggered()),              this, SLOT(slotHelp()) );
 
     m_speedTimer  = new QTimer();
     m_statusTimer = new QTimer();
@@ -311,13 +320,13 @@ void Moto::slotConfig()
 void Moto::slotOpened()
 {
     // Unlock GUI.
-    setEnabled( true );
+    ui.centralwidget->setEnabled( true );
 }
 
 void Moto::slotClosed()
 {
     // Lock GUI.
-    setEnabled( false );
+	ui.centralwidget->setEnabled( false );
 }
 
 void Moto::slotSpeedChanged( int value )
@@ -380,6 +389,11 @@ void Moto::slotApply()
     m_applyFuture = QtConcurrent::run( boost::bind( &Moto::asynchWriteConfig, this ) );
 
     lockConfig();
+}
+
+void Moto::slotHelp()
+{
+	QDesktopServices::openUrl( m_helpCmd );
 }
 
 

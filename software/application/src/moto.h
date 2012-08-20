@@ -7,7 +7,7 @@
 #include <QtGui>
 class CtrlboardIo;
 
-class Moto: public QWidget
+class Moto: public QMainWindow
 {
     Q_OBJECT
 public:
@@ -46,6 +46,7 @@ private:
                   m_statusFuture,
                   m_applyFuture;
     QStringList   m_errorCodes;
+    QString       m_helpCmd;
     State m_state;
 
     static const QString INI_FILE_NAME;
@@ -69,7 +70,7 @@ private slots:
     void slotDirectionChanged( int value );
     void slotUnlock();
     void slotApply();
-
+    void slotHelp();
 };
 
 
