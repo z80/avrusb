@@ -19,10 +19,10 @@ public:
     int  maxThrottleCcw;
     int  maxSpeedCw;
     int  maxSpeedCcw;
-    int  throttleRumpUpCw;
-    int  throttleRumpUpCcw;
-    int  throttleRumpDownCw;
-    int  throttleRumpDownCcw;
+    int  throttleRampUpCw;
+    int  throttleRampUpCcw;
+    int  throttleRampDownCw;
+    int  throttleRampDownCcw;
     int  commutationMode;
     bool throttleLockout;
     int  stallThreshold;
@@ -31,6 +31,25 @@ public:
     int  motorOvertemp;
     int  controllerOvertemp;
     std::string password;
+
+    bool throttleTypeEn,
+         throttleModeEn,
+         maxThrottleCwEn,
+         maxThrottleCcwEn,
+         maxSpeedCwEn,
+         maxSpeedCcwEn,
+         throttleRampUpCwEn,
+         throttleRampUpCcwEn,
+         throttleRampDownCwEn,
+         throttleRampDownCcwEn,
+         commutationModeEn,
+         throttleLockoutEn,
+         stallThresholdEn,
+         currentLimitEn,
+         undervoltageCtrlEn,
+         motorOvertempEn,
+         controllerOvertempEn,
+         passwordEn;
 
     int  throttle;
     int  speed;

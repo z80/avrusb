@@ -21,6 +21,7 @@ class UsbIo::PD
 public:
     PD() {}
     ~PD() {}
+
     libusb_context       * cxt;
     libusb_device_handle * handle;
     std::string err;
@@ -64,6 +65,8 @@ UsbIo::~UsbIo()
 
 bool UsbIo::open()
 {
+	QMutexLocker lock( &m_mutex );
+
     pd->handle = 0;
     libusb_device * * l = 0;
     int cnt = libusb_get_device_list( pd->cxt, &l );
@@ -82,6 +85,8 @@ void UsbIo::close()
 {
     if ( isOpen() )
     {
+    	QMutexLocker lock( &m_mutex );
+
         libusb_close( pd->handle );
         pd->handle = 0;
     }
@@ -89,6 +94,8 @@ void UsbIo::close()
 
 bool UsbIo::isOpen() const
 {
+	QMutexLocker lock( &m_mutex );
+
     return (pd->handle != 0);
 }
 

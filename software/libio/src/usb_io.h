@@ -3,6 +3,7 @@
 #define __USB_IO_H_
 
 #include <string>
+#include <QtCore>
 
 class UsbIo
 {
@@ -22,6 +23,7 @@ public:
     std::basic_string<unsigned char> & dataTo();
     std::basic_string<unsigned char> & dataFrom();
 protected:
+    mutable QMutex m_mutex;
     class PD;
     PD * pd;
 };

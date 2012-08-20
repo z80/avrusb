@@ -25,6 +25,25 @@ State::State()
     int  controllerOvertemp  = 0;
     password                 = "";
 
+    throttleTypeEn        = true;
+    throttleModeEn        = true;
+    maxThrottleCwEn       = true;
+    maxThrottleCcwEn      = true;
+    maxSpeedCwEn          = true;
+    maxSpeedCcwEn         = true;
+    throttleRampUpCwEn    = true;
+    throttleRampUpCcwEn   = true;
+    throttleRampDownCwEn  = true;
+    throttleRampDownCcwEn = true;
+    commutationModeEn     = true;
+    throttleLockoutEn     = true;
+    stallThresholdEn      = true;
+    currentLimitEn        = true;
+    undervoltageCtrlEn    = true;
+    motorOvertempEn       = true;
+    controllerOvertempEn  = true;
+    passwordEn            = true;
+
     throttle          = 0;
     speed             = 0;
     direction         = false;

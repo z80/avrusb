@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1107</width>
+    <width>951</width>
     <height>780</height>
    </rect>
   </property>
@@ -40,7 +40,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QComboBox" name="control">
+      <widget class="QComboBox" name="throttleType">
        <property name="minimumSize">
         <size>
          <width>150</width>
@@ -77,7 +77,7 @@
      <property name="title">
       <string>Motor status</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_7">
+     <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,100,1">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_13">
         <item>
@@ -605,50 +605,8 @@
             </item>
            </layout>
           </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_27">
-        <item>
-         <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,100" columnstretch="1,100">
-          <item row="0" column="1">
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>128</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Error msg</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QPlainTextEdit" name="errorMsg">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-            <property name="plainText">
-             <string notr="true"/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <spacer name="verticalSpacer_2">
+           <spacer name="verticalSpacer_4">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -764,6 +722,44 @@
         </item>
        </layout>
       </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_27">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,100" columnstretch="1,100">
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>128</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Error msg</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QPlainTextEdit" name="errorMsg">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="plainText">
+             <string notr="true"/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
      </layout>
     </widget>
    </item>
@@ -790,7 +786,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QComboBox" name="speedCtrl">
+      <widget class="QComboBox" name="throttleMode">
        <property name="minimumSize">
         <size>
          <width>150</width>

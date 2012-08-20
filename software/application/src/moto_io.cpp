@@ -19,11 +19,11 @@ void Moto::asynchReadSpeed()
         if ( !res )
             goto LBL_SPEED_CLOSED;
 
-        bool res = m_board->speed( m_state.speed );
+        res = m_board->speed( m_state.speed );
         if ( !res )
             goto LBL_SPEED_CLOSED;
 
-        bool res = m_board->direction( m_state.direction );
+        res = m_board->direction( m_state.direction );
         if ( !res )
             goto LBL_SPEED_CLOSED;
 
@@ -31,7 +31,7 @@ void Moto::asynchReadSpeed()
     }
 
     return;
-LBL_STATUS_CLOSED:
+LBL_SPEED_CLOSED:
     emit sigClosed();
 }
 
@@ -48,19 +48,7 @@ void Moto::asynchReadStatus()
     }
     else
     {
-        /*bool res = m_board->throttle( m_state.throttle );
-        if ( !res )
-            goto LBL_STATUS_CLOSED;
-
-        res = m_board->speed( m_state.speed );
-        if ( !res )
-            goto LBL_STATUS_CLOSED;
-
-        res = m_board->direction( m_state.direction );
-        if ( !res )
-            goto LBL_STATUS_CLOSED;
-
-        res = m_board->voltage( m_state.voltage );
+        bool res = m_board->voltage( m_state.voltage );
         if ( !res )
             goto LBL_STATUS_CLOSED;
 
@@ -102,7 +90,7 @@ void Moto::asynchReadStatus()
 
         res = m_board->modelRev( m_state.modelRev );
         if ( !res )
-            goto LBL_STATUS_CLOSED;*/
+            goto LBL_STATUS_CLOSED;
 
         emit sigStatus();
     }
@@ -116,23 +104,47 @@ void Moto::asynchReadConfig()
 {
     if ( m_board->isOpen() )
     {
-        /*bool res = m_board->motorControl( m_state.control );
+        bool res = m_board->throttleType( m_state.throttleType );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
-        res = m_board->throttleRumpUp( m_state.throttleRumpUp );
+        res = m_board->throttleMode( m_state.throttleMode );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
-        res = m_board->throttleRumpDown( m_state.throttleRumpDown );
+        res = m_board->maxThrottleCw( m_state.maxThrottleCw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
-        res = m_board->throttleRangeLow( m_state.throttleRangeLow );
+        res = m_board->maxThrottleCcw( m_state.maxThrottleCcw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
-        res = m_board->throttleRangeHigh( m_state.throttleRangeHigh );
+        res = m_board->maxSpeedCw( m_state.maxSpeedCw );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
+        res = m_board->maxSpeedCcw( m_state.maxSpeedCcw );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
+        res = m_board->throttleRampUpCw( m_state.throttleRampUpCw );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
+        res = m_board->throttleRampUpCcw( m_state.throttleRampUpCcw );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
+        res = m_board->throttleRampDownCw( m_state.throttleRampDownCw );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
+        res = m_board->throttleRampDownCcw( m_state.throttleRampDownCcw );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
+        res = m_board->commutationMode( m_state.commutationMode );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
@@ -144,10 +156,6 @@ void Moto::asynchReadConfig()
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
-        res = m_board->throttleSpeedCtrl( m_state.speedCtrl );
-        if ( !res )
-            goto LBL_READ_CONFIG_CLOSED;
-
         res = m_board->currentLimit( m_state.currentLimit );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
@@ -156,9 +164,17 @@ void Moto::asynchReadConfig()
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
+        res = m_board->motorOvertemp( m_state.motorOvertemp );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
+        res = m_board->controllerOvertemp( m_state.controllerOvertemp );
+        if ( !res )
+            goto LBL_READ_CONFIG_CLOSED;
+
         res = m_board->password( m_state.password );
         if ( !res )
-            goto LBL_READ_CONFIG_CLOSED;*/
+            goto LBL_READ_CONFIG_CLOSED;
 
         emit sigConfig();
     }
@@ -173,49 +189,133 @@ void Moto::asynchWriteConfig()
 {
     if ( m_board->isOpen() )
     {
-        /*bool res = m_board->setMotorControl( m_state.control );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        bool res;
 
-        res = m_board->setThrottleRumpUp( m_state.throttleRumpUp );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.throttleTypeEn )
+        {
+        	res = m_board->setThrottleType( m_state.throttleType );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setThrottleRumpDown( m_state.throttleRumpDown );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.throttleModeEn )
+        {
+        	res = m_board->setThrottleMode( m_state.throttleMode );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setThrottleRangeLow( m_state.throttleRangeLow );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.maxThrottleCwEn )
+        {
+        	res = m_board->setMaxThrottleCw( m_state.maxThrottleCw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setThrottleRangeHigh( m_state.throttleRangeHigh );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.maxThrottleCcwEn )
+        {
+        	res = m_board->setMaxThrottleCcw( m_state.maxThrottleCcw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setThrottleLockout( m_state.throttleRangeHigh );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.maxSpeedCcwEn )
+        {
+        	res = m_board->setMaxSpeedCw( m_state.maxSpeedCw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setStallThreshold( m_state.stallThreshold );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.maxSpeedCcwEn )
+        {
+        	res = m_board->setMaxSpeedCcw( m_state.maxSpeedCcw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setThrottleSpeedCtrl( m_state.speedCtrl );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.throttleRampUpCwEn )
+        {
+        	res = m_board->setThrottleRampUpCw( m_state.throttleRampUpCw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setCurrentLimit( m_state.currentLimit );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.throttleRampUpCcwEn )
+        {
+        	res = m_board->setThrottleRampUpCcw( m_state.throttleRampUpCcw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setUndervoltageCtrl( m_state.undervoltageCtrl );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+        if ( m_state.throttleRampDownCwEn )
+        {
+        	res = m_board->setThrottleRampDownCw( m_state.throttleRampDownCw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
-        res = m_board->setPassword( m_state.password );
-        if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;*/
+        if ( m_state.throttleRampDownCcwEn )
+        {
+        	res = m_board->setThrottleRampDownCcw( m_state.throttleRampDownCcw );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.commutationModeEn )
+        {
+        	res = m_board->setCommutationMode( m_state.commutationMode );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.throttleLockoutEn )
+        {
+        	res = m_board->setThrottleLockout( m_state.throttleLockout );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.stallThresholdEn )
+        {
+        	res = m_board->setStallThreshold( m_state.stallThreshold );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.currentLimitEn )
+        {
+        	res = m_board->setCurrentLimit( m_state.currentLimit );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.undervoltageCtrlEn )
+        {
+        	res = m_board->setUndervoltageCtrl( m_state.undervoltageCtrl );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.motorOvertempEn )
+        {
+        	res = m_board->setMotorOvertemp( m_state.motorOvertemp );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.controllerOvertempEn )
+        {
+        	res = m_board->setControllerOvertemp( m_state.controllerOvertemp );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
+
+        if ( m_state.passwordEn )
+        {
+        	res = m_board->setPassword( m_state.password );
+        	if ( !res )
+        		goto LBL_WRITE_CONFIG_CLOSED;
+        }
 
         // To update GUI call as config was just loaded.
         emit sigConfig();
