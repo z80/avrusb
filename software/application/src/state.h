@@ -34,7 +34,8 @@ public:
 
     int  throttle;
     int  speed;
-    bool direction;
+    bool direction,
+         directionFlip;
 
     int  voltage;
     bool keySeat_1;

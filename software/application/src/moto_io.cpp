@@ -2,6 +2,39 @@
 #include "moto.h"
 #include "ctrlboard_io.h"
 
+void Moto::asynchReadSpeed()
+{
+    if ( !m_board->isOpen() )
+    {
+        bool res = m_board->open();
+        if ( res )
+        {
+            asynchReadConfig();
+            emit sigOpened();
+        }
+    }
+    else
+    {
+        bool res = m_board->throttle( m_state.throttle );
+        if ( !res )
+            goto LBL_SPEED_CLOSED;
+
+        bool res = m_board->speed( m_state.speed );
+        if ( !res )
+            goto LBL_SPEED_CLOSED;
+
+        bool res = m_board->direction( m_state.direction );
+        if ( !res )
+            goto LBL_SPEED_CLOSED;
+
+        emit sigSpeed();
+    }
+
+    return;
+LBL_STATUS_CLOSED:
+    emit sigClosed();
+}
+
 void Moto::asynchReadStatus()
 {
     if ( !m_board->isOpen() )

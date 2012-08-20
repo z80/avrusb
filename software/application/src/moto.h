@@ -28,6 +28,7 @@ private:
     void adjustControls(); // Enable either "speed" or "throttle".
 
     // Asynch hardware access routines.
+    void asynchReadSpeed();
     void asynchReadStatus(); // It is invoked one per some time. And open() is dispatched here as well.
     void asynchReadConfig();
     void asynchWriteConfig();
@@ -37,20 +38,26 @@ private:
 
 
     Ui_Moto       ui;
-    QTimer      * m_timer;
+    QTimer      * m_statusTimer,
+                * m_speedTimer;
     CtrlboardIo * m_board;
     QMutex        m_mutex;
-    QFuture<void> m_future;
+    QFuture<void> m_speedFuture,
+                  m_statusFuture,
+                  m_applyFuture;
     State m_state;
 
     static const QString INI_FILE_NAME;
 signals:
-    void sigConfig();
+    void sigSpeed();
     void sigStatus();
+    void sigConfig();
     void sigOpened();
     void sigClosed();
 private slots:
-    void slotTimeout();
+    void slotStatusTimeout();
+    void slotSpeedTimeout();
+    void slotSpeed();
     void slotConfig();
     void slotStatus();
     void slotOpened();

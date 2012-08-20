@@ -6,21 +6,29 @@ State::State()
     std::string version;
     std::string firmware;
 
-    control = CtrlboardIo::TSoftware;
-    throttleRumpUp    = 0;
-    throttleRumpDown  = 0;
-    throttleRangeLow  = 0;
-    throttleRangeHigh = 0;
-    throttleLockout   = false;
-    stallThreshold    = 0;
-    speedCtrl         = CtrlboardIo::TSpeed;
-    currentLimit      = 0;
-    undervoltageCtrl  = 0;
-    password          = "";
+    throttleType             = CtrlboardIo::TSoftware;
+    throttleMode             = CtrlboardIo::TSpeed;
+    int  maxThrottleCw       = 0;
+    int  maxThrottleCcw      = 0;
+    int  maxSpeedCw          = 0;
+    int  maxSpeedCcw         = 0;
+    int  throttleRumpUpCw    = 0;
+    int  throttleRumpUpCcw   = 0;
+    int  throttleRumpDownCw  = 0;
+    int  throttleRumpDownCcw = 0;
+    int  commutationMode     = 0;
+    bool throttleLockout     = false;
+    int  stallThreshold      = 0;;
+    int  currentLimit        = 0;
+    int  undervoltageCtrl    = 0;
+    int  motorOvertemp       = 0;
+    int  controllerOvertemp  = 0;
+    password                 = "";
 
     throttle          = 0;
     speed             = 0;
     direction         = false;
+    directionFlip     = false;
 
     voltage           = 0;
     keySeat_1         = false;
