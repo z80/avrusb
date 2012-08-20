@@ -1,6 +1,7 @@
 
 #include "lowlevel_io.h"
 #include "string.h"
+#include "config.h"
 
 inline static bool LSB()
 {
@@ -100,6 +101,93 @@ bool LowlevelIo::execFunc( int index )
     int res = write( data );
     return ( res == sz );
 }
+
+bool LowlevelIo::setParam( int paramId, unsigned char * args, int sz )
+{
+    QMutexLocker lock( &m_mutex );
+
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( sz+3 );
+    to[0] = sz+2;
+    to[1] = paramId;
+    to[2] = sz;
+    for ( int i=0; i<sz; i++ )
+        to[i+3] = args[i];
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_SET_PARAM );
+    return res;
+}
+
+bool LowlevelIo::param( int paramId, unsigned char * args, int sz )
+{
+    QMutexLocker lock( &m_mutex );
+
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( 3 );
+    to[0] = 2;
+    to[1] = paramId;
+    to[2] = sz;
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_PARAM );
+    if ( !res )
+        return false;
+    std::basic_string<unsigned char> & from = dataFrom();
+    from.resize( sz );
+    cnt = read( from, from.size() );
+    if ( (unsigned int)cnt < from.size() )
+        return false;
+    for ( int i=0; i<sz; i++ )
+        args[i] = from[i];
+    return true;
+}
+
+bool LowlevelIo::setEepromParam( int paramId, unsigned char * args, int sz )
+{
+    QMutexLocker lock( &m_mutex );
+
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( sz+3 );
+    to[0] = sz+2;
+    to[1] = paramId;
+    to[2] = sz;
+    for ( int i=0; i<sz; i++ )
+        to[i+3] = args[i];
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_SET_EEPROM_PARAM );
+    return res;
+}
+
+bool LowlevelIo::eepromParam( int paramId, unsigned char * args, int sz )
+{
+    QMutexLocker lock( &m_mutex );
+
+    std::basic_string<unsigned char> & to = dataTo();
+    to.resize( 3 );
+    to[0] = 2;
+    to[1] = paramId;
+    to[2] = sz;
+    int cnt = write( to );
+    if ( (unsigned int)cnt < to.size() )
+        return false;
+    bool res = execFunc( FUNC_EEPROM_PARAM );
+    if ( !res )
+        return false;
+    std::basic_string<unsigned char> & from = dataFrom();
+    from.resize( sz );
+    cnt = read( from, from.size() );
+    if ( (unsigned int)cnt < from.size() )
+        return false;
+    for ( int i=0; i<sz; i++ )
+        args[i] = from[i];
+    return true;
+}
+
 
 
 

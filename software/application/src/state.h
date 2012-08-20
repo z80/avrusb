@@ -13,16 +13,23 @@ public:
     std::string version;
     std::string firmware;
 
-    CtrlboardIo::TMotorControl control;
-    int  throttleRumpUp;
-    int  throttleRumpDown;
-    int  throttleRangeLow;
-    int  throttleRangeHigh;
+    CtrlboardIo::TThrottleType throttleType;
+    CtrlboardIo::TThrottleMode throttleMode;
+    int  maxThrottleCw;
+    int  maxThrottleCcw;
+    int  maxSpeedCw;
+    int  maxSpeedCcw;
+    int  throttleRumpUpCw;
+    int  throttleRumpUpCcw;
+    int  throttleRumpDownCw;
+    int  throttleRumpDownCcw;
+    int  commutationMode;
     bool throttleLockout;
     int  stallThreshold;
-    CtrlboardIo::TSpeedCtrl speedCtrl;
     int  currentLimit;
     int  undervoltageCtrl;
+    int  motorOvertemp;
+    int  controllerOvertemp;
     std::string password;
 
     int  throttle;

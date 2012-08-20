@@ -3,6 +3,7 @@
 #define __LOWLEVEL_IO_H_
 
 #include "usb_io.h"
+#include <QtCore>
 
 class LowlevelIo: public UsbIo
 {
@@ -17,6 +18,12 @@ public:
     int putUInt32( unsigned long val );
     bool execFunc( int index );
 
+    bool setParam( int paramId, unsigned char * args, int sz );
+    bool param( int paramId, unsigned char * args, int sz );
+    bool setEepromParam( int paramId, unsigned char * args, int sz );
+    bool eepromParam( int paramId, unsigned char * args, int sz );
+protected:
+    QMutex m_mutex;
 };
 
 

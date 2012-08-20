@@ -15,11 +15,6 @@ public:
     CtrlboardIo();
     ~CtrlboardIo();
 
-    bool setParam( int paramId, unsigned char * args, int sz );
-    bool param( int paramId, unsigned char * args, int sz );
-    bool setEepromParam( int paramId, unsigned char * args, int sz );
-    bool eepromParam( int paramId, unsigned char * args, int sz );
-
     bool version( std::string & ver );
     bool firmware( std::string & fir );
 
@@ -63,14 +58,17 @@ public:
     bool setStallThreshold( int val );
     bool stallThreshold( int & val );
 
-    bool setThrottleSpeedCtrl( TSpeedCtrl val );
-    bool throttleSpeedCtrl( TSpeedCtrl & val );
-
     bool setCurrentLimit( int en );
     bool currentLimit( int & en );
 
     bool setUndervoltageCtrl( int en );
     bool undervoltageCtrl( int & en );
+
+    bool setMotorOvertemp( int val );
+    bool motorOvertemp( int & val );
+
+    bool setControllerOvertemp( int val );
+    bool controllerOvertemp( int & val );
 
     bool setPassword( const std::string & val );
     bool password( std::string & val );

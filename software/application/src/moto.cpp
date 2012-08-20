@@ -48,8 +48,8 @@ void Moto::saveSettings()
 
 void Moto::initGui()
 {
-	ui.speed_msr->setLabel( "x100" );
-	ui.software->setEnabled( false );
+    ui.speed_msr->setLabel( "x100" );
+    ui.software->setEnabled( false );
     slotClosed();
     lockConfig();
 
@@ -82,7 +82,7 @@ void Moto::writeConfig()
 
 void Moto::lockConfig()
 {
-	ui.control->setEnabled( false );
+    ui.control->setEnabled( false );
     ui.throttleRumpUp->setEnabled( false );
     ui.throttleRumpDown->setEnabled( false );
     ui.throttleRangeFrom->setEnabled( false );
@@ -98,7 +98,7 @@ void Moto::lockConfig()
 
 void Moto::unlockConfig()
 {
-	ui.control->setEnabled( true );
+    ui.control->setEnabled( true );
     ui.throttleRumpUp->setEnabled( true );
     ui.throttleRumpDown->setEnabled( true );
     ui.throttleRangeFrom->setEnabled( true );
@@ -130,13 +130,13 @@ void Moto::slotConfig()
 {
     // Filling GUI with data.
     ui.control->setCurrentIndex( static_cast<int>( m_state.control ) );
+    ui.speedCtrl->setCurrentIndex( static_cast<int>( m_state.speedCtrl ) );
     ui.throttleRumpUp->setValue( m_state.throttleRumpUp );
     ui.throttleRumpDown->setValue( m_state.throttleRumpDown );
     ui.throttleRangeFrom->setValue( m_state.throttleRangeLow );
     ui.throttleRangeTo->setValue( m_state.throttleRangeHigh );
     ui.throttleLockout->setCurrentIndex( m_state.throttleLockout ? 1 : 0 );
     ui.stallThreshold->setValue( m_state.stallThreshold );
-    ui.speedCtrl->setCurrentIndex( static_cast<int>( m_state.speedCtrl ) );
     ui.currentLimit->setValue( m_state.currentLimit );
     ui.undervoltageCtrl->setValue( m_state.undervoltageCtrl );
     ui.password->setText( QString::fromStdString( m_state.password ) );

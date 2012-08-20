@@ -15,7 +15,7 @@ void Moto::asynchReadStatus()
     }
     else
     {
-        bool res = m_board->throttle( m_state.throttle );
+        /*bool res = m_board->throttle( m_state.throttle );
         if ( !res )
             goto LBL_STATUS_CLOSED;
 
@@ -69,7 +69,7 @@ void Moto::asynchReadStatus()
 
         res = m_board->modelRev( m_state.modelRev );
         if ( !res )
-            goto LBL_STATUS_CLOSED;
+            goto LBL_STATUS_CLOSED;*/
 
         emit sigStatus();
     }
@@ -83,7 +83,7 @@ void Moto::asynchReadConfig()
 {
     if ( m_board->isOpen() )
     {
-        bool res = m_board->motorControl( m_state.control );
+        /*bool res = m_board->motorControl( m_state.control );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
 
@@ -125,13 +125,13 @@ void Moto::asynchReadConfig()
 
         res = m_board->password( m_state.password );
         if ( !res )
-            goto LBL_READ_CONFIG_CLOSED;
+            goto LBL_READ_CONFIG_CLOSED;*/
 
         emit sigConfig();
     }
     // If not opened don't emit sigClosed().
     return;
-    
+
 LBL_READ_CONFIG_CLOSED:
     emit sigClosed();
 }
@@ -140,7 +140,7 @@ void Moto::asynchWriteConfig()
 {
     if ( m_board->isOpen() )
     {
-        bool res = m_board->setMotorControl( m_state.control );
+        /*bool res = m_board->setMotorControl( m_state.control );
         if ( !res )
             goto LBL_WRITE_CONFIG_CLOSED;
 
@@ -182,7 +182,7 @@ void Moto::asynchWriteConfig()
 
         res = m_board->setPassword( m_state.password );
         if ( !res )
-            goto LBL_WRITE_CONFIG_CLOSED;
+            goto LBL_WRITE_CONFIG_CLOSED;*/
 
         // To update GUI call as config was just loaded.
         emit sigConfig();

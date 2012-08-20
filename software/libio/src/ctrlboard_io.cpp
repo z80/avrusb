@@ -2,7 +2,6 @@
 #include "ctrlboard_io.h"
 #include "config.h"
 
-
 inline static bool LSB()
 {
     int i = 1;
@@ -30,87 +29,10 @@ CtrlboardIo::~CtrlboardIo()
 {
 }
 
-bool CtrlboardIo::setParam( int paramId, unsigned char * args, int sz )
-{
-    std::basic_string<unsigned char> & to = dataTo();
-    to.resize( sz+3 );
-    to[0] = sz+2;
-    to[1] = paramId;
-    to[2] = sz;
-    for ( int i=0; i<sz; i++ )
-        to[i+3] = args[i];
-    int cnt = write( to );
-    if ( (unsigned int)cnt < to.size() )
-        return false;
-    bool res = execFunc( FUNC_SET_PARAM );
-    return res;
-}
-
-bool CtrlboardIo::param( int paramId, unsigned char * args, int sz )
-{
-    std::basic_string<unsigned char> & to = dataTo();
-    to.resize( 3 );
-    to[0] = 2;
-    to[1] = paramId;
-    to[2] = sz;
-    int cnt = write( to );
-    if ( (unsigned int)cnt < to.size() )
-        return false;
-    bool res = execFunc( FUNC_PARAM );
-    if ( !res )
-        return false;
-    std::basic_string<unsigned char> & from = dataFrom();
-    from.resize( sz );
-    cnt = read( from, from.size() );
-    if ( (unsigned int)cnt < from.size() )
-        return false;
-    for ( int i=0; i<sz; i++ )
-        args[i] = from[i];
-    return true;
-}
-
-bool CtrlboardIo::setEepromParam( int paramId, unsigned char * args, int sz )
-{
-    std::basic_string<unsigned char> & to = dataTo();
-    to.resize( sz+3 );
-    to[0] = sz+2;
-    to[1] = paramId;
-    to[2] = sz;
-    for ( int i=0; i<sz; i++ )
-        to[i+3] = args[i];
-    int cnt = write( to );
-    if ( (unsigned int)cnt < to.size() )
-        return false;
-    bool res = execFunc( FUNC_SET_EEPROM_PARAM );
-    return res;
-}
-
-bool CtrlboardIo::eepromParam( int paramId, unsigned char * args, int sz )
-{
-    std::basic_string<unsigned char> & to = dataTo();
-    to.resize( 3 );
-    to[0] = 2;
-    to[1] = paramId;
-    to[2] = sz;
-    int cnt = write( to );
-    if ( (unsigned int)cnt < to.size() )
-        return false;
-    bool res = execFunc( FUNC_EEPROM_PARAM );
-    if ( !res )
-        return false;
-    std::basic_string<unsigned char> & from = dataFrom();
-    from.resize( sz );
-    cnt = read( from, from.size() );
-    if ( (unsigned int)cnt < from.size() )
-        return false;
-    for ( int i=0; i<sz; i++ )
-        args[i] = from[i];
-    return true;
-}
-
-
 bool CtrlboardIo::version( std::string & ver )
 {
+    QMutexLocker lock( &m_mutex );
+
     bool res = execFunc( FUNC_VERSION );
     if ( !res )
         return false;
@@ -131,6 +53,8 @@ bool CtrlboardIo::version( std::string & ver )
 
 bool CtrlboardIo::firmware( std::string & fir )
 {
+    QMutexLocker lock( &m_mutex );
+
     execFunc( FUNC_FIRMWARE );
     std::basic_string<unsigned char> & from = dataFrom();
     int sz = read( from, 8 );
@@ -170,10 +94,10 @@ bool CtrlboardIo::setThrottleMode( TThrottleMode val )
     return res;
 }
 
-bool CtrlboardIo::throttleMode( TThrottleType & val )
+bool CtrlboardIo::throttleMode( TThrottleMode & val )
 {
     unsigned char arg;
-    bool res = eepromParam( THROTTLE_Mode, &arg, 1 );
+    bool res = eepromParam( THROTTLE_MODE, &arg, 1 );
     if ( res )
         val = static_cast<TThrottleMode>( arg );
     return res;
@@ -233,7 +157,7 @@ bool CtrlboardIo::maxSpeedCw( int & val )
   return res;
 }
 
-bool setMaxSpeedCcw( int val )
+bool CtrlboardIo::setMaxSpeedCcw( int val )
 {
     unsigned char arg[2];
     arg[0] = val & 255;
@@ -242,7 +166,7 @@ bool setMaxSpeedCcw( int val )
     return res;
 }
 
-bool maxSpeedCcw( int & val )
+bool CtrlboardIo::maxSpeedCcw( int & val )
 {
   unsigned char arg[2];
   bool res = eepromParam( MAX_SPEED_CCW, arg, 2 );
@@ -339,22 +263,6 @@ bool CtrlboardIo::commutationMode( int & val )
     return res;
 }
 
-bool CtrlboardIo::setThrottleRangeHigh( int val )
-{
-    unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setEepromParam( THROTTLE_RANGE_HIGH, &arg, 1 );
-    return res;
-}
-
-bool CtrlboardIo::throttleRangeHigh( int & val )
-{
-    unsigned char arg;
-    bool res = eepromParam( THROTTLE_RANGE_HIGH, &arg, 1 );
-    if ( res )
-        val = static_cast<int>( arg );
-    return res;
-}
-
 bool CtrlboardIo::setThrottleLockout( bool val )
 {
     unsigned char arg = val ? 1 : 0;
@@ -365,7 +273,7 @@ bool CtrlboardIo::setThrottleLockout( bool val )
 bool CtrlboardIo::throttleLockout( bool & val )
 {
     unsigned char arg;
-    bool res = eepromParam( THROTTLE_RANGE_HIGH, &arg, 1 );
+    bool res = eepromParam( THROTTLE_LOCKOUT, &arg, 1 );
     if ( res )
         val = ( arg > 0 );
     return res;
@@ -386,22 +294,6 @@ bool CtrlboardIo::stallThreshold( int & val )
     bool res = eepromParam( STALL_THRESHOLD, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
-    return res;
-}
-
-bool CtrlboardIo::setThrottleSpeedCtrl( TSpeedCtrl val )
-{
-    unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setEepromParam( THROTTLE_SPEED_CTRL, &arg, 1 );
-    return res;
-}
-
-bool CtrlboardIo::throttleSpeedCtrl( TSpeedCtrl & val )
-{
-    unsigned char arg;
-    bool res = eepromParam( THROTTLE_SPEED_CTRL, &arg, 1 );
-    if ( res )
-        val = static_cast<TSpeedCtrl>( arg );
     return res;
 }
 
@@ -439,6 +331,42 @@ bool CtrlboardIo::undervoltageCtrl( int & val )
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
+}
+
+bool CtrlboardIo::setMotorOvertemp( int val )
+{
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( MOTOR_OVERTEMP, arg, 2 );
+    return res;
+}
+
+bool CtrlboardIo::motorOvertemp( int & val )
+{
+    unsigned char arg[2];
+    bool res = eepromParam( MOTOR_OVERTEMP, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
+}
+
+bool CtrlboardIo::setControllerOvertemp( int val )
+{
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( CONTROLLER_OVERTEMP, arg, 2 );
+    return res;
+}
+
+bool CtrlboardIo::controllerOvertemp( int & val )
+{
+  unsigned char arg[2];
+  bool res = eepromParam( CONTROLLER_OVERTEMP, arg, 2 );
+  if ( res )
+      val = arg[0] + 256 * arg[1];
+  return res;
 }
 
 bool CtrlboardIo::setPassword( const std::string & val )

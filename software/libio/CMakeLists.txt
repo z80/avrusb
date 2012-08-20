@@ -1,3 +1,6 @@
+find_package( Qt4 )
+set( QT_USE_QTCORE     True )
+include( ${QT_USE_FILE} )
 
 aux_source_directory( "./src" src )
 message( STATUS "src: \"${src}\"" )
@@ -18,10 +21,10 @@ set( src ${src} ${s} )
 
 add_library( io STATIC ${src} )
 if ( UNIX )
-    target_link_libraries( io ${LIBUSB_1_LIBRARIES} )
+    target_link_libraries( io ${LIBUSB_1_LIBRARIES} ${QT_LIBRARIES} )
 elseif ( WIN32 )
     find_library( libusb NAMES libusb-1.0.lib PATHS "${LIBUSB_LIB_PATH}" )
-    target_link_libraries( io ${libusb} )
+    target_link_libraries( io ${libusb} ${QT_LIBRARIES} )
 endif ( UNIX )
 
 
