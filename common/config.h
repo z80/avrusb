@@ -2,28 +2,28 @@
 #ifndef __CONFIG_H_
 #define __CONFIG_H_
 
-#define VERSION "0.0.1"
+#define VERSION "0.1.0"
 #define FIRMWARE "moto"
 
 // Param IDs (in EEPROM).
-#define MOTOR_CONTROL       		0
-#define THROTTLE_SPEED_CTRL 		1
-#define MAX_THROTTLE_CW			2
-#define MAX_THROTTLE_CCW			3
-#define MAX_SPEED_CW 				4
-#define MAX_SPEED_CCW 			6
-#define THROTTLE_RUMP_UP_CW    	8
-#define THROTTLE_RUMP_UP_CCW		10
-#define THROTTLE_RUMP_DOWN_CW  	12
-#define THROTTLE_RUMP_DOWN_CCW	14
-#define COMMUTATION_MODE  		16
-#define THROTTLE_LOCKOUT    		17
-#define STALL_THRESHOLD     		18
-#define CURRENT_LIMIT       		20
-#define UNDERVOLTAGE_CTRL   		22
-#define MOTOR_OVERTEMP 			24
-#define CONTROLLER_OVERTEMP 		26
-#define PASSWORD            		28
+#define THROTTLE_TYPE           0
+#define THROTTLE_MODE           1
+#define MAX_THROTTLE_CW	         2
+#define MAX_THROTTLE_CCW        3
+#define MAX_SPEED_CW            4
+#define MAX_SPEED_CCW           6
+#define THROTTLE_RAMP_UP_CW    	 8
+#define THROTTLE_RAMP_UP_CCW    10
+#define THROTTLE_RAMP_DOWN_CW   12
+#define THROTTLE_RAMP_DOWN_CCW  14
+#define COMMUTATION_MODE        16
+#define THROTTLE_LOCKOUT        17
+#define STALL_THRESHOLD         18
+#define CURRENT_LIMIT           20
+#define UNDERVOLTAGE_CTRL       22
+#define MOTOR_OVERTEMP 	         24
+#define CONTROLLER_OVERTEMP     26
+#define PASSWORD                28
 
 // Software ctrl params (in RAM).
 #define ON_OFF              0

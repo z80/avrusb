@@ -8,8 +8,8 @@
 class CtrlboardIo: public LowlevelIo
 {
 public:
-    enum TMotorControl { TCurrentLoop=0, TAnalogLevel=1, TSoftware=2 };
-    enum TSpeedCtrl { TThrottle=0, TSpeed=1 };
+    enum TThrottleType { TCurrentLoop=0, TAnalogLevel=1, TSoftware=2 };
+    enum TThrottleMode { TThrottle=0, TSpeed=1 };
     typedef std::basic_string< unsigned char > TIo;
 
     CtrlboardIo();
@@ -24,20 +24,38 @@ public:
     bool firmware( std::string & fir );
 
     // Group 1.
-    bool setMotorControl( TMotorControl val );
-    bool motorControl( TMotorControl & val );
+    bool setThrottleType( TThrottleType val );
+    bool throttleType( TThrottleType & val );
 
-    bool setThrottleRumpUp( int val );
-    bool throttleRumpUp( int & val );
+    bool setThrottleMode( TThrottleMode val );
+    bool throttleMode( TThrottleMode & val );
 
-    bool setThrottleRumpDown( int val );
-    bool throttleRumpDown( int & val );
+    bool setMaxThrottleCw( int val );
+    bool maxThrottleCw( int & val );
 
-    bool setThrottleRangeLow( int val );
-    bool throttleRangeLow( int & val );
+    bool setMaxThrottleCcw( int val );
+    bool maxThrottleCcw( int & val );
 
-    bool setThrottleRangeHigh( int val );
-    bool throttleRangeHigh( int & val );
+    bool setMaxSpeedCw( int val );
+    bool maxSpeedCw( int & val );
+
+    bool setMaxSpeedCcw( int val );
+    bool maxSpeedCcw( int & val );
+
+    bool setThrottleRampUpCw( int val );
+    bool throttleRampUpCw( int & val );
+
+    bool setThrottleRampUpCcw( int val );
+    bool throttleRampUpCcw( int & val );
+
+    bool setThrottleRampDownCw( int val );
+    bool throttleRampDownCw( int & val );
+
+    bool setThrottleRampDownCcw( int val );
+    bool throttleRampDownCcw( int & val );
+
+    bool setCommutationMode( int val );
+    bool commutationMode( int & val );
 
     bool setThrottleLockout( bool val );
     bool throttleLockout( bool & val );

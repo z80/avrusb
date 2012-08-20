@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1107</width>
-    <height>809</height>
+    <height>780</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -962,7 +962,7 @@
       <item>
        <widget class="QLabel" name="label_44">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#e50000;&quot;&gt;In software control mode &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#e50000;&quot;&gt;the above parameters override&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#e50000;&quot;&gt;the external inputs.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#e50000;&quot;&gt;In software control mode the above &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#e50000;&quot;&gt;parameters override the external inputs.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

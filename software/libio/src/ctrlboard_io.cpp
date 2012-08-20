@@ -147,71 +147,195 @@ bool CtrlboardIo::firmware( std::string & fir )
     return true;
 }
 
-bool CtrlboardIo::setMotorControl( TMotorControl val )
+bool CtrlboardIo::setThrottleType( TThrottleType val )
 {
     unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setEepromParam( MOTOR_CONTROL, &arg, 1 );
+    bool res = setEepromParam( THROTTLE_TYPE, &arg, 1 );
     return res;
 }
 
-bool CtrlboardIo::motorControl( TMotorControl & val )
+bool CtrlboardIo::throttleType( TThrottleType & val )
 {
     unsigned char arg;
-    bool res = eepromParam( MOTOR_CONTROL, &arg, 1 );
+    bool res = eepromParam( THROTTLE_TYPE, &arg, 1 );
     if ( res )
-        val = static_cast<TMotorControl>( arg );
+        val = static_cast<TThrottleType>( arg );
     return res;
 }
 
-bool CtrlboardIo::setThrottleRumpUp( int val )
+bool CtrlboardIo::setThrottleMode( TThrottleMode val )
+{
+    unsigned char arg = static_cast<unsigned char>( val );
+    bool res = setEepromParam( THROTTLE_MODE, &arg, 1 );
+    return res;
+}
+
+bool CtrlboardIo::throttleMode( TThrottleType & val )
+{
+    unsigned char arg;
+    bool res = eepromParam( THROTTLE_Mode, &arg, 1 );
+    if ( res )
+        val = static_cast<TThrottleMode>( arg );
+    return res;
+}
+
+bool CtrlboardIo::setMaxThrottleCw( int val )
 {
     unsigned char arg[2];
     arg[0] = val & 255;
     arg[1] = (val >> 8) & 255;
-    bool res = setEepromParam( THROTTLE_RUMP_UP, arg, 2 );
+    bool res = setEepromParam( MAX_THROTTLE_CW, arg, 2 );
     return res;
 }
 
-bool CtrlboardIo::throttleRumpUp( int & val )
+bool CtrlboardIo::maxThrottleCw( int & val )
 {
     unsigned char arg[2];
-    bool res = eepromParam( THROTTLE_RUMP_UP, arg, 2 );
+    bool res = eepromParam( MAX_THROTTLE_CW, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
 }
 
-bool CtrlboardIo::setThrottleRumpDown( int val )
+bool CtrlboardIo::setMaxThrottleCcw( int val )
 {
     unsigned char arg[2];
     arg[0] = val & 255;
     arg[1] = (val >> 8) & 255;
-    bool res = setEepromParam( THROTTLE_RUMP_DOWN, arg, 2 );
+    bool res = setEepromParam( MAX_THROTTLE_CCW, arg, 2 );
     return res;
 }
 
-bool CtrlboardIo::throttleRumpDown( int & val )
+bool CtrlboardIo::maxThrottleCcw( int & val )
 {
     unsigned char arg[2];
-    bool res = eepromParam( THROTTLE_RUMP_DOWN, arg, 2 );
+    bool res = eepromParam( MAX_THROTTLE_CCW, arg, 2 );
     if ( res )
         val = arg[0] + 256 * arg[1];
     return res;
 }
 
-bool CtrlboardIo::setThrottleRangeLow( int val )
+bool CtrlboardIo::setMaxSpeedCw( int val )
 {
-    unsigned char arg = static_cast<unsigned char>( val );
-    bool res = setEepromParam( THROTTLE_RANGE_LOW, &arg, 1 );
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( MAX_SPEED_CW, arg, 2 );
     return res;
 }
 
-bool CtrlboardIo::throttleRangeLow( int & val )
+bool CtrlboardIo::maxSpeedCw( int & val )
+{
+  unsigned char arg[2];
+  bool res = eepromParam( MAX_SPEED_CW, arg, 2 );
+  if ( res )
+      val = arg[0] + 256 * arg[1];
+  return res;
+}
+
+bool setMaxSpeedCcw( int val )
+{
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( MAX_SPEED_CCW, arg, 2 );
+    return res;
+}
+
+bool maxSpeedCcw( int & val )
+{
+  unsigned char arg[2];
+  bool res = eepromParam( MAX_SPEED_CCW, arg, 2 );
+  if ( res )
+      val = arg[0] + 256 * arg[1];
+  return res;
+}
+
+bool CtrlboardIo::setThrottleRampUpCw( int val )
+{
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( THROTTLE_RAMP_UP_CW, arg, 2 );
+    return res;
+}
+
+bool CtrlboardIo::throttleRampUpCw( int & val )
+{
+    unsigned char arg[2];
+    bool res = eepromParam( THROTTLE_RAMP_UP_CW, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
+}
+
+bool CtrlboardIo::setThrottleRampUpCcw( int val )
+{
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( THROTTLE_RAMP_UP_CCW, arg, 2 );
+    return res;
+}
+
+bool CtrlboardIo::throttleRampUpCcw( int & val )
+{
+    unsigned char arg[2];
+    bool res = eepromParam( THROTTLE_RAMP_UP_CCW, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
+}
+
+bool CtrlboardIo::setThrottleRampDownCw( int val )
+{
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( THROTTLE_RAMP_DOWN_CW, arg, 2 );
+    return res;
+}
+
+bool CtrlboardIo::throttleRampDownCw( int & val )
+{
+    unsigned char arg[2];
+    bool res = eepromParam( THROTTLE_RAMP_DOWN_CW, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
+}
+
+bool CtrlboardIo::setThrottleRampDownCcw( int val )
+{
+    unsigned char arg[2];
+    arg[0] = val & 255;
+    arg[1] = (val >> 8) & 255;
+    bool res = setEepromParam( THROTTLE_RAMP_DOWN_CCW, arg, 2 );
+    return res;
+}
+
+bool CtrlboardIo::throttleRampDownCcw( int & val )
+{
+    unsigned char arg[2];
+    bool res = eepromParam( THROTTLE_RAMP_DOWN_CCW, arg, 2 );
+    if ( res )
+        val = arg[0] + 256 * arg[1];
+    return res;
+}
+
+bool CtrlboardIo::setCommutationMode( int val )
+{
+    unsigned char arg = static_cast<unsigned char>( val );
+    bool res =setEepromParam( COMMUTATION_MODE, &arg, 1 );
+    return res;
+}
+
+bool CtrlboardIo::commutationMode( int & val )
 {
     unsigned char arg;
-    bool res = eepromParam( THROTTLE_RANGE_LOW, &arg, 1 );
+    bool res = eepromParam( COMMUTATION_MODE, &arg, 1 );
     if ( res )
-        val = static_cast<int>( arg );
+      val = static_cast<int>( arg );
     return res;
 }
 
