@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>980</width>
+    <width>1107</width>
     <height>809</height>
    </rect>
   </property>
@@ -261,20 +261,16 @@
              </spacer>
             </item>
             <item>
-             <widget class="QComboBox" name="directionMsr">
-              <property name="enabled">
+             <widget class="QLineEdit" name="directionMsr">
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="readOnly">
                <bool>true</bool>
               </property>
-              <item>
-               <property name="text">
-                <string>CW</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>CCW</string>
-               </property>
-              </item>
              </widget>
             </item>
            </layout>
@@ -349,23 +345,16 @@
              </spacer>
             </item>
             <item>
-             <widget class="QComboBox" name="enKeySeat_1">
-              <property name="enabled">
+             <widget class="QLineEdit" name="enKeySeat_1">
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="readOnly">
                <bool>true</bool>
               </property>
-              <property name="editable">
-               <bool>false</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>High</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Low</string>
-               </property>
-              </item>
              </widget>
             </item>
            </layout>
@@ -393,20 +382,16 @@
              </spacer>
             </item>
             <item>
-             <widget class="QComboBox" name="enKeySeat_2">
-              <property name="enabled">
+             <widget class="QLineEdit" name="enKeySeat_2">
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="readOnly">
                <bool>true</bool>
               </property>
-              <item>
-               <property name="text">
-                <string>High</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Low</string>
-               </property>
-              </item>
              </widget>
             </item>
            </layout>
