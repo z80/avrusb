@@ -228,7 +228,7 @@ void Moto::slotSpeedTimeout()
 {
     if ( m_speedFuture.isRunning() )
         return;
-    m_speedFuture = QtConcurrent::run( boost::bind( &Moto::asynchReadStatus, this ) );
+    m_speedFuture = QtConcurrent::run( boost::bind( &Moto::asynchReadSpeed, this ) );
 }
 
 void Moto::slotStatusTimeout()
@@ -393,6 +393,7 @@ void Moto::slotApply()
 
 void Moto::slotHelp()
 {
+	qDebug() << m_helpCmd;
 	QDesktopServices::openUrl( m_helpCmd );
 }
 

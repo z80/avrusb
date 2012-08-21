@@ -1431,7 +1431,7 @@
   </widget>
   <action name="help">
    <property name="text">
-    <string>Help F1</string>
+    <string>Help</string>
    </property>
    <property name="shortcut">
     <string>F1</string>

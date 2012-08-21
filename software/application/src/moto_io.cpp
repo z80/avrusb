@@ -4,16 +4,7 @@
 
 void Moto::asynchReadSpeed()
 {
-    if ( !m_board->isOpen() )
-    {
-        bool res = m_board->open();
-        if ( res )
-        {
-            asynchReadConfig();
-            emit sigOpened();
-        }
-    }
-    else
+    if ( m_board->isOpen() )
     {
         bool res = m_board->throttle( m_state.throttle );
         if ( !res )

@@ -35,6 +35,18 @@ set( src ${src} ${uiSrc} )
 QT4_ADD_RESOURCES( qrcSrc ${qrc} )
 set( src ${src} ${qrcSrc} )
 
-add_executable( application ${src} )
+if ( WIN32 )
+    set( BLD_TYPE WIN32 )
+    list( APPEND src "./src/icon.rc" )
+elseif ( UNIX )
+    set( BLD_TYPE "" )
+endif (WIN32)
+
+add_executable( application ${BLD_TYPE} ${src} )
 target_link_libraries( application qwt-6.0.1 widgets advwidgets io ${QT_LIBRARIES} )
 install( TARGETS application DESTINATION "." )
+
+
+
+
+
