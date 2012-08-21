@@ -31,6 +31,11 @@ Moto::~Moto()
     delete m_board;
 }
 
+void Moto::closeEvent( QCloseEvent * e )
+{
+    deleteLater();
+}
+
 void Moto::loadSettings()
 {
     QSettings set( INI_FILE_NAME,  QSettings::IniFormat, this );
@@ -41,7 +46,7 @@ void Moto::loadSettings()
     qreal step = set.value( "rpmStep", 100.0 ).toDouble();
     ui.speed_msr->setRange( vmin, vmax, step );
     ui.speed_msr_dig->setRange( vmin, vmax );
-    ui.speed->setRange( vmin * 100, vmax * 100 );
+    ui.speed->setRange( vmin, vmax );
 
     // Direction flip.
     m_state.directionFlip         = set.value( "directionFlip", false ).toBool();
@@ -243,6 +248,8 @@ void Moto::slotStatusTimeout()
 
 void Moto::slotSpeed()
 {
+    QMutexLocker lock( &m_state.mutex );
+
     // Filling GUI with data.
     ui.speed_msr->setValue( m_state.speed );
     ui.speed_msr_dig->setValue( m_state.speed );
@@ -336,6 +343,9 @@ void Moto::slotSpeedChanged( int value )
 {
     while ( m_applyFuture.isRunning() )
         qApp->processEvents();
+
+    QMutexLocker lock( &m_state.mutex );
+
     m_state.speed = ui.speed->value();
     m_applyFuture = QtConcurrent::run( boost::bind( &Moto::asynchWriteSpeed, this ) );
 }
@@ -344,6 +354,9 @@ void Moto::slotThrottleChanged( int value )
 {
     while ( m_applyFuture.isRunning() )
         qApp->processEvents();
+
+    QMutexLocker lock( &m_state.mutex );
+
     m_state.throttle = ui.throttle->value();
     m_applyFuture = QtConcurrent::run( boost::bind( &Moto::asynchWriteThrottle, this ) );
 }
@@ -352,6 +365,9 @@ void Moto::slotDirectionChanged( int value )
 {
     while ( m_applyFuture.isRunning() )
         qApp->processEvents();
+
+    QMutexLocker lock( &m_state.mutex );
+
     m_state.direction = ( ui.direction->currentIndex() > 0 );
     if ( m_state.directionFlip )
     	m_state.direction = !m_state.direction;

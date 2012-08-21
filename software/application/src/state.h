@@ -68,6 +68,8 @@ public:
     int  hours;
     int  cycles;
     std::string modelRev;
+
+    QMutex mutex;
 };
 
 #endif

@@ -3,7 +3,7 @@
 #include "string.h"
 #include "config.h"
 
-const int LowlevelIo::EXECUTION_TIME = 50;
+const int LowlevelIo::EXECUTION_TIME = 0;
 
 class Sleep: public QThread
 {

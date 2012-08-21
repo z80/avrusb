@@ -14,6 +14,8 @@ public:
     Moto( QWidget * parent = 0 );
     virtual ~Moto();
 
+protected:
+    void closeEvent( QCloseEvent * e );
 private:
     // INI file IO.
     void loadSettings();

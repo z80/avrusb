@@ -18,17 +18,23 @@ void Moto::asynchReadSpeed()
 {
     if ( m_board->isOpen() )
     {
-        bool res = m_board->throttle( m_state.throttle );
+    	m_state.mutex.lock();
+    	int throttle   = m_state.throttle;
+    	int speed      = m_state.speed;
+    	bool direction = m_state.direction;
+    	m_state.mutex.unlock();
+
+        bool res = m_board->throttle( throttle );
         if ( !res )
             goto LBL_SPEED_CLOSED;
         Sleep::msleep( SLEEP );
 
-        res = m_board->speed( m_state.speed );
+        res = m_board->speed( speed );
         if ( !res )
             goto LBL_SPEED_CLOSED;
         Sleep::msleep( SLEEP );
 
-        res = m_board->direction( m_state.direction );
+        res = m_board->direction( direction );
         if ( !res )
             goto LBL_SPEED_CLOSED;
         Sleep::msleep( SLEEP );
