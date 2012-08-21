@@ -35,8 +35,8 @@ Name: "{group}\{cm:UninstallProgram,brushless_motor}"; Filename: "{uninstallexe}
 Name: "{commondesktop}\BrushlessMotor"; Filename: "{app}\ctrl.exe"; WorkingDir: "{app}"; Tasks: desktopicon
 
 ;[Run]
-;Filename: "{app}\driver\installer_x86.exe"; Description: "x86 Device driver install."; Check: not Is64BitInstallMode
-;Filename: "{app}\driver\installer_x64.exe"; Description: "x64 Device driver install."; Check: Is64BitInstallMode
+;Filename: "{app}\winusb_driver\installer_x86.exe"; Description: "x86 Device driver install."; Check: not Is64BitInstallMode
+;Filename: "{app}\winusb_driver\installer_x64.exe"; Description: "x64 Device driver install."; Check: Is64BitInstallMode
 
 Filename: "{app}\vcredist_x86.exe"; Description: "x86 runtime envirinment install. It's necessary to install it at least once."; Check: not Is64BitInstallMode
 Filename: "{app}\vcredist_x86.exe"; Description: "x86 runtime envirinment install. It's necessary to install it at least once."; Check: Is64BitInstallMode

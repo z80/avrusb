@@ -24,5 +24,5 @@ add_subdirectory( "${ROOT}/libio" )
 add_subdirectory( "${ROOT}/libwidgets" )
 add_subdirectory( "${ROOT}/libadvwidgets" )
 add_subdirectory( "${ROOT}/application" )
-install( DIRECTORY "${ROOT}/3dparty/driver" DESTINATION "." )
+install( DIRECTORY "${ROOT}/3dparty/winusb_driver" DESTINATION "." )
 

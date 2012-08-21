@@ -44,6 +44,7 @@ endif (WIN32)
 
 add_executable( application ${BLD_TYPE} ${src} )
 target_link_libraries( application qwt-6.0.1 widgets advwidgets io ${QT_LIBRARIES} )
+set_property( TARGET application PROPERTY OUTPUT_NAME "ctrl" )
 install( TARGETS application DESTINATION "." )
 
 
