@@ -3,6 +3,17 @@
 #include "string.h"
 #include "config.h"
 
+const int LowlevelIo::EXECUTION_TIME = 50;
+
+class Sleep: public QThread
+{
+public:
+	static void msleep( int ms = LowlevelIo::EXECUTION_TIME )
+	{
+		QThread::msleep( ms );
+	}
+};
+
 inline static bool LSB()
 {
     int i = 1;
@@ -99,6 +110,7 @@ bool LowlevelIo::execFunc( int index )
     data[0] = 0;
     data[1] = static_cast<unsigned char>( index );
     int res = write( data );
+    Sleep::msleep();
     return ( res == sz );
 }
 

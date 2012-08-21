@@ -36,9 +36,9 @@ void Moto::loadSettings()
     QSettings set( INI_FILE_NAME,  QSettings::IniFormat, this );
 
     // RPM gauge settings.
-    qreal vmin = set.value( "rpm_min", 0.0 ).toDouble();
-    qreal vmax = set.value( "rpm_min", 1500.0 ).toDouble();
-    qreal step = set.value( "rpm_step", 100.0 ).toDouble();
+    qreal vmin = set.value( "rpmMin", 0.0 ).toDouble();
+    qreal vmax = set.value( "rpmMax", 1500.0 ).toDouble();
+    qreal step = set.value( "rpmStep", 100.0 ).toDouble();
     ui.speed_msr->setRange( vmin, vmax, step );
     ui.speed_msr_dig->setRange( vmin, vmax );
     ui.speed->setRange( vmin * 100, vmax * 100 );
@@ -78,7 +78,7 @@ void Moto::loadSettings()
     }
 
     // Help command.
-    m_helpCmd = set.value( "helpCmd", "file://./help.txt" ).toString();
+    m_helpCmd = set.value( "helpCmd", "file://help.txt" ).toString();
 
     // To create INI file if it doesn't exist.
     saveSettings();
@@ -87,9 +87,9 @@ void Moto::loadSettings()
 void Moto::saveSettings()
 {
     QSettings set( INI_FILE_NAME,  QSettings::IniFormat, this );
-    set.setValue( "rpm_min", ui.speed_msr->minValue() );
-    set.setValue( "rpm_min", ui.speed_msr->maxValue() );
-    set.setValue( "rpm_step", ui.speed_msr->step() );
+    set.setValue( "rpmMin", ui.speed_msr->minValue() );
+    set.setValue( "rpmMax", ui.speed_msr->maxValue() );
+    set.setValue( "rpmStep", ui.speed_msr->step() );
 
     // Direction flip.
     set.setValue( "directionFlip", m_state.directionFlip );
@@ -211,8 +211,11 @@ void Moto::unlockConfig()
     ui.commutationMode->setEnabled( m_state.commutationModeEn );
     ui.throttleLockout->setEnabled( m_state.throttleLockoutEn );
     ui.stallThreshold->setEnabled( m_state.stallThresholdEn );
+
     ui.currentLimit->setEnabled( m_state.currentLimitEn );
     ui.undervoltageCtrl->setEnabled( m_state.undervoltageCtrlEn );
+    ui.motorOvertemp->setEnabled( m_state.motorOvertempEn );
+    ui.controllerOvertemp->setEnabled( m_state.controllerOvertempEn );
     ui.password->setEnabled( m_state.passwordEn );
     ui.apply->setEnabled( true );
 }

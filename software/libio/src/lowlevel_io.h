@@ -21,6 +21,10 @@ public:
     bool param( int paramId, unsigned char * args, int sz );
     bool setEepromParam( int paramId, unsigned char * args, int sz );
     bool eepromParam( int paramId, unsigned char * args, int sz );
+
+    static const int EXECUTION_TIME;
+protected:
+    mutable QMutex m_mutex;
 };
 
 

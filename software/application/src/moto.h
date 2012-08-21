@@ -50,6 +50,8 @@ private:
     State m_state;
 
     static const QString INI_FILE_NAME;
+    static const int SLEEP;
+    static const int TRIES;
 signals:
     void sigSpeed();
     void sigStatus();

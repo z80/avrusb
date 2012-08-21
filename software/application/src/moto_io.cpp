@@ -2,6 +2,18 @@
 #include "moto.h"
 #include "ctrlboard_io.h"
 
+const int Moto::SLEEP = 1;
+const int Moto::TRIES = 8;
+
+class Sleep: public QThread
+{
+public:
+	static void msleep( int ms = 10 )
+	{
+		QThread::msleep( ms );
+	}
+};
+
 void Moto::asynchReadSpeed()
 {
     if ( m_board->isOpen() )
@@ -9,14 +21,17 @@ void Moto::asynchReadSpeed()
         bool res = m_board->throttle( m_state.throttle );
         if ( !res )
             goto LBL_SPEED_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->speed( m_state.speed );
         if ( !res )
             goto LBL_SPEED_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->direction( m_state.direction );
         if ( !res )
             goto LBL_SPEED_CLOSED;
+        Sleep::msleep( SLEEP );
 
         emit sigSpeed();
     }
@@ -42,46 +57,57 @@ void Moto::asynchReadStatus()
         bool res = m_board->voltage( m_state.voltage );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->enKeySeat_1( m_state.keySeat_1 );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->enKeySeat_2( m_state.keySeat_2 );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->controllerT( m_state.controllerT );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->motorT( m_state.motorT );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->extT_1( m_state.extT_1 );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->extT_2( m_state.extT_2 );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->errorCode( m_state.errorCode );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->hours( m_state.hours );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->cycles( m_state.cycles );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->modelRev( m_state.modelRev );
         if ( !res )
             goto LBL_STATUS_CLOSED;
+        Sleep::msleep( SLEEP );
 
         emit sigStatus();
     }
@@ -98,74 +124,92 @@ void Moto::asynchReadConfig()
         bool res = m_board->throttleType( m_state.throttleType );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->throttleMode( m_state.throttleMode );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->maxThrottleCw( m_state.maxThrottleCw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->maxThrottleCcw( m_state.maxThrottleCcw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->maxSpeedCw( m_state.maxSpeedCw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->maxSpeedCcw( m_state.maxSpeedCcw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->throttleRampUpCw( m_state.throttleRampUpCw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->throttleRampUpCcw( m_state.throttleRampUpCcw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->throttleRampDownCw( m_state.throttleRampDownCw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->throttleRampDownCcw( m_state.throttleRampDownCcw );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->commutationMode( m_state.commutationMode );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->throttleLockout( m_state.throttleLockout );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->stallThreshold( m_state.stallThreshold );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->currentLimit( m_state.currentLimit );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->undervoltageCtrl( m_state.undervoltageCtrl );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->motorOvertemp( m_state.motorOvertemp );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->controllerOvertemp( m_state.controllerOvertemp );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         res = m_board->password( m_state.password );
         if ( !res )
             goto LBL_READ_CONFIG_CLOSED;
+        Sleep::msleep( SLEEP );
 
         emit sigConfig();
     }
@@ -187,6 +231,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setThrottleType( m_state.throttleType );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.throttleModeEn )
@@ -194,6 +239,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setThrottleMode( m_state.throttleMode );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.maxThrottleCwEn )
@@ -201,6 +247,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setMaxThrottleCw( m_state.maxThrottleCw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.maxThrottleCcwEn )
@@ -208,6 +255,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setMaxThrottleCcw( m_state.maxThrottleCcw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.maxSpeedCcwEn )
@@ -215,6 +263,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setMaxSpeedCw( m_state.maxSpeedCw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.maxSpeedCcwEn )
@@ -222,6 +271,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setMaxSpeedCcw( m_state.maxSpeedCcw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.throttleRampUpCwEn )
@@ -229,6 +279,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setThrottleRampUpCw( m_state.throttleRampUpCw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.throttleRampUpCcwEn )
@@ -236,6 +287,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setThrottleRampUpCcw( m_state.throttleRampUpCcw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.throttleRampDownCwEn )
@@ -243,6 +295,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setThrottleRampDownCw( m_state.throttleRampDownCw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.throttleRampDownCcwEn )
@@ -250,6 +303,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setThrottleRampDownCcw( m_state.throttleRampDownCcw );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.commutationModeEn )
@@ -257,6 +311,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setCommutationMode( m_state.commutationMode );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.throttleLockoutEn )
@@ -264,6 +319,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setThrottleLockout( m_state.throttleLockout );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.stallThresholdEn )
@@ -271,6 +327,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setStallThreshold( m_state.stallThreshold );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.currentLimitEn )
@@ -278,6 +335,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setCurrentLimit( m_state.currentLimit );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.undervoltageCtrlEn )
@@ -285,6 +343,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setUndervoltageCtrl( m_state.undervoltageCtrl );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.motorOvertempEn )
@@ -292,6 +351,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setMotorOvertemp( m_state.motorOvertemp );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.controllerOvertempEn )
@@ -299,6 +359,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setControllerOvertemp( m_state.controllerOvertemp );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         if ( m_state.passwordEn )
@@ -306,6 +367,7 @@ void Moto::asynchWriteConfig()
         	res = m_board->setPassword( m_state.password );
         	if ( !res )
         		goto LBL_WRITE_CONFIG_CLOSED;
+        	Sleep::msleep( SLEEP );
         }
 
         // To update GUI call as config was just loaded.
@@ -319,17 +381,29 @@ LBL_WRITE_CONFIG_CLOSED:
 
 void Moto::asynchWriteThrottle()
 {
-    m_board->setThrottle( m_state.throttle );
+	for ( int i=0; i<TRIES; i++ )
+	{
+		if ( m_board->setThrottle( m_state.throttle ) )
+			break;
+	}
 }
 
 void Moto::asynchWriteSpeed()
 {
-	m_board->setSpeed( m_state.speed );
+	for ( int i=0; i<TRIES; i++ )
+	{
+		if ( m_board->setSpeed( m_state.speed ) )
+			break;
+	}
 }
 
 void Moto::asynchWriteDirection()
 {
-	m_board->setDirection( m_state.direction );
+	for ( int i=0; i<TRIES; i++ )
+	{
+		if ( m_board->setDirection( m_state.direction ) )
+			break;
+	}
 }
 
 

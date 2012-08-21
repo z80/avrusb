@@ -23,7 +23,7 @@ public:
     std::basic_string<unsigned char> & dataTo();
     std::basic_string<unsigned char> & dataFrom();
 protected:
-    mutable QMutex m_mutex;
+    mutable QMutex m_openMutex;
     class PD;
     PD * pd;
 };

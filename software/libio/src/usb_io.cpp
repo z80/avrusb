@@ -65,7 +65,7 @@ UsbIo::~UsbIo()
 
 bool UsbIo::open()
 {
-	QMutexLocker lock( &m_mutex );
+	QMutexLocker lock( &m_openMutex );
 
     pd->handle = 0;
     libusb_device * * l = 0;
@@ -85,7 +85,7 @@ void UsbIo::close()
 {
     if ( isOpen() )
     {
-    	QMutexLocker lock( &m_mutex );
+    	QMutexLocker lock( &m_openMutex );
 
         libusb_close( pd->handle );
         pd->handle = 0;
@@ -94,7 +94,7 @@ void UsbIo::close()
 
 bool UsbIo::isOpen() const
 {
-	QMutexLocker lock( &m_mutex );
+	QMutexLocker lock( &m_openMutex );
 
     return (pd->handle != 0);
 }
