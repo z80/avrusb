@@ -77,13 +77,68 @@ void Moto::loadSettings()
     for ( int i=0; i<16; i++ )
     {
     	QString stri = QString( "errorCode_%1" ).arg( i );
-    	QString defStri = QString( "ErrorBit#%1" ).arg( i );
+    	QString defStri = QString( "ErrorBit_%1" ).arg( i );
     	stri = set.value( stri, defStri ).toString();
     	m_errorCodes << stri;
     }
 
+    // Commutation mode
+    m_commutationModeNames.clear();
+    m_commutationModeVals.clear();
+    int index = 0;
+    QString arg = QString( "commutationModeName_%1" ).arg( index );
+    QString name = set.value( arg, "" ).toString();
+    arg = QString( "commutationModeVal_%1" ).arg( index );
+    int    val  = set.value( arg, "" ).toInt();
+    while ( ( name.length() > 0 ) && ( val > 0 ) )
+    {
+    	m_commutationModeNames << name;
+    	m_commutationModeVals  << val;
+    	index ++;
+        arg  = QString( "commutationModeName_%1" ).arg( index );
+        name = set.value( arg, "" ).toString();
+        arg = QString( "commutationModeVal_%1" ).arg( index );
+        val = set.value( arg, "" ).toInt();
+    }
+    if ( m_commutationModeNames.size() < 1 )
+    {
+    	m_commutationModeNames << "2G" << "4G";
+    	m_commutationModeVals  << 0    << 1;
+    }
+    ui.commutationMode->clear();
+    ui.commutationMode->addItems( m_commutationModeNames );
+
+    // Current limit
+    m_currentLimitNames.clear();
+    m_currentLimitVals.clear();
+    index = 0;
+    arg = QString( "currentLimitName_%1" ).arg( index );
+    name = set.value( arg, "" ).toString();
+    arg = QString( "currentLimitVal_%1" ).arg( index );
+    val  = set.value( arg, -1 ).toInt();
+    while ( ( name.length() > 0 ) && ( val > 0 ) )
+    {
+    	m_currentLimitNames << name;
+    	m_currentLimitVals  << val;
+    	index ++;
+        arg  = QString( "currentLimitName_%1" ).arg( index );
+        name = set.value( arg, "" ).toString();
+        arg = QString( "currentLimitVal_%1" ).arg( index );
+        val = set.value( arg, -1 ).toInt();
+    }
+    if ( m_currentLimitNames.size() < 1 )
+    {
+    	m_currentLimitNames << "10" << "15";
+    	m_currentLimitVals  << 0    << 1;
+    }
+    ui.currentLimit->clear();
+    ui.currentLimit->addItems( m_currentLimitNames );
+
     // Help command.
     m_helpCmd = set.value( "helpCmd", "file://help.txt" ).toString();
+
+    // Limits
+    loadLimits( set );
 
     // To create INI file if it doesn't exist.
     saveSettings();
@@ -127,8 +182,111 @@ void Moto::saveSettings()
     	set.setValue( arg, val );
     }
 
+    // Commutation mode
+    for ( int i=0; i<m_commutationModeNames.size(); i++ )
+    {
+    	QString arg = QString( "commutationModeName_%1" ).arg( i );
+    	set.setValue( arg, m_commutationModeNames.at( i ) );
+    	arg = QString( "commutationModeVal_%1" ).arg( i );
+    	set.setValue( arg, m_commutationModeVals.at( i ) );
+    }
+
+    // Current limit
+    for ( int i=0; i<m_currentLimitNames.size(); i++ )
+    {
+    	QString arg = QString( "currentLimitName_%1" ).arg( i );
+    	set.setValue( arg, m_currentLimitNames.at( i ) );
+    	arg = QString( "currentLimitVal_%1" ).arg( i );
+    	set.setValue( arg, m_currentLimitVals.at( i ) );
+    }
+
     // Help command.
     set.setValue( "helpCmd", m_helpCmd );
+
+    // Limits
+    saveLimits( set );
+}
+
+void Moto::loadLimits( QSettings & set )
+{
+    QStringList     names;
+    QList<QSpinBox *> boxes;
+    QList<int>      vals;
+    names << "maxThrottleCwMin"       << "maxThrottleCwMax"
+          << "maxThrottleCcwMin"      << "maxThrottleCcwMax"
+          << "maxSpeedCwMin"          << "maxSpeedCwMax"
+          << "maxSpeedCcwMin"         << "maxSpeedCcwMax"
+          << "throttleRampUpCwMin"    << "throttleRampUpCwMax"
+          << "throttleRampUpCcwMin"   << "throttleRampUpCcwMax"
+          << "throttleRampDownCwMin"  << "throttleRampDownCwMax"
+          << "throttleRampDownCcwMin" << "throttleRampDownCcwMax"
+          << "stallThresholdMin"      << "stallThresholdMax"
+          << "undervoltageCtrlMin"    << "undervoltageCtrlMax"
+          << "motorOvertempMin"       << "motorOvertempMax"
+          << "controllerOvertempMin"  << "cotrollerOvertempMax";
+    boxes << ui.maxThrottleCw << ui.maxThrottleCcw << ui.maxSpeedCw << ui.maxSpeedCcw
+    	  << ui.throttleRampUpCw << ui.throttleRampUpCcw << ui.throttleRampDownCw << ui.throttleRampDownCcw
+    	  << ui.stallThreshold << ui.undervoltageCtrl << ui.motorOvertemp << ui.controllerOvertemp;
+    vals << 1 << 100
+    	 << 1 << 100
+    	 << 0 << 1500
+    	 << 0 << 1500
+    	 << 10  << 15000
+    	 << 10  << 15000
+    	 << 10  << 15000
+    	 << 10  << 15000
+    	 << 50  << 15000
+    	 << 1   << 1000
+    	 << 5   << 50
+    	 << 5   << 50;
+    int index = 0;
+    int cnt = boxes.size();
+    for ( int i=0; i<cnt; i++ )
+    {
+    	QString from = names.at( index );
+    	QString to   = names.at( index+1 );
+    	int defFrom  = vals.at( index );
+    	int defTo    = vals.at( index+1 );
+    	index += 2;
+    	int f = set.value( from, defFrom ).toInt();
+    	int t = set.value( to,   defTo ).toInt();
+    	QSpinBox * s = boxes[i];
+    	s->setRange( f, t );
+    }
+}
+
+void Moto::saveLimits( QSettings & set )
+{
+    QStringList     names;
+    QList<QSpinBox *> boxes;
+    names << "maxThrottleCwMin"       << "maxThrottleCwMax"
+          << "maxThrottleCcwMin"      << "maxThrottleCcwMax"
+          << "maxSpeedCwMin"          << "maxSpeedCwMax"
+          << "maxSpeedCcwMin"         << "maxSpeedCcwMax"
+          << "throttleRampUpCwMin"    << "throttleRampUpCwMax"
+          << "throttleRampUpCcwMin"   << "throttleRampUpCcwMax"
+          << "throttleRampDownCwMin"  << "throttleRampDownCwMax"
+          << "throttleRampDownCcwMin" << "throttleRampDownCcwMax"
+          << "stallThresholdMin"      << "stallThresholdMax"
+          << "undervoltageCtrlMin"    << "undervoltageCtrlMax"
+          << "motorOvertempMin"       << "motorOvertempMax"
+          << "controllerOvertempMin"  << "cotrollerOvertempMax";
+    boxes << ui.maxThrottleCw << ui.maxThrottleCcw << ui.maxSpeedCw << ui.maxSpeedCcw
+    	  << ui.throttleRampUpCw << ui.throttleRampUpCcw << ui.throttleRampDownCw << ui.throttleRampDownCcw
+    	  << ui.stallThreshold << ui.undervoltageCtrl << ui.motorOvertemp << ui.controllerOvertemp;
+    int index = 0;
+    int cnt = boxes.size();
+    for ( int i=0; i<cnt; i++ )
+    {
+    	QSpinBox * s = boxes[i];
+    	int f = s->minimum();
+    	int t = s->maximum();
+    	QString from = names.at( index );
+    	QString to   = names.at( index+1 );
+    	index += 2;
+    	set.setValue( from, f );
+    	set.setValue( to,   t );
+    }
 }
 
 void Moto::initGui()
@@ -274,8 +432,8 @@ void Moto::slotStatus()
 
     ui.controllerT->setValue( m_state.controllerT );
     ui.motorT->setValue( m_state.motorT );
-    ui.externalT_1->setValue( m_state.extT_1 );
-    ui.externalT_2->setValue( m_state.extT_2 );
+    ui.externalInput_1->setValue( m_state.extInp_1 );
+    ui.externalInput_2->setValue( m_state.extInp_2 );
 
     ui.errorMsg->clear();
     if ( m_state.errorCode == 0 )
@@ -313,10 +471,10 @@ void Moto::slotConfig()
     ui.throttleRampUpCcw->setValue( m_state.throttleRampUpCcw );
     ui.throttleRampDownCw->setValue( m_state.throttleRampDownCw );
     ui.throttleRampDownCcw->setValue( m_state.throttleRampDownCcw );
-    ui.commutationMode->setCurrentIndex( m_state.commutationMode );
+    //ui.commutationMode->setCurrentIndex( m_state.commutationMode );
     ui.throttleLockout->setCurrentIndex( m_state.throttleLockout ? 1 : 0 );
     ui.stallThreshold->setValue( m_state.stallThreshold );
-    ui.currentLimit->setValue( m_state.currentLimit );
+    //ui.currentLimit->setValue( m_state.currentLimit );
     ui.undervoltageCtrl->setValue( m_state.undervoltageCtrl );
     ui.motorOvertemp->setValue( m_state.motorOvertemp );
     ui.controllerOvertemp->setValue( m_state.controllerOvertemp );
@@ -396,10 +554,10 @@ void Moto::slotApply()
     m_state.throttleRampDownCw  = ui.throttleRampDownCw->value();
     m_state.throttleRampDownCcw = ui.throttleRampDownCcw->value();
 
-    m_state.commutationMode     = ui.commutationMode->currentIndex();
+    m_state.commutationMode     = m_commutationModeVals.at( ui.commutationMode->currentIndex() );
     m_state.throttleLockout     = ( ui.throttleLockout->currentIndex() > 0 );
     m_state.stallThreshold      = ui.stallThreshold->value();
-    m_state.currentLimit        = ui.currentLimit->value();
+    m_state.currentLimit        = m_currentLimitVals.at( ui.currentLimit->currentIndex() );
     m_state.undervoltageCtrl    = ui.undervoltageCtrl->value();
     m_state.motorOvertemp       = ui.motorOvertemp->value();
     m_state.controllerOvertemp  = ui.controllerOvertemp->value();

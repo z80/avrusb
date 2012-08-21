@@ -512,10 +512,10 @@ bool CtrlboardIo::motorT( int & val )
     return res;
 }
 
-bool CtrlboardIo::extT_1( int & val )
+bool CtrlboardIo::extInp_1( int & val )
 {
     unsigned char arg[2];
-    bool res = param( EXT_T_1, arg, 2 );
+    bool res = param( EXT_INP_1, arg, 2 );
     if ( res )
     {
         val = arg[0] + 256 * arg[1];
@@ -525,10 +525,10 @@ bool CtrlboardIo::extT_1( int & val )
     return res;
 }
 
-bool CtrlboardIo::extT_2( int & val )
+bool CtrlboardIo::extInp_2( int & val )
 {
     unsigned char arg[2];
-    bool res = param( EXT_T_2, arg, 2 );
+    bool res = param( EXT_INP_2, arg, 2 );
     if ( res )
     {
         val = arg[0] + 256 * arg[1];

@@ -92,8 +92,8 @@ public:
     bool enKeySeat_2( bool & val );
     bool controllerT( int & val );
     bool motorT( int & val );
-    bool extT_1( int & val );
-    bool extT_2( int & val );
+    bool extInp_1( int & val );
+    bool extInp_2( int & val );
     bool errorCode( int & val );
 
     // Group 3-eeprom.

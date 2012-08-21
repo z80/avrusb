@@ -61,8 +61,8 @@ public:
     bool keySeat_2;
     int  controllerT;
     int  motorT;
-    int  extT_1;
-    int  extT_2;
+    int  extInp_1;
+    int  extInp_2;
     int  errorCode;
 
     int  hours;

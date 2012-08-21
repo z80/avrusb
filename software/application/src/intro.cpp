@@ -7,6 +7,7 @@ Intro::Intro( QWidget * master, int timeout )
     : QWidget( 0 ), 
       m_master( master )
 {
+    setWindowFlags( Qt::WindowStaysOnTopHint );
     m_master->hide();
     
     m_pixmap = QPixmap( g_filename );
@@ -27,9 +28,9 @@ Intro::~Intro()
 
 void Intro::paintEvent( QPaintEvent * event )
 {
-	QPainter painter( this );
+    QPainter painter( this );
     painter.drawPixmap( 0, 0,
-	                    m_pixmap.scaled( size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
+                        m_pixmap.scaled( size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
 }
 
 void Intro::resizeEvent(QResizeEvent *event)

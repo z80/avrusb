@@ -85,12 +85,12 @@ void Moto::asynchReadStatus()
             goto LBL_STATUS_CLOSED;
         Sleep::msleep( SLEEP );
 
-        res = m_board->extT_1( m_state.extT_1 );
+        res = m_board->extInp_1( m_state.extInp_1 );
         if ( !res )
             goto LBL_STATUS_CLOSED;
         Sleep::msleep( SLEEP );
 
-        res = m_board->extT_2( m_state.extT_2 );
+        res = m_board->extInp_2( m_state.extInp_2 );
         if ( !res )
             goto LBL_STATUS_CLOSED;
         Sleep::msleep( SLEEP );

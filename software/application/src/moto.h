@@ -20,6 +20,8 @@ private:
     // INI file IO.
     void loadSettings();
     void saveSettings();
+    void loadLimits( QSettings & set );
+    void saveLimits( QSettings & set );
     // Initialize GUI controls.
     void initGui();
     // Write EEPROM parameters.
@@ -50,6 +52,10 @@ private:
     QStringList   m_errorCodes;
     QString       m_helpCmd;
     State m_state;
+    QStringList  m_commutationModeNames;
+    QList<int>  m_commutationModeVals;
+    QStringList  m_currentLimitNames;
+    QList<int>  m_currentLimitVals;
 
     static const QString INI_FILE_NAME;
     static const int SLEEP;

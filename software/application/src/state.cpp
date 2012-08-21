@@ -54,8 +54,8 @@ State::State()
     keySeat_2         = false;
     controllerT       = 0;
     motorT            = 0;
-    extT_1            = 0;
-    extT_2            = 0;
+    extInp_1          = 0;
+    extInp_2          = 0;
     errorCode         = 0;
 
     hours             = 0;

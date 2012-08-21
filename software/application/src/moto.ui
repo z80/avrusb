@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>951</width>
-    <height>827</height>
+    <width>964</width>
+    <height>838</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -514,7 +514,7 @@
              <item>
               <widget class="QLabel" name="label_24">
                <property name="text">
-                <string>External T 1</string>
+                <string>External input 1</string>
                </property>
               </widget>
              </item>
@@ -532,7 +532,13 @@
               </spacer>
              </item>
              <item>
-              <widget class="QSpinBox" name="externalT_1">
+              <widget class="QSpinBox" name="externalInput_1">
+               <property name="minimumSize">
+                <size>
+                 <width>64</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frame">
                 <bool>false</bool>
                </property>
@@ -543,17 +549,10 @@
                 <enum>QAbstractSpinBox::NoButtons</enum>
                </property>
                <property name="minimum">
-                <number>-50</number>
+                <number>0</number>
                </property>
                <property name="maximum">
-                <number>150</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_43">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <number>65535</number>
                </property>
               </widget>
              </item>
@@ -564,7 +563,7 @@
              <item>
               <widget class="QLabel" name="label_25">
                <property name="text">
-                <string>External T 2</string>
+                <string>External input 2</string>
                </property>
               </widget>
              </item>
@@ -582,7 +581,13 @@
               </spacer>
              </item>
              <item>
-              <widget class="QSpinBox" name="externalT_2">
+              <widget class="QSpinBox" name="externalInput_2">
+               <property name="minimumSize">
+                <size>
+                 <width>64</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="readOnly">
                 <bool>true</bool>
                </property>
@@ -590,17 +595,10 @@
                 <enum>QAbstractSpinBox::NoButtons</enum>
                </property>
                <property name="minimum">
-                <number>-50</number>
+                <number>0</number>
                </property>
                <property name="maximum">
-                <number>150</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_41">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <number>65535</number>
                </property>
               </widget>
              </item>
@@ -851,6 +849,9 @@
              <height>0</height>
             </size>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="maximum">
             <number>100</number>
            </property>
@@ -894,6 +895,9 @@
              <width>96</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="maximum">
             <number>15000</number>
@@ -977,27 +981,15 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="8" column="3" colspan="3">
-          <widget class="QSpinBox" name="currentLimit">
-           <property name="minimumSize">
-            <size>
-             <width>96</width>
-             <height>0</height>
-            </size>
-           </property>
+         <item row="1" column="3">
+          <widget class="QSpinBox" name="maxThrottleCw">
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
            <property name="maximum">
-            <number>1000</number>
+            <number>100</number>
            </property>
           </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QSpinBox" name="maxThrottleCw"/>
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_15">
@@ -1007,10 +999,27 @@
           </widget>
          </item>
          <item row="3" column="5">
-          <widget class="QSpinBox" name="throttleRampUpCcw"/>
+          <widget class="QSpinBox" name="throttleRampUpCcw">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="minimum">
+            <number>10</number>
+           </property>
+           <property name="maximum">
+            <number>15000</number>
+           </property>
+          </widget>
          </item>
          <item row="2" column="5">
-          <widget class="QSpinBox" name="maxSpeedCcw"/>
+          <widget class="QSpinBox" name="maxSpeedCcw">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="maximum">
+            <number>1500</number>
+           </property>
+          </widget>
          </item>
          <item row="7" column="3" colspan="3">
           <widget class="QSpinBox" name="stallThreshold">
@@ -1053,6 +1062,9 @@
              <height>0</height>
             </size>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="minimum">
             <number>10</number>
            </property>
@@ -1092,6 +1104,12 @@
           <widget class="QSpinBox" name="controllerOvertemp">
            <property name="alignment">
             <set>Qt::AlignCenter</set>
+           </property>
+           <property name="minimum">
+            <number>5</number>
+           </property>
+           <property name="maximum">
+            <number>50</number>
            </property>
           </widget>
          </item>
@@ -1140,10 +1158,23 @@
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
+           <property name="minimum">
+            <number>5</number>
+           </property>
+           <property name="maximum">
+            <number>50</number>
+           </property>
           </widget>
          </item>
          <item row="1" column="5">
-          <widget class="QSpinBox" name="maxThrottleCcw"/>
+          <widget class="QSpinBox" name="maxThrottleCcw">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_45">
@@ -1153,7 +1184,14 @@
           </widget>
          </item>
          <item row="2" column="3">
-          <widget class="QSpinBox" name="maxSpeedCw"/>
+          <widget class="QSpinBox" name="maxSpeedCw">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="maximum">
+            <number>1500</number>
+           </property>
+          </widget>
          </item>
          <item row="7" column="2">
           <widget class="QLabel" name="label_34">
@@ -1269,6 +1307,9 @@
              <height>0</height>
             </size>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="minimum">
             <number>10</number>
            </property>
@@ -1292,7 +1333,17 @@
           </widget>
          </item>
          <item row="4" column="5">
-          <widget class="QSpinBox" name="throttleRampDownCcw"/>
+          <widget class="QSpinBox" name="throttleRampDownCcw">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="minimum">
+            <number>10</number>
+           </property>
+           <property name="maximum">
+            <number>15000</number>
+           </property>
+          </widget>
          </item>
          <item row="12" column="1" colspan="5">
           <widget class="QLineEdit" name="password">
@@ -1381,6 +1432,9 @@
            </property>
           </spacer>
          </item>
+         <item row="8" column="3" colspan="3">
+          <widget class="QComboBox" name="currentLimit"/>
+         </item>
         </layout>
        </item>
        <item>
@@ -1406,7 +1460,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>951</width>
+     <width>964</width>
      <height>25</height>
     </rect>
    </property>

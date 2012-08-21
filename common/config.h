@@ -37,8 +37,8 @@
 #define ENABLE_KEY_SEAT_2   7
 #define CONTROLLER_T        8
 #define MOTOR_T             10
-#define EXT_T_1             12
-#define EXT_T_2             14
+#define EXT_INP_1           12
+#define EXT_INP_2           14
 #define ERROR               16
 
 // Three additional parameters from EEPROM...
