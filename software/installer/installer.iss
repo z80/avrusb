@@ -5,9 +5,9 @@
 AppName=brushless_motor
 AppVerName=BrushlessMotor-1.0.0
 AppPublisher=Transmagnetics
-AppPublisherURL=http://transmagnetics.cn/
-AppSupportURL=http://transmagnetics.cn/
-AppUpdatesURL=http://transmagnetics.cn/
+AppPublisherURL=http://transmag.cn/
+AppSupportURL=http://transmag.cn/
+AppUpdatesURL=http://transmag.cn/
 DefaultDirName=c:\BrushlessMotor
 DefaultGroupName=BrushlessMotor
 AllowNoIcons=yes
@@ -30,11 +30,11 @@ Source: "..\app\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs create
 
 [Icons]
 Name: "{group}\BrushlessMotor"; Filename: "{app}\ctrl.exe"; WorkingDir: "{app}"
-Name: "{group}\{cm:ProgramOnTheWeb,brushless_motor}"; Filename: "http://transmagnetics.cn/"
+Name: "{group}\{cm:ProgramOnTheWeb,brushless_motor}"; Filename: "http://transmag.cn/"
 Name: "{group}\{cm:UninstallProgram,brushless_motor}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\BrushlessMotor"; Filename: "{app}\ctrl.exe"; WorkingDir: "{app}"; Tasks: desktopicon
 
-;[Run]
+[Run]
 ;Filename: "{app}\winusb_driver\installer_x86.exe"; Description: "x86 Device driver install."; Check: not Is64BitInstallMode
 ;Filename: "{app}\winusb_driver\installer_x64.exe"; Description: "x64 Device driver install."; Check: Is64BitInstallMode
 
