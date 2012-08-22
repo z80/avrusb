@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>964</width>
+    <width>983</width>
     <height>838</height>
    </rect>
   </property>
@@ -79,12 +79,15 @@
        <string>Motor status</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,100,1">
+       <property name="margin">
+        <number>3</number>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_13">
          <item>
           <widget class="QLabel" name="label_14">
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Model/Rev &lt;span style=&quot; font-weight:600;&quot;&gt;Transmagnetics&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Transmagnetics &lt;/span&gt;Model/Rev&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -171,6 +174,9 @@
                  <bold>true</bold>
                 </font>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
                <property name="readOnly">
                 <bool>true</bool>
                </property>
@@ -225,6 +231,9 @@
                  <bold>true</bold>
                 </font>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
                <property name="readOnly">
                 <bool>true</bool>
                </property>
@@ -234,6 +243,19 @@
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </item>
@@ -303,6 +325,9 @@
                <property name="enabled">
                 <bool>true</bool>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
                <property name="readOnly">
                 <bool>true</bool>
                </property>
@@ -347,9 +372,15 @@
              </item>
              <item>
               <widget class="QLineEdit" name="enKeySeat_1">
+               <property name="minimumSize">
+                <size>
+                 <width>48</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="maximumSize">
                 <size>
-                 <width>64</width>
+                 <width>16777215</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -384,70 +415,20 @@
              </item>
              <item>
               <widget class="QLineEdit" name="enKeySeat_2">
+               <property name="minimumSize">
+                <size>
+                 <width>48</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="maximumSize">
                 <size>
-                 <width>64</width>
+                 <width>16777215</width>
                  <height>16777215</height>
                 </size>
                </property>
                <property name="readOnly">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_17">
-             <item>
-              <widget class="QLabel" name="label_23">
-               <property name="text">
-                <string>Controller T</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_18">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="controllerT">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="frame">
-                <bool>false</bool>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-               <property name="buttonSymbols">
-                <enum>QAbstractSpinBox::NoButtons</enum>
-               </property>
-               <property name="keyboardTracking">
-                <bool>true</bool>
-               </property>
-               <property name="minimum">
-                <number>-50</number>
-               </property>
-               <property name="maximum">
-                <number>150</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_40">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -480,11 +461,8 @@
              </item>
              <item>
               <widget class="QSpinBox" name="motorT">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="frame">
-                <bool>false</bool>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
                <property name="readOnly">
                 <bool>true</bool>
@@ -502,6 +480,56 @@
              </item>
              <item>
               <widget class="QLabel" name="label_42">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_17">
+             <item>
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>Controller T</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_18">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="controllerT">
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="minimum">
+                <number>-50</number>
+               </property>
+               <property name="maximum">
+                <number>150</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_40">
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; vertical-align:super;&quot;&gt;0&lt;/span&gt;C&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -539,20 +567,11 @@
                  <height>0</height>
                 </size>
                </property>
-               <property name="frame">
-                <bool>false</bool>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
                <property name="buttonSymbols">
                 <enum>QAbstractSpinBox::NoButtons</enum>
-               </property>
-               <property name="minimum">
-                <number>0</number>
-               </property>
-               <property name="maximum">
-                <number>65535</number>
                </property>
               </widget>
              </item>
@@ -588,6 +607,9 @@
                  <height>0</height>
                 </size>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
                <property name="readOnly">
                 <bool>true</bool>
                </property>
@@ -620,6 +642,19 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
+              <spacer name="horizontalSpacer_16">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QLabel" name="label_12">
                <property name="text">
                 <string>Hours</string>
@@ -647,6 +682,9 @@
                  <height>0</height>
                 </size>
                </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
                <property name="readOnly">
                 <bool>true</bool>
                </property>
@@ -672,6 +710,19 @@
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <spacer name="horizontalSpacer_23">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
              <item>
               <widget class="QLabel" name="label_13">
                <property name="text">
@@ -699,6 +750,9 @@
                  <width>64</width>
                  <height>0</height>
                 </size>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
                <property name="readOnly">
                 <bool>true</bool>
@@ -812,6 +866,9 @@
        <string>Software</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="margin">
+        <number>3</number>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_19">
          <item>
@@ -963,7 +1020,7 @@
        <item>
         <widget class="QLabel" name="label_44">
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#e50000;&quot;&gt;In software control mode the above &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#e50000;&quot;&gt;parameters override the external inputs.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;In software control mode the above&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;parameters override the external inputs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -979,6 +1036,9 @@
        <string>Motor setup</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="margin">
+        <number>3</number>
+       </property>
        <item>
         <layout class="QGridLayout" name="gridLayout">
          <item row="1" column="3">
@@ -1460,7 +1520,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>964</width>
+     <width>983</width>
      <height>25</height>
     </rect>
    </property>
