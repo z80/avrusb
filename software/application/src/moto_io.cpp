@@ -2,7 +2,7 @@
 #include "moto.h"
 #include "ctrlboard_io.h"
 
-const int Moto::SLEEP = 1;
+const int Moto::SLEEP = 0;
 const int Moto::TRIES = 8;
 
 class Sleep: public QThread
@@ -54,7 +54,9 @@ void Moto::asynchReadStatus()
         bool res = m_board->open();
         if ( res )
         {
-            asynchReadConfig();
+        	// Dmitry said, do not read configuration.
+        	// Just load it from INI file.
+            //asynchReadConfig();
             emit sigOpened();
         }
     }
